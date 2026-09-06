@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard | CreatorProof</title>
+
+    <link rel="stylesheet"
+          href="../css/style.css">
+
+</head>
+
+<body>
+
+
+<aside class="sidebar">
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            ⛓
+        </div>
+
+        <div class="logo-text">
+            Creator<span>Proof</span>
+        </div>
+
+    </div>
+
+
+    <div class="nav-title">
+        Main Menu
+    </div>
+
+
+    <a class="nav-link active"
+       href="dashboard.html">
+
+        <span class="nav-icon">⌂</span>
+        <span>Dashboard</span>
+
+    </a>
+
+
+    <a class="nav-link"
+       href="register.html">
+
+        <span class="nav-icon">＋</span>
+        <span>Register Content</span>
+
+    </a>
+
+
+    <a class="nav-link"
+       href="content.html">
+
+        <span class="nav-icon">▣</span>
+        <span>My Content</span>
+
+    </a>
+
+
+    <a class="nav-link"
+       href="verify.html">
+
+        <span class="nav-icon">✓</span>
+        <span>Verify Content</span>
+
+    </a>
+
+
+    <div class="nav-title">
+        Management
+    </div>
+
+
+    <a class="nav-link"
+       href="licenses.html">
+
+        <span class="nav-icon">▤</span>
+        <span>Licenses</span>
+
+    </a>
+
+
+    <a class="nav-link"
+       href="disputes.html">
+
+        <span class="nav-icon">⚖</span>
+        <span>Disputes</span>
+
+    </a>
+
+
+    <div class="sidebar-bottom">
+
+        <div class="network-status">
+
+            <p>Blockchain Network</p>
+
+            <strong>
+                <span class="status-dot"></span>
+                Ethereum • Demo
+            </strong>
+
+        </div>
+
+    </div>
+
+</aside>
+
+
+<main class="main">
+
+    <header class="topbar">
+
+        <div>
+
+            <div class="page-title">
+                Dashboard
+            </div>
+
+            <div class="breadcrumb">
+                CreatorProof / Overview
+            </div>
+
+        </div>
+
+
+        <div class="top-actions">
+
+            <div class="demo-badge">
+                DEMO MODE
+            </div>
+
+            <div class="notification">
+                🔔
+            </div>
+
+            <div class="profile">
+
+                <div class="avatar">
+                    CD
+                </div>
+
+                <div class="profile-info">
+
+                    <strong>
+                        Creator Demo
+                    </strong>
+
+                    <span>
+                        Creator
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <section class="content-area">
+
+
+        <div class="welcome">
+
+            <div>
+
+                <h1>
+                    Welcome to CreatorProof 👋
+                </h1>
+
+                <p>
+                    Protect, verify and manage your digital
+                    content using blockchain technology.
+                </p>
+
+            </div>
+
+            <a href="register.html"
+               class="btn-white">
+
+                + Register Content
+
+            </a>
+
+        </div>
+
+
+        <div class="stats-grid">
+
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+
+                    <div>
+                        <p>Registered Content</p>
+                        <h3 id="totalContents">0</h3>
+                    </div>
+
+                    <div class="stat-icon">
+                        📁
+                    </div>
+
+                </div>
+
+                <span class="stat-change">
+                    ↑ Protected
+                </span>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+
+                    <div>
+                        <p>Verified Content</p>
+                        <h3 id="verifiedContents">0</h3>
+                    </div>
+
+                    <div class="stat-icon">
+                        ✓
+                    </div>
+
+                </div>
+
+                <span class="stat-change">
+                    Secure
+                </span>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+
+                    <div>
+                        <p>Active Licenses</p>
+                        <h3>12</h3>
+                    </div>
+
+                    <div class="stat-icon">
+                        📜
+                    </div>
+
+                </div>
+
+                <span class="stat-change">
+                    ↑ 8.2%
+                </span>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+
+                    <div>
+                        <p>Open Disputes</p>
+                        <h3>2</h3>
+                    </div>
+
+                    <div class="stat-icon">
+                        ⚖
+                    </div>
+
+                </div>
+
+                <span class="stat-change">
+                    Review required
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="two-column">
+
+
+            <div class="card">
+
+                <div class="card-header">
+
+                    <h2>
+                        Recent Registered Content
+                    </h2>
+
+                    <a class="view-link"
+                       href="content.html">
+
+                        View all →
+
+                    </a>
+
+                </div>
+
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>CONTENT</th>
+                                <th>HASH</th>
+                                <th>STATUS</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+
+                                <td>
+                                    <strong>My Original Artwork</strong>
+                                    <br>
+                                    <span class="hash">
+                                        digital-art.png
+                                    </span>
+                                </td>
+
+                                <td class="hash">
+                                    a8f5f167f44f4964...
+                                </td>
+
+                                <td>
+                                    <span class="badge badge-success">
+                                        ✓ Verified
+                                    </span>
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+                                    <strong>Photography Collection</strong>
+                                    <br>
+                                    <span class="hash">
+                                        photography.zip
+                                    </span>
+                                </td>
+
+                                <td class="hash">
+                                    7b2c1d9e8a4f6b3c...
+                                </td>
+
+                                <td>
+                                    <span class="badge badge-success">
+                                        ✓ Verified
+                                    </span>
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="card-header">
+
+                    <h2>
+                        Provenance Activity
+                    </h2>
+
+                    <span>
+                        Recent
+                    </span>
+
+                </div>
+
+
+                <div class="timeline">
+
+
+                    <div class="timeline-item">
+
+                        <div class="timeline-dot"></div>
+
+                        <h4>
+                            Content fingerprint created
+                        </h4>
+
+                        <p>
+                            My Original Artwork
+                        </p>
+
+                        <div class="hash">
+                            SHA-256 fingerprint generated
+                        </div>
+
+                    </div>
+
+
+                    <div class="timeline-item">
+
+                        <div class="timeline-dot"></div>
+
+                        <h4>
+                            Ownership registered
+                        </h4>
+
+                        <p>
+                            Creator Demo
+                        </p>
+
+                    </div>
+
+
+                    <div class="timeline-item">
+
+                        <div class="timeline-dot"></div>
+
+                        <h4>
+                            Blockchain record created
+                        </h4>
+
+                        <p>
+                            Ethereum Demo Network
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-header">
+
+                <h2>
+                    Blockchain Security Status
+                </h2>
+
+            </div>
+
+
+            <div class="alert alert-success">
+
+                ✓ CreatorProof security layer is active.
+                SHA-256 fingerprints are generated before
+                blockchain registration.
+
+            </div>
+
+
+            <div class="stats-grid"
+                 style="margin-bottom:0;">
+
+                <div>
+                    <p style="font-size:10px;color:#64748b;">
+                        Network
+                    </p>
+
+                    <strong style="font-size:12px;">
+                        Ethereum
+                    </strong>
+                </div>
+
+                <div>
+                    <p style="font-size:10px;color:#64748b;">
+                        Consensus
+                    </p>
+
+                    <strong style="font-size:12px;">
+                        Proof of Work / Demo
+                    </strong>
+                </div>
+
+                <div>
+                    <p style="font-size:10px;color:#64748b;">
+                        Hash Algorithm
+                    </p>
+
+                    <strong style="font-size:12px;">
+                        SHA-256
+                    </strong>
+                </div>
+
+                <div>
+                    <p style="font-size:10px;color:#64748b;">
+                        Smart Contract
+                    </p>
+
+                    <strong style="font-size:12px;">
+                        Ready for Web3
+                    </strong>
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+</main>
+
+
+<script src="../js/app.js"></script>
+
+</body>
+</html>

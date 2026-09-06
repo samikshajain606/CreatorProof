@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>My Content | CreatorProof</title>
+
+    <link rel="stylesheet"
+          href="../css/style.css">
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
+
+<aside class="sidebar">
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            ⛓
+        </div>
+
+        <div class="logo-text">
+            Creator<span>Proof</span>
+        </div>
+
+    </div>
+
+
+    <div class="nav-title">
+        Main Menu
+    </div>
+
+
+    <a class="nav-link"
+       href="dashboard.html">
+
+        <span class="nav-icon">
+            ⌂
+        </span>
+
+        <span>
+            Dashboard
+        </span>
+
+    </a>
+
+
+    <a class="nav-link"
+       href="register.html">
+
+        <span class="nav-icon">
+            ＋
+        </span>
+
+        <span>
+            Register Content
+        </span>
+
+    </a>
+
+
+    <a class="nav-link active"
+       href="content.html">
+
+        <span class="nav-icon">
+            ▣
+        </span>
+
+        <span>
+            My Content
+        </span>
+
+    </a>
+
+
+    <a class="nav-link"
+       href="verify.html">
+
+        <span class="nav-icon">
+            ✓
+        </span>
+
+        <span>
+            Verify Content
+        </span>
+
+    </a>
+
+
+    <div class="nav-title">
+        Management
+    </div>
+
+
+    <a class="nav-link"
+       href="licenses.html">
+
+        <span class="nav-icon">
+            ▤
+        </span>
+
+        <span>
+            Licenses
+        </span>
+
+    </a>
+
+
+    <a class="nav-link"
+       href="disputes.html">
+
+        <span class="nav-icon">
+            ⚖
+        </span>
+
+        <span>
+            Disputes
+        </span>
+
+    </a>
+
+</aside>
+
+
+<!-- =====================================================
+     MAIN CONTENT
+===================================================== -->
+
+<main class="main">
+
+
+    <!-- =================================================
+         TOP BAR
+    ================================================== -->
+
+    <header class="topbar">
+
+        <div>
+
+            <div class="page-title">
+                My Content
+            </div>
+
+            <div class="breadcrumb">
+                CreatorProof / Registered Content
+            </div>
+
+        </div>
+
+
+        <div class="top-actions">
+
+            <div class="demo-badge">
+                DEMO MODE
+            </div>
+
+
+            <a href="register.html"
+               class="btn btn-primary">
+
+                + Register
+
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <!-- =================================================
+         CONTENT AREA
+    ================================================== -->
+
+    <section class="content-area">
+
+
+        <!-- =================================================
+             WELCOME SECTION
+        ================================================== -->
+
+        <div class="welcome">
+
+            <div>
+
+                <h1>
+                    Your Protected Content
+                </h1>
+
+                <p>
+                    Every registered file has a unique digital fingerprint.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             CONTENT REGISTRY
+        ================================================== -->
+
+        <div class="card">
+
+
+            <div class="card-header">
+
+                <div>
+
+                    <h2>
+                        Content Registry
+                    </h2>
+
+                    <span>
+                        Blockchain-ready content records
+                    </span>
+
+                </div>
+
+
+                <a href="verify.html"
+                   class="view-link">
+
+                    Verify a File →
+
+                </a>
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                CONTENT
+                            </th>
+
+                            <th>
+                                CONTENT ID
+                            </th>
+
+                            <th>
+                                SHA-256 FINGERPRINT
+                            </th>
+
+                            <th>
+                                STATUS
+                            </th>
+
+                            <th>
+                                VERSION
+                            </th>
+
+                            <th>
+                                REGISTERED
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <!--
+                        IMPORTANT:
+                        This ID must match the
+                        loadContentTable() function
+                        in app.js.
+                    -->
+
+                    <tbody id="contentTableBody">
+
+                        <!--
+                            Registered content will
+                            automatically appear here.
+                        -->
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- =================================================
+             TWO COLUMN SECTION
+        ================================================== -->
+
+        <div class="two-column"
+             style="margin-top:20px;">
+
+
+            <!-- =================================================
+                 PROVENANCE
+            ================================================== -->
+
+            <div class="card">
+
+                <div class="card-header">
+
+                    <h2>
+                        Provenance
+                    </h2>
+
+                    <span>
+                        Immutable history
+                    </span>
+
+                </div>
+
+
+                <div class="timeline">
+
+
+                    <div class="timeline-item">
+
+                        <div class="timeline-dot">
+                        </div>
+
+
+                        <h4>
+                            Original content registered
+                        </h4>
+
+
+                        <p>
+                            SHA-256 fingerprint generated
+                        </p>
+
+                    </div>
+
+
+                    <div class="timeline-item">
+
+                        <div class="timeline-dot">
+                        </div>
+
+
+                        <h4>
+                            Ownership established
+                        </h4>
+
+
+                        <p>
+                            Creator wallet will be linked
+                        </p>
+
+                    </div>
+
+
+                    <div class="timeline-item">
+
+                        <div class="timeline-dot">
+                        </div>
+
+
+                        <h4>
+                            Blockchain transaction
+                        </h4>
+
+
+                        <p>
+                            Smart contract record
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 VERSION MANAGEMENT
+            ================================================== -->
+
+            <div class="card">
+
+                <div class="card-header">
+
+                    <h2>
+                        Version Management
+                    </h2>
+
+                </div>
+
+
+                <div class="alert alert-info">
+
+                    Each modification to a registered file
+                    produces a different SHA-256 fingerprint.
+
+                </div>
+
+
+                <div style="
+                    display:flex;
+                    justify-content:space-between;
+                    padding:12px 0;
+                    border-bottom:1px solid #eee;
+                ">
+
+                    <span style="font-size:11px;">
+                        Current Version
+                    </span>
+
+
+                    <strong style="font-size:11px;">
+                        v1
+                    </strong>
+
+                </div>
+
+
+                <div style="
+                    display:flex;
+                    justify-content:space-between;
+                    padding:12px 0;
+                ">
+
+                    <span style="font-size:11px;">
+                        Previous Version
+                    </span>
+
+
+                    <span class="badge badge-purple">
+                        —
+                    </span>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+</main>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script src="../js/app.js"></script>
+
+
+</body>
+
+</html>

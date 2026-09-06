@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Verify Content | CreatorProof</title>
+
+    <link rel="stylesheet"
+          href="../css/style.css">
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
+
+<aside class="sidebar">
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            ⛓
+        </div>
+
+        <div class="logo-text">
+            Creator<span>Proof</span>
+        </div>
+
+    </div>
+
+
+    <div class="nav-title">
+        Main Menu
+    </div>
+
+
+    <a class="nav-link"
+       href="dashboard.html">
+
+        <span class="nav-icon">⌂</span>
+
+        <span>Dashboard</span>
+
+    </a>
+
+
+    <a class="nav-link"
+       href="register.html">
+
+        <span class="nav-icon">＋</span>
+
+        <span>Register Content</span>
+
+    </a>
+
+
+    <a class="nav-link"
+       href="content.html">
+
+        <span class="nav-icon">▣</span>
+
+        <span>My Content</span>
+
+    </a>
+
+
+    <a class="nav-link active"
+       href="verify.html">
+
+        <span class="nav-icon">✓</span>
+
+        <span>Verify Content</span>
+
+    </a>
+
+
+    <div class="nav-title">
+        Management
+    </div>
+
+
+    <a class="nav-link"
+       href="licenses.html">
+
+        <span class="nav-icon">▤</span>
+
+        <span>Licenses</span>
+
+    </a>
+
+
+    <a class="nav-link"
+       href="disputes.html">
+
+        <span class="nav-icon">⚖</span>
+
+        <span>Disputes</span>
+
+    </a>
+
+</aside>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="main">
+
+
+    <!-- =================================================
+         TOP BAR
+    ================================================== -->
+
+    <header class="topbar">
+
+        <div>
+
+            <div class="page-title">
+                Verify Content
+            </div>
+
+            <div class="breadcrumb">
+                CreatorProof / Content Verification
+            </div>
+
+        </div>
+
+
+        <div class="top-actions">
+
+            <div class="demo-badge">
+                DEMO MODE
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- =================================================
+         CONTENT AREA
+    ================================================== -->
+
+    <section class="content-area">
+
+
+        <!-- =================================================
+             INTRO
+        ================================================== -->
+
+        <div class="welcome">
+
+            <div>
+
+                <h1>
+                    Verify Your Content
+                </h1>
+
+                <p>
+                    Upload a file to compare its digital fingerprint
+                    with registered CreatorProof content.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             VERIFICATION CARD
+        ================================================== -->
+
+        <div class="card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <h2>
+                        File Verification
+                    </h2>
+
+                    <span>
+                        SHA-256 fingerprint comparison
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <form id="verifyForm">
+
+
+                <!-- CONTENT ID -->
+
+                <div class="form-group">
+
+                    <label for="contentId">
+                        Content ID
+                    </label>
+
+                    <input
+                        type="text"
+                        id="contentId"
+                        name="contentId"
+                        placeholder="Enter registered Content ID"
+                        required
+                    >
+
+                    <small>
+                        Enter the Content ID generated when the content was registered.
+                    </small>
+
+                </div>
+
+
+                <!-- FILE -->
+
+                <div class="form-group">
+
+                    <label for="verifyFile">
+                        Select File
+                    </label>
+
+
+                    <input
+                        type="file"
+                        id="verifyFile"
+                        required
+                    >
+
+
+                    <small>
+                        Select the original registered file
+                        or a file you want to check.
+                    </small>
+
+                </div>
+
+
+                <!-- SHA-256 HASH -->
+
+                <div class="form-group"
+                     style="margin-top:20px;">
+
+                    <label for="sha256Hash">
+                        SHA-256 Hash
+                    </label>
+
+                    <input
+                        type="text"
+                        id="sha256Hash"
+                        name="sha256Hash"
+                        placeholder="SHA-256 hash will appear here"
+                        readonly
+                        required
+                    >
+
+                    <small>
+                        This hash is generated automatically from the selected file.
+                    </small>
+
+                </div>
+
+
+                <!-- HASH PREVIEW -->
+
+                <div
+                    id="verifyHashSection"
+                    style="
+                        display:none;
+                        margin-top:20px;
+                        padding:18px;
+                        border-radius:12px;
+                        background:#f5f3ff;
+                        border:1px solid #ddd6fe;
+                    "
+                >
+
+                    <div style="
+                        font-size:12px;
+                        font-weight:600;
+                        margin-bottom:10px;
+                    ">
+                        SHA-256 FINGERPRINT
+                    </div>
+
+
+                    <div
+                        id="verifyHashDisplay"
+                        style="
+                            font-family:monospace;
+                            font-size:11px;
+                            word-break:break-all;
+                            line-height:1.6;
+                        "
+                    >
+                    </div>
+
+                </div>
+
+
+                <!-- BUTTON -->
+
+                <div style="margin-top:24px;">
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary"
+                    >
+                        ✓ Verify Content
+                    </button>
+
+                </div>
+
+
+            </form>
+
+        </div>
+
+
+        <!-- =================================================
+             RESULT
+        ================================================== -->
+
+        <div
+            id="verificationResult"
+            class="card"
+            style="
+                display:none;
+                margin-top:20px;
+            "
+        >
+        </div>
+
+
+        <!-- =================================================
+             HOW IT WORKS
+        ================================================== -->
+
+        <div
+            class="two-column"
+            style="margin-top:20px;"
+        >
+
+
+            <!-- AUTHENTIC -->
+
+            <div class="card">
+
+                <div class="card-header">
+
+                    <h2>
+                        Authentic Content
+                    </h2>
+
+                </div>
+
+
+                <div class="alert alert-info">
+
+                    <strong>
+                        MATCH
+                    </strong>
+
+                    <br><br>
+
+                    If the uploaded file produces the same
+                    SHA-256 fingerprint as a registered record,
+                    CreatorProof identifies it as authentic.
+
+                </div>
+
+            </div>
+
+
+            <!-- TAMPERED -->
+
+            <div class="card">
+
+                <div class="card-header">
+
+                    <h2>
+                        Modified Content
+                    </h2>
+
+                </div>
+
+
+                <div class="alert alert-info">
+
+                    <strong>
+                        NO MATCH
+                    </strong>
+
+                    <br><br>
+
+                    Even a small modification changes the
+                    SHA-256 fingerprint, allowing the system
+                    to detect that the file is different.
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+</main>
+
+
+<script src="../js/app.js"></script>
+
+
+</body>
+
+</html>

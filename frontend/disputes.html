@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Disputes | CreatorProof</title>
+
+    <link rel="stylesheet"
+          href="../css/style.css">
+
+</head>
+
+
+<body>
+
+
+<aside class="sidebar">
+
+    <div class="logo">
+
+        <div class="logo-icon">⛓</div>
+
+        <div class="logo-text">
+            Creator<span>Proof</span>
+        </div>
+
+    </div>
+
+
+    <div class="nav-title">
+        Main Menu
+    </div>
+
+
+    <a class="nav-link"
+       href="dashboard.html">
+
+        <span class="nav-icon">⌂</span>
+        <span>Dashboard</span>
+
+    </a>
+
+
+    <a class="nav-link"
+       href="register.html">
+
+        <span class="nav-icon">＋</span>
+        <span>Register Content</span>
+
+    </a>
+
+
+    <a class="nav-link"
+       href="content.html">
+
+        <span class="nav-icon">▣</span>
+        <span>My Content</span>
+
+    </a>
+
+
+    <a class="nav-link"
+       href="verify.html">
+
+        <span class="nav-icon">✓</span>
+        <span>Verify Content</span>
+
+    </a>
+
+
+    <div class="nav-title">
+        Management
+    </div>
+
+
+    <a class="nav-link"
+       href="licenses.html">
+
+        <span class="nav-icon">▤</span>
+        <span>Licenses</span>
+
+    </a>
+
+
+    <a class="nav-link active"
+       href="disputes.html">
+
+        <span class="nav-icon">⚖</span>
+        <span>Disputes</span>
+
+    </a>
+
+</aside>
+
+
+<main class="main">
+
+
+    <header class="topbar">
+
+        <div>
+
+            <div class="page-title">
+                Dispute Resolution
+            </div>
+
+            <div class="breadcrumb">
+                CreatorProof / Disputes & Analytics
+            </div>
+
+        </div>
+
+
+        <div class="top-actions">
+
+            <div class="demo-badge">
+                DEMO MODE
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <section class="content-area">
+
+
+        <!-- =================================================
+             STATISTICS
+        ================================================== -->
+
+        <div class="stats-grid">
+
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+
+                    <div>
+                        <p>Total Disputes</p>
+
+                        <h3 id="totalDisputes">
+                            0
+                        </h3>
+                    </div>
+
+                    <div class="stat-icon">
+                        ⚖
+                    </div>
+
+                </div>
+
+                <span class="stat-change">
+                    All time
+                </span>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+
+                    <div>
+                        <p>Resolved</p>
+
+                        <h3 id="resolvedDisputes">
+                            0
+                        </h3>
+                    </div>
+
+                    <div class="stat-icon">
+                        ✓
+                    </div>
+
+                </div>
+
+                <span
+                    class="stat-change"
+                    id="resolutionRate"
+                >
+                    0% resolution
+                </span>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+
+                    <div>
+                        <p>Under Review</p>
+
+                        <h3 id="reviewDisputes">
+                            0
+                        </h3>
+                    </div>
+
+                    <div class="stat-icon">
+                        🔎
+                    </div>
+
+                </div>
+
+                <span class="stat-change">
+                    Requires action
+                </span>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+
+                    <div>
+                        <p>Verification Rate</p>
+
+                        <h3>
+                            98%
+                        </h3>
+                    </div>
+
+                    <div class="stat-icon">
+                        🛡
+                    </div>
+
+                </div>
+
+                <span class="stat-change">
+                    Secure
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- =================================================
+             TWO COLUMN
+        ================================================== -->
+
+        <div class="two-column">
+
+
+            <!-- =================================================
+                 ACTIVE DISPUTES
+            ================================================== -->
+
+            <div class="card">
+
+                <div class="card-header">
+
+                    <h2>
+                        Active Disputes
+                    </h2>
+
+                    <button
+                        type="button"
+                        id="newDisputeButton"
+                        class="btn btn-primary"
+                    >
+
+                        + New Dispute
+
+                    </button>
+
+                </div>
+
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    DISPUTE
+                                </th>
+
+                                <th>
+                                    CONTENT
+                                </th>
+
+                                <th>
+                                    TYPE
+                                </th>
+
+                                <th>
+                                    STATUS
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="disputesTableBody">
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 RESOLUTION PROCESS
+            ================================================== -->
+
+            <div class="card">
+
+                <div class="card-header">
+
+                    <h2>
+                        Resolution Process
+                    </h2>
+
+                </div>
+
+
+                <div class="timeline">
+
+
+                    <div class="timeline-item">
+
+                        <div class="timeline-dot"></div>
+
+                        <h4>
+                            Dispute Submitted
+                        </h4>
+
+                        <p>
+                            Claim is recorded
+                        </p>
+
+                    </div>
+
+
+                    <div class="timeline-item">
+
+                        <div class="timeline-dot"></div>
+
+                        <h4>
+                            Evidence Verification
+                        </h4>
+
+                        <p>
+                            SHA-256 and blockchain records checked
+                        </p>
+
+                    </div>
+
+
+                    <div class="timeline-item">
+
+                        <div class="timeline-dot"></div>
+
+                        <h4>
+                            Ownership Review
+                        </h4>
+
+                        <p>
+                            Registration history analyzed
+                        </p>
+
+                    </div>
+
+
+                    <div class="timeline-item">
+
+                        <div class="timeline-dot"></div>
+
+                        <h4>
+                            Resolution
+                        </h4>
+
+                        <p>
+                            Decision stored in system
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- =================================================
+             NEW DISPUTE FORM
+        ================================================== -->
+
+        <div
+            id="disputeFormCard"
+            class="card"
+            style="
+                margin-top:20px;
+                display:none;
+            "
+        >
+
+            <div class="card-header">
+
+                <div>
+
+                    <h2>
+                        Submit New Dispute
+                    </h2>
+
+                    <span>
+                        Create a dispute for registered content
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <form id="disputeForm">
+
+
+                <!-- CONTENT ID -->
+
+                <div class="form-group">
+
+                    <label for="disputeContentId">
+                        Content ID
+                    </label>
+
+                    <input
+                        type="text"
+                        id="disputeContentId"
+                        placeholder="Enter registered Content ID"
+                        required
+                    >
+
+                    <small>
+                        Enter the Content ID of the content involved
+                        in the dispute.
+                    </small>
+
+                </div>
+
+
+                <!-- DISPUTE TYPE -->
+
+                <div class="form-group">
+
+                    <label for="disputeType">
+                        Dispute Type
+                    </label>
+
+                    <select
+                        id="disputeType"
+                        required
+                    >
+
+                        <option value="">
+                            Select dispute type
+                        </option>
+
+                        <option value="Ownership">
+                            Ownership
+                        </option>
+
+                        <option value="Unauthorized Use">
+                            Unauthorized Use
+                        </option>
+
+                        <option value="Copyright">
+                            Copyright
+                        </option>
+
+                        <option value="License Violation">
+                            License Violation
+                        </option>
+
+                        <option value="Other">
+                            Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- CLAIMANT -->
+
+                <div class="form-group">
+
+                    <label for="disputeClaimant">
+                        Claimant
+                    </label>
+
+                    <input
+                        type="text"
+                        id="disputeClaimant"
+                        placeholder="Enter claimant name"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- DESCRIPTION -->
+
+                <div class="form-group">
+
+                    <label for="disputeDescription">
+                        Description
+                    </label>
+
+                    <textarea
+                        id="disputeDescription"
+                        rows="5"
+                        placeholder="Describe the dispute and provide relevant details..."
+                        required
+                    ></textarea>
+
+                </div>
+
+
+                <!-- EVIDENCE -->
+
+                <div class="form-group">
+
+                    <label for="disputeEvidence">
+                        Evidence / Reference
+                    </label>
+
+                    <textarea
+                        id="disputeEvidence"
+                        rows="3"
+                        placeholder="Enter transaction hash, SHA-256 hash, URL, or other evidence..."
+                    ></textarea>
+
+                </div>
+
+
+                <div
+                    style="
+                        display:flex;
+                        gap:10px;
+                        margin-top:20px;
+                    "
+                >
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary"
+                    >
+
+                        ✓ Submit Dispute
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        id="cancelDisputeButton"
+                        class="btn btn-secondary"
+                    >
+
+                        Cancel
+
+                    </button>
+
+                </div>
+
+
+            </form>
+
+        </div>
+
+
+        <!-- =================================================
+             ANALYTICS
+        ================================================== -->
+
+        <div
+            class="card"
+            style="margin-top:20px;"
+        >
+
+
+            <div class="card-header">
+
+                <h2>
+                    CreatorProof Analytics
+                </h2>
+
+                <span>
+                    System overview
+                </span>
+
+            </div>
+
+
+            <div class="alert alert-info">
+
+                📊 Analytics are based on registration,
+                verification, licensing and dispute data
+                available in the application.
+
+            </div>
+
+
+            <div
+                class="stats-grid"
+                style="margin-bottom:0;"
+            >
+
+
+                <div>
+
+                    <p
+                        style="
+                            font-size:10px;
+                            color:#64748b;
+                        "
+                    >
+                        Content Protected
+                    </p>
+
+                    <strong
+                        id="analyticsContent"
+                        style="font-size:20px;"
+                    >
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <p
+                        style="
+                            font-size:10px;
+                            color:#64748b;
+                        "
+                    >
+                        Blockchain Records
+                    </p>
+
+                    <strong
+                        id="analyticsBlockchain"
+                        style="font-size:20px;"
+                    >
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <p
+                        style="
+                            font-size:10px;
+                            color:#64748b;
+                        "
+                    >
+                        Licenses Issued
+                    </p>
+
+                    <strong
+                        id="analyticsLicenses"
+                        style="font-size:20px;"
+                    >
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <p
+                        style="
+                            font-size:10px;
+                            color:#64748b;
+                        "
+                    >
+                        Successful Verifications
+                    </p>
+
+                    <strong
+                        style="font-size:20px;"
+                    >
+                        98%
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+</main>
+
+
+<script src="../js/app.js"></script>
+
+
+</body>
+
+</html>

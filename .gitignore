@@ -3,4 +3,4 @@
 .env.local
 *.log
 cache/
-artifacts/
+

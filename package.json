@@ -1,26 +1,21 @@
 {
   "name": "creatorproof",
   "version": "1.0.0",
-  "description": "",
+  "description": "CreatorProof blockchain content protection system",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "dev": "node server.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
   "dependencies": {
-    "@supabase/supabase-js": "^2.115.0",
-    "cors": "^2.8.6",
-    "express": "^5.2.1"
-  },
-  "devDependencies": {
-    "@nomicfoundation/hardhat-toolbox": "^7.0.0",
-    "@nomiclabs/hardhat-ethers": "^2.2.3",
-    "dotenv": "^17.4.2",
-    "ethers": "^5.8.0",
-    "hardhat": "^2.22.19"
+    "@supabase/supabase-js": "^2.57.4",
+    "bcryptjs": "^3.0.2",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^2.0.2",
+    "ethers": "^6.15.0"
   }
 }

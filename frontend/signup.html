@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Create Account | CreatorProof</title>
+
+    <link rel="stylesheet"
+          href="/css/style.css">
+
+</head>
+
+<body>
+
+
+<!-- =========================================================
+     CREATE ACCOUNT PAGE
+========================================================= -->
+
+<div class="auth-page">
+
+    <!-- Background decoration -->
+
+    <div class="auth-bg-orb auth-bg-orb-one"></div>
+    <div class="auth-bg-orb auth-bg-orb-two"></div>
+
+
+    <div class="auth-container">
+
+
+        <!-- =================================================
+             BRAND
+        ================================================== -->
+
+        <div class="auth-logo">
+
+            <div class="logo-icon">
+                ⛓
+            </div>
+
+            <h2>
+                Creator<span>Proof</span>
+            </h2>
+
+            <p>
+                Blockchain Content Protection
+            </p>
+
+        </div>
+
+
+
+        <!-- =================================================
+             SIGNUP CARD
+        ================================================== -->
+
+        <div class="auth-card">
+
+
+            <!-- HEADER -->
+
+            <div class="auth-card-header">
+
+                <div class="auth-badge">
+                    🛡 Secure Registration
+                </div>
+
+                <h1>
+                    Create your account
+                </h1>
+
+                <p>
+                    Protect your original digital content
+                    with blockchain-backed ownership proof.
+                </p>
+
+            </div>
+
+
+
+            <!-- MESSAGE -->
+
+            <div id="signupMessage"
+                 class="auth-message">
+            </div>
+
+
+
+            <!-- =================================================
+                 FORM
+            ================================================== -->
+
+            <form id="signupForm"
+                  class="auth-form">
+
+
+                <!-- FULL NAME -->
+
+                <div class="form-group">
+
+                    <label for="name">
+                        Full Name
+                        <span class="required-mark">*</span>
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <span class="input-icon">
+                            👤
+                        </span>
+
+                        <input
+                            id="name"
+                            name="name"
+                            type="text"
+                            autocomplete="name"
+                            placeholder="Enter your full name"
+                            required>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- EMAIL -->
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Email Address
+                        <span class="required-mark">*</span>
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <span class="input-icon">
+                            ✉
+                        </span>
+
+                        <input
+                            id="email"
+                            name="email"
+                            type="email"
+                            autocomplete="email"
+                            placeholder="you@example.com"
+                            required>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- PASSWORD -->
+
+                <div class="form-group">
+
+                    <label for="password">
+                        Password
+                        <span class="required-mark">*</span>
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <span class="input-icon">
+                            🔒
+                        </span>
+
+                        <input
+                            id="password"
+                            name="password"
+                            type="password"
+                            minlength="6"
+                            autocomplete="new-password"
+                            placeholder="Minimum 6 characters"
+                            required>
+
+                        <button
+                            type="button"
+                            id="passwordToggle"
+                            class="password-toggle"
+                            aria-label="Show password">
+
+                            👁
+
+                        </button>
+
+                    </div>
+
+                    <div class="password-hint">
+                        Use at least 6 characters.
+                    </div>
+
+                </div>
+
+
+
+                <!-- WALLET -->
+
+                <div class="form-group">
+
+                    <label for="walletAddress">
+
+                        Ethereum Wallet Address
+
+                        <span class="optional-label">
+                            Optional
+                        </span>
+
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <span class="input-icon">
+                            ⛓
+                        </span>
+
+                        <input
+                            id="walletAddress"
+                            name="walletAddress"
+                            type="text"
+                            autocomplete="off"
+                            placeholder="0x...">
+
+                    </div>
+
+                    <div class="password-hint">
+                        You can connect your Ethereum wallet later.
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     SECURITY INFORMATION
+                ================================================== -->
+
+                <div class="signup-note">
+
+                    <div class="signup-note-icon">
+                        🔐
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Blockchain-backed protection
+                        </strong>
+
+                        <span>
+                            Your content is protected using
+                            SHA-256 fingerprinting and
+                            blockchain registration.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     CREATE ACCOUNT BUTTON
+                ================================================== -->
+
+                <button
+                    id="signupButton"
+                    class="btn btn-primary auth-submit"
+                    type="submit">
+
+                    <span
+                        class="button-icon"
+                        id="signupButtonIcon">
+                        →
+                    </span>
+
+                    <span id="signupButtonText">
+                        Create Account
+                    </span>
+
+                </button>
+
+
+            </form>
+
+
+
+            <!-- =================================================
+                 TRUST FEATURES
+            ================================================== -->
+
+            <div class="auth-trust">
+
+                <span>
+                    ✓ SHA-256
+                </span>
+
+                <span>
+                    ✓ Blockchain Proof
+                </span>
+
+                <span>
+                    ✓ Ethereum Sepolia
+                </span>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 LOGIN LINK
+            ================================================== -->
+
+            <div class="auth-footer">
+
+                <span>
+                    Already have an account?
+                </span>
+
+                <a href="login.html">
+                    Sign In →
+                </a>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             FOOTER BRANDING
+        ================================================== -->
+
+        <div class="auth-bottom-text">
+
+            <span>
+                CreatorProof
+            </span>
+
+            <span>
+                •
+            </span>
+
+            <span>
+                Protect what you create.
+            </span>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     APPLICATION JS
+========================================================= -->
+
+<script src="/js/app.js"></script>
+
+
+
+<script>
+
+"use strict";
+
+
+/* =========================================================
+   ELEMENTS
+========================================================= */
+
+const signupForm =
+    document.getElementById("signupForm");
+
+const signupMessage =
+    document.getElementById("signupMessage");
+
+const signupButton =
+    document.getElementById("signupButton");
+
+const signupButtonText =
+    document.getElementById("signupButtonText");
+
+const signupButtonIcon =
+    document.getElementById("signupButtonIcon");
+
+const passwordInput =
+    document.getElementById("password");
+
+const passwordToggle =
+    document.getElementById("passwordToggle");
+
+
+
+/* =========================================================
+   PASSWORD SHOW / HIDE
+========================================================= */
+
+if (passwordToggle) {
+
+    passwordToggle.addEventListener(
+        "click",
+        function () {
+
+            const hidden =
+                passwordInput.type === "password";
+
+            passwordInput.type =
+                hidden
+                    ? "text"
+                    : "password";
+
+            passwordToggle.textContent =
+                hidden
+                    ? "🙈"
+                    : "👁";
+
+            passwordToggle.setAttribute(
+                "aria-label",
+                hidden
+                    ? "Hide password"
+                    : "Show password"
+            );
+
+        }
+    );
+
+}
+
+
+
+/* =========================================================
+   SIGNUP FORM
+========================================================= */
+
+signupForm.addEventListener(
+    "submit",
+    async function (event) {
+
+        event.preventDefault();
+
+
+        signupMessage.innerHTML = "";
+
+
+        /* =====================================================
+           GET VALUES
+        ===================================================== */
+
+        const name =
+            document
+                .getElementById("name")
+                .value
+                .trim();
+
+        const email =
+            document
+                .getElementById("email")
+                .value
+                .trim();
+
+        const password =
+            passwordInput.value;
+
+        const walletAddress =
+            document
+                .getElementById("walletAddress")
+                .value
+                .trim();
+
+
+
+        /* =====================================================
+           VALIDATION
+        ===================================================== */
+
+        if (!name) {
+
+            showError(
+                "Please enter your full name."
+            );
+
+            return;
+
+        }
+
+
+        if (!email) {
+
+            showError(
+                "Please enter your email address."
+            );
+
+            return;
+
+        }
+
+
+        if (password.length < 6) {
+
+            showError(
+                "Password must contain at least 6 characters."
+            );
+
+            return;
+
+        }
+
+
+
+        /* =====================================================
+           BUTTON LOADING
+        ===================================================== */
+
+        signupButton.disabled = true;
+
+        signupButtonText.textContent =
+            "Creating account...";
+
+        signupButtonIcon.textContent =
+            "⟳";
+
+
+        signupMessage.innerHTML = `
+
+            <div class="alert alert-info">
+
+                <span>⟳</span>
+
+                <div>
+                    Creating your CreatorProof account...
+                </div>
+
+            </div>
+
+        `;
+
+
+
+        /* =====================================================
+           API REQUEST
+        ===================================================== */
+
+        try {
+
+            const result =
+                await api(
+                    "/api/auth/signup",
+                    {
+
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body: JSON.stringify({
+
+                            name: name,
+
+                            email: email,
+
+                            password: password,
+
+                            walletAddress:
+                                walletAddress
+
+                        })
+
+                    }
+                );
+
+
+
+            /* =================================================
+               SUCCESS
+            ================================================== */
+
+            signupMessage.innerHTML = `
+
+                <div class="alert alert-success">
+
+                    <span>✓</span>
+
+                    <div>
+
+                        <strong>
+                            Account created successfully!
+                        </strong>
+
+                        <br>
+
+                        Redirecting to your dashboard...
+
+                    </div>
+
+                </div>
+
+            `;
+
+
+            signupButtonText.textContent =
+                "Account Created";
+
+            signupButtonIcon.textContent =
+                "✓";
+
+
+
+            /* =================================================
+               REDIRECT
+            ================================================== */
+
+            setTimeout(
+                function () {
+
+                    window.location.href =
+                        "dashboard.html";
+
+                },
+                1200
+            );
+
+
+        } catch (error) {
+
+            console.error(
+                "Signup error:",
+                error
+            );
+
+
+            signupMessage.innerHTML = `
+
+                <div class="alert alert-danger">
+
+                    <span>⚠</span>
+
+                    <div>
+
+                        <strong>
+                            Registration failed
+                        </strong>
+
+                        <br>
+
+                        ${escapeHtml(
+                            error.message ||
+                            "Unable to create your account."
+                        )}
+
+                    </div>
+
+                </div>
+
+            `;
+
+
+            signupButton.disabled =
+                false;
+
+            signupButtonText.textContent =
+                "Create Account";
+
+            signupButtonIcon.textContent =
+                "→";
+
+        }
+
+    }
+);
+
+
+
+/* =========================================================
+   ERROR HELPER
+========================================================= */
+
+function showError(message) {
+
+    signupMessage.innerHTML = `
+
+        <div class="alert alert-danger">
+
+            <span>⚠</span>
+
+            <div>
+                ${escapeHtml(message)}
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+</script>
+
+
+</body>
+
+</html>

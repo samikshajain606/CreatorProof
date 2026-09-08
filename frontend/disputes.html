@@ -10,8 +10,622 @@
 
     <title>Disputes | CreatorProof</title>
 
-    <link rel="stylesheet"
-          href="../css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
+
+    <style>
+
+        /* =====================================================
+           FILTER CARDS
+        ===================================================== */
+
+        .stat-card {
+            cursor: pointer;
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease,
+                border 0.2s ease;
+
+            border: 2px solid transparent;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 10px 25px rgba(15, 23, 42, 0.10);
+        }
+
+        .stat-card.active-filter {
+            border-color: #4f46e5;
+
+            box-shadow:
+                0 0 0 3px rgba(79, 70, 229, 0.10);
+        }
+
+        .stat-card.active-filter .stat-change {
+            color: #4f46e5;
+            font-weight: 700;
+        }
+
+        /* =====================================================
+           FILTER INFO
+        ===================================================== */
+
+        .table-filter-info {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 10px;
+            margin-bottom: 14px;
+
+            font-size: 12px;
+            color: #64748b;
+        }
+
+        .clear-filter-btn {
+            border: none;
+            background: transparent;
+
+            color: #4f46e5;
+
+            font-size: 12px;
+            font-weight: 600;
+
+            cursor: pointer;
+        }
+
+        .clear-filter-btn:hover {
+            text-decoration: underline;
+        }
+
+        /* =====================================================
+           DETAILS MODAL
+        ===================================================== */
+
+        .details-modal-overlay {
+            position: fixed;
+            inset: 0;
+
+            background: rgba(15, 23, 42, 0.55);
+
+            display: none;
+
+            align-items: center;
+            justify-content: center;
+
+            z-index: 9999;
+
+            padding: 20px;
+        }
+
+        .details-modal-overlay.show {
+            display: flex;
+        }
+
+        .details-modal {
+            width: 100%;
+            max-width: 700px;
+
+            max-height: 90vh;
+            overflow-y: auto;
+
+            background: #ffffff;
+
+            border-radius: 18px;
+
+            box-shadow:
+                0 25px 80px rgba(15, 23, 42, 0.25);
+
+            animation: modalIn 0.2s ease;
+        }
+
+        @keyframes modalIn {
+
+            from {
+                opacity: 0;
+                transform: translateY(10px) scale(.98);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+
+        }
+
+        .details-modal-header {
+            display: flex;
+
+            justify-content: space-between;
+            align-items: flex-start;
+
+            padding: 24px 28px;
+
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .details-modal-header h2 {
+            margin: 0;
+
+            font-size: 21px;
+            color: #111827;
+        }
+
+        .details-modal-header p {
+            margin: 5px 0 0;
+
+            font-size: 11px;
+            color: #64748b;
+        }
+
+        .details-close {
+            width: 34px;
+            height: 34px;
+
+            border: none;
+            border-radius: 9px;
+
+            background: #f1f5f9;
+            color: #64748b;
+
+            font-size: 20px;
+
+            cursor: pointer;
+        }
+
+        .details-close:hover {
+            background: #e2e8f0;
+        }
+
+        .details-modal-body {
+            padding: 28px;
+        }
+
+        .details-grid {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 18px;
+        }
+
+        .detail-item {
+            padding: 15px;
+
+            background: #f8fafc;
+
+            border: 1px solid #e5e7eb;
+
+            border-radius: 11px;
+        }
+
+        .detail-item.full {
+            grid-column: 1 / -1;
+        }
+
+        .detail-label {
+            display: block;
+
+            font-size: 10px;
+            font-weight: 700;
+
+            text-transform: uppercase;
+
+            letter-spacing: .04em;
+
+            color: #64748b;
+
+            margin-bottom: 7px;
+        }
+
+        .detail-value {
+            font-size: 13px;
+
+            color: #111827;
+
+            word-break: break-word;
+        }
+
+        .detail-description {
+            min-height: 80px;
+
+            line-height: 1.6;
+
+            white-space: pre-wrap;
+        }
+
+        .detail-hash {
+            font-family: monospace;
+
+            font-size: 11px;
+
+            color: #475569;
+        }
+
+        /* =====================================================
+           DETAILS FOOTER
+        ===================================================== */
+
+        .details-modal-footer {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: flex-end;
+
+            gap: 10px;
+
+            padding: 18px 28px;
+
+            border-top: 1px solid #e5e7eb;
+        }
+
+        #disputeActionButtons {
+            display: flex;
+
+            gap: 10px;
+
+            margin-right: auto;
+        }
+
+        /* =====================================================
+           STATUS
+        ===================================================== */
+
+        .status-pill {
+            display: inline-flex;
+
+            align-items: center;
+
+            padding: 5px 10px;
+
+            border-radius: 999px;
+
+            font-size: 11px;
+
+            font-weight: 600;
+
+            background: #fef3c7;
+
+            color: #92400e;
+        }
+
+        .status-pill.resolved {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .status-pill.open {
+            background: #dbeafe;
+            color: #1d4ed8;
+        }
+
+        .status-pill.pending {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        /* =====================================================
+           CUSTOM CONFIRMATION MODAL
+        ===================================================== */
+
+        .confirm-modal-overlay {
+            position: fixed;
+            inset: 0;
+
+            display: none;
+
+            align-items: center;
+            justify-content: center;
+
+            padding: 20px;
+
+            background: rgba(15, 23, 42, 0.60);
+
+            z-index: 10001;
+        }
+
+        .confirm-modal-overlay.show {
+            display: flex;
+        }
+
+        .confirm-modal {
+            width: 100%;
+            max-width: 430px;
+
+            background: #ffffff;
+
+            border-radius: 18px;
+
+            box-shadow:
+                0 25px 80px rgba(15, 23, 42, 0.30);
+
+            overflow: hidden;
+
+            animation: modalIn 0.2s ease;
+        }
+
+        .confirm-header {
+            display: flex;
+
+            align-items: flex-start;
+            justify-content: space-between;
+
+            padding: 22px 24px;
+
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .confirm-header h2 {
+            margin: 0;
+
+            font-size: 19px;
+
+            color: #111827;
+        }
+
+        .confirm-header p {
+            margin: 5px 0 0;
+
+            font-size: 11px;
+
+            color: #64748b;
+        }
+
+        .confirm-close {
+            width: 32px;
+            height: 32px;
+
+            border: none;
+
+            border-radius: 9px;
+
+            background: #f1f5f9;
+
+            color: #64748b;
+
+            font-size: 19px;
+
+            cursor: pointer;
+        }
+
+        .confirm-close:hover {
+            background: #e2e8f0;
+        }
+
+        .confirm-body {
+            padding: 22px 24px;
+        }
+
+        .confirm-message-box {
+            display: flex;
+
+            gap: 13px;
+
+            padding: 16px;
+
+            background: #f8fafc;
+
+            border: 1px solid #e2e8f0;
+
+            border-radius: 12px;
+        }
+
+        .confirm-icon {
+            flex-shrink: 0;
+
+            width: 38px;
+            height: 38px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 10px;
+
+            background: #dcfce7;
+
+            color: #15803d;
+
+            font-size: 22px;
+        }
+
+        .confirm-message-title {
+            margin: 0 0 5px;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            color: #1e293b;
+        }
+
+        .confirm-message-text {
+            margin: 0;
+
+            font-size: 12px;
+
+            line-height: 1.5;
+
+            color: #64748b;
+        }
+
+        .confirm-error {
+            display: none;
+
+            margin-top: 14px;
+
+            padding: 11px 13px;
+
+            background: #fef2f2;
+
+            border: 1px solid #fecaca;
+
+            color: #b91c1c;
+
+            border-radius: 10px;
+
+            font-size: 11px;
+        }
+
+        .confirm-error.show {
+            display: block;
+        }
+
+        .confirm-footer {
+            display: flex;
+
+            justify-content: flex-end;
+
+            gap: 10px;
+
+            padding: 16px 24px;
+
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .confirm-cancel {
+            border: 1px solid #dbe3ee;
+
+            background: #ffffff;
+
+            color: #475569;
+
+            padding: 9px 15px;
+
+            border-radius: 9px;
+
+            font-size: 12px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+        }
+
+        .confirm-cancel:hover {
+            background: #f8fafc;
+        }
+
+        .confirm-action {
+            border: none;
+
+            background: #4f46e5;
+
+            color: #ffffff;
+
+            padding: 9px 16px;
+
+            border-radius: 9px;
+
+            font-size: 12px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 5px 12px rgba(79, 70, 229, .20);
+        }
+
+        .confirm-action:hover {
+            background: #4338ca;
+        }
+
+        .confirm-action.resolve {
+            background: #16a34a;
+        }
+
+        .confirm-action.resolve:hover {
+            background: #15803d;
+        }
+
+        .confirm-action:disabled {
+            opacity: .65;
+
+            cursor: not-allowed;
+
+            box-shadow: none;
+        }
+
+        /* =====================================================
+           ACTION BUTTONS
+        ===================================================== */
+
+        .dispute-open-btn {
+            border: none;
+
+            background: #2563eb;
+
+            color: #ffffff;
+
+            padding: 9px 14px;
+
+            border-radius: 9px;
+
+            font-size: 12px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+        }
+
+        .dispute-open-btn:hover {
+            background: #1d4ed8;
+        }
+
+        .dispute-resolve-btn {
+            border: none;
+
+            background: #16a34a;
+
+            color: #ffffff;
+
+            padding: 9px 14px;
+
+            border-radius: 9px;
+
+            font-size: 12px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+        }
+
+        .dispute-resolve-btn:hover {
+            background: #15803d;
+        }
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media(max-width: 650px) {
+
+            .details-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .detail-item.full {
+                grid-column: auto;
+            }
+
+            .details-modal-footer {
+                flex-wrap: wrap;
+            }
+
+            #disputeActionButtons {
+                width: 100%;
+
+                margin-right: 0;
+
+                margin-bottom: 5px;
+            }
+
+        }
+
+    </style>
 
 </head>
 
@@ -19,11 +633,17 @@
 <body>
 
 
+<!-- =========================================================
+     SIDEBAR
+========================================================= -->
+
 <aside class="sidebar">
 
     <div class="logo">
 
-        <div class="logo-icon">⛓</div>
+        <div class="logo-icon">
+            ⛓
+        </div>
 
         <div class="logo-text">
             Creator<span>Proof</span>
@@ -41,7 +661,7 @@
        href="dashboard.html">
 
         <span class="nav-icon">⌂</span>
-        <span>Dashboard</span>
+        Dashboard
 
     </a>
 
@@ -50,7 +670,7 @@
        href="register.html">
 
         <span class="nav-icon">＋</span>
-        <span>Register Content</span>
+        Register Content
 
     </a>
 
@@ -59,7 +679,7 @@
        href="content.html">
 
         <span class="nav-icon">▣</span>
-        <span>My Content</span>
+        My Content
 
     </a>
 
@@ -68,7 +688,7 @@
        href="verify.html">
 
         <span class="nav-icon">✓</span>
-        <span>Verify Content</span>
+        Verify Content
 
     </a>
 
@@ -82,7 +702,7 @@
        href="licenses.html">
 
         <span class="nav-icon">▤</span>
-        <span>Licenses</span>
+        Licenses
 
     </a>
 
@@ -91,339 +711,60 @@
        href="disputes.html">
 
         <span class="nav-icon">⚖</span>
-        <span>Disputes</span>
+        Disputes
 
     </a>
 
 </aside>
 
 
+<!-- =========================================================
+     MAIN
+========================================================= -->
+
 <main class="main">
 
 
-    <header class="topbar">
+<header class="topbar">
 
-        <div>
+    <div>
 
-            <div class="page-title">
-                Dispute Resolution
-            </div>
-
-            <div class="breadcrumb">
-                CreatorProof / Disputes & Analytics
-            </div>
-
+        <div class="page-title">
+            Disputes
         </div>
 
-
-        <div class="top-actions">
-
-            <div class="demo-badge">
-                DEMO MODE
-            </div>
-
+        <div class="breadcrumb">
+            CreatorProof / Disputes
         </div>
 
-    </header>
+    </div>
 
 
-    <section class="content-area">
+    <div class="top-actions">
 
+        <div class="profile-wrapper">
 
-        <!-- =================================================
-             STATISTICS
-        ================================================== -->
+            <div
+                class="profile"
+                id="profileButton">
 
-        <div class="stats-grid">
+                <div
+                    class="avatar"
+                    data-user-avatar>
 
-
-            <div class="stat-card">
-
-                <div class="stat-top">
-
-                    <div>
-                        <p>Total Disputes</p>
-
-                        <h3 id="totalDisputes">
-                            0
-                        </h3>
-                    </div>
-
-                    <div class="stat-icon">
-                        ⚖
-                    </div>
-
-                </div>
-
-                <span class="stat-change">
-                    All time
-                </span>
-
-            </div>
-
-
-            <div class="stat-card">
-
-                <div class="stat-top">
-
-                    <div>
-                        <p>Resolved</p>
-
-                        <h3 id="resolvedDisputes">
-                            0
-                        </h3>
-                    </div>
-
-                    <div class="stat-icon">
-                        ✓
-                    </div>
-
-                </div>
-
-                <span
-                    class="stat-change"
-                    id="resolutionRate"
-                >
-                    0% resolution
-                </span>
-
-            </div>
-
-
-            <div class="stat-card">
-
-                <div class="stat-top">
-
-                    <div>
-                        <p>Under Review</p>
-
-                        <h3 id="reviewDisputes">
-                            0
-                        </h3>
-                    </div>
-
-                    <div class="stat-icon">
-                        🔎
-                    </div>
-
-                </div>
-
-                <span class="stat-change">
-                    Requires action
-                </span>
-
-            </div>
-
-
-            <div class="stat-card">
-
-                <div class="stat-top">
-
-                    <div>
-                        <p>Verification Rate</p>
-
-                        <h3>
-                            98%
-                        </h3>
-                    </div>
-
-                    <div class="stat-icon">
-                        🛡
-                    </div>
-
-                </div>
-
-                <span class="stat-change">
-                    Secure
-                </span>
-
-            </div>
-
-
-        </div>
-
-
-        <!-- =================================================
-             TWO COLUMN
-        ================================================== -->
-
-        <div class="two-column">
-
-
-            <!-- =================================================
-                 ACTIVE DISPUTES
-            ================================================== -->
-
-            <div class="card">
-
-                <div class="card-header">
-
-                    <h2>
-                        Active Disputes
-                    </h2>
-
-                    <button
-                        type="button"
-                        id="newDisputeButton"
-                        class="btn btn-primary"
-                    >
-
-                        + New Dispute
-
-                    </button>
+                    CP
 
                 </div>
 
 
-                <div class="table-wrapper">
+                <div class="profile-info">
 
-                    <table>
+                    <strong data-user-name>
+                        Creator
+                    </strong>
 
-                        <thead>
-
-                            <tr>
-
-                                <th>
-                                    DISPUTE
-                                </th>
-
-                                <th>
-                                    CONTENT
-                                </th>
-
-                                <th>
-                                    TYPE
-                                </th>
-
-                                <th>
-                                    STATUS
-                                </th>
-
-                            </tr>
-
-                        </thead>
-
-
-                        <tbody id="disputesTableBody">
-
-                        </tbody>
-
-                    </table>
-
-                </div>
-
-            </div>
-
-
-            <!-- =================================================
-                 RESOLUTION PROCESS
-            ================================================== -->
-
-            <div class="card">
-
-                <div class="card-header">
-
-                    <h2>
-                        Resolution Process
-                    </h2>
-
-                </div>
-
-
-                <div class="timeline">
-
-
-                    <div class="timeline-item">
-
-                        <div class="timeline-dot"></div>
-
-                        <h4>
-                            Dispute Submitted
-                        </h4>
-
-                        <p>
-                            Claim is recorded
-                        </p>
-
-                    </div>
-
-
-                    <div class="timeline-item">
-
-                        <div class="timeline-dot"></div>
-
-                        <h4>
-                            Evidence Verification
-                        </h4>
-
-                        <p>
-                            SHA-256 and blockchain records checked
-                        </p>
-
-                    </div>
-
-
-                    <div class="timeline-item">
-
-                        <div class="timeline-dot"></div>
-
-                        <h4>
-                            Ownership Review
-                        </h4>
-
-                        <p>
-                            Registration history analyzed
-                        </p>
-
-                    </div>
-
-
-                    <div class="timeline-item">
-
-                        <div class="timeline-dot"></div>
-
-                        <h4>
-                            Resolution
-                        </h4>
-
-                        <p>
-                            Decision stored in system
-                        </p>
-
-                    </div>
-
-
-                </div>
-
-            </div>
-
-
-        </div>
-
-
-        <!-- =================================================
-             NEW DISPUTE FORM
-        ================================================== -->
-
-        <div
-            id="disputeFormCard"
-            class="card"
-            style="
-                margin-top:20px;
-                display:none;
-            "
-        >
-
-            <div class="card-header">
-
-                <div>
-
-                    <h2>
-                        Submit New Dispute
-                    </h2>
-
-                    <span>
-                        Create a dispute for registered content
+                    <span data-user-role>
+                        Creator
                     </span>
 
                 </div>
@@ -431,296 +772,2759 @@
             </div>
 
 
-            <form id="disputeForm">
+            <div
+                class="profile-menu"
+                id="profileMenu">
+
+                <a href="profile.html">
+                    👤 Profile
+                </a>
 
 
-                <!-- CONTENT ID -->
+                <button
+                    type="button"
+                    id="logoutButton"
+                    class="logout">
 
-                <div class="form-group">
+                    ↪ Sign Out
 
-                    <label for="disputeContentId">
-                        Content ID
-                    </label>
+                </button>
 
-                    <input
-                        type="text"
-                        id="disputeContentId"
-                        placeholder="Enter registered Content ID"
-                        required
-                    >
+            </div>
 
-                    <small>
-                        Enter the Content ID of the content involved
-                        in the dispute.
-                    </small>
+        </div>
 
-                </div>
+    </div>
+
+</header>
 
 
-                <!-- DISPUTE TYPE -->
+<!-- =========================================================
+     CONTENT
+========================================================= -->
 
-                <div class="form-group">
-
-                    <label for="disputeType">
-                        Dispute Type
-                    </label>
-
-                    <select
-                        id="disputeType"
-                        required
-                    >
-
-                        <option value="">
-                            Select dispute type
-                        </option>
-
-                        <option value="Ownership">
-                            Ownership
-                        </option>
-
-                        <option value="Unauthorized Use">
-                            Unauthorized Use
-                        </option>
-
-                        <option value="Copyright">
-                            Copyright
-                        </option>
-
-                        <option value="License Violation">
-                            License Violation
-                        </option>
-
-                        <option value="Other">
-                            Other
-                        </option>
-
-                    </select>
-
-                </div>
+<section class="content-area">
 
 
-                <!-- CLAIMANT -->
+    <div class="welcome">
 
-                <div class="form-group">
+        <div>
 
-                    <label for="disputeClaimant">
-                        Claimant
-                    </label>
+            <h1>
+                Content Disputes
+            </h1>
 
-                    <input
-                        type="text"
-                        id="disputeClaimant"
-                        placeholder="Enter claimant name"
-                        required
-                    >
-
-                </div>
-
-
-                <!-- DESCRIPTION -->
-
-                <div class="form-group">
-
-                    <label for="disputeDescription">
-                        Description
-                    </label>
-
-                    <textarea
-                        id="disputeDescription"
-                        rows="5"
-                        placeholder="Describe the dispute and provide relevant details..."
-                        required
-                    ></textarea>
-
-                </div>
-
-
-                <!-- EVIDENCE -->
-
-                <div class="form-group">
-
-                    <label for="disputeEvidence">
-                        Evidence / Reference
-                    </label>
-
-                    <textarea
-                        id="disputeEvidence"
-                        rows="3"
-                        placeholder="Enter transaction hash, SHA-256 hash, URL, or other evidence..."
-                    ></textarea>
-
-                </div>
-
-
-                <div
-                    style="
-                        display:flex;
-                        gap:10px;
-                        margin-top:20px;
-                    "
-                >
-
-                    <button
-                        type="submit"
-                        class="btn btn-primary"
-                    >
-
-                        ✓ Submit Dispute
-
-                    </button>
-
-
-                    <button
-                        type="button"
-                        id="cancelDisputeButton"
-                        class="btn btn-secondary"
-                    >
-
-                        Cancel
-
-                    </button>
-
-                </div>
-
-
-            </form>
+            <p>
+                Review and manage ownership or copyright
+                disputes related to your registered content.
+            </p>
 
         </div>
 
 
-        <!-- =================================================
-             ANALYTICS
-        ================================================== -->
+        <button
+            type="button"
+            class="btn-white"
+            onclick="openDisputeModal()">
+
+            + Create Dispute
+
+        </button>
+
+    </div>
+
+
+    <!-- =====================================================
+         STATISTICS
+    ====================================================== -->
+
+    <div class="stats-grid">
+
 
         <div
-            class="card"
-            style="margin-top:20px;"
-        >
+            class="stat-card active-filter"
+            id="totalFilterCard"
+            onclick="setDisputeFilter('all')">
+
+            <div class="stat-top">
+
+                <div>
+
+                    <p>
+                        TOTAL DISPUTES
+                    </p>
+
+                    <h3 id="totalDisputes">
+                        0
+                    </h3>
+
+                </div>
+
+                <div class="stat-icon">
+                    ⚖
+                </div>
+
+            </div>
+
+            <span class="stat-change">
+                All disputes
+            </span>
+
+        </div>
 
 
-            <div class="card-header">
+        <div
+            class="stat-card"
+            id="openFilterCard"
+            onclick="setDisputeFilter('open')">
+
+            <div class="stat-top">
+
+                <div>
+
+                    <p>
+                        OPEN
+                    </p>
+
+                    <h3 id="openDisputes">
+                        0
+                    </h3>
+
+                </div>
+
+                <div class="stat-icon">
+                    ⏳
+                </div>
+
+            </div>
+
+            <span class="stat-change">
+                Under review
+            </span>
+
+        </div>
+
+
+        <div
+            class="stat-card"
+            id="resolvedFilterCard"
+            onclick="setDisputeFilter('resolved')">
+
+            <div class="stat-top">
+
+                <div>
+
+                    <p>
+                        RESOLVED
+                    </p>
+
+                    <h3 id="resolvedDisputes">
+                        0
+                    </h3>
+
+                </div>
+
+                <div class="stat-icon">
+                    ✓
+                </div>
+
+            </div>
+
+            <span class="stat-change">
+                Successfully resolved
+            </span>
+
+        </div>
+
+
+        <div
+            class="stat-card"
+            id="pendingFilterCard"
+            onclick="setDisputeFilter('pending')">
+
+            <div class="stat-top">
+
+                <div>
+
+                    <p>
+                        PENDING
+                    </p>
+
+                    <h3 id="pendingDisputes">
+                        0
+                    </h3>
+
+                </div>
+
+                <div class="stat-icon">
+                    !
+                </div>
+
+            </div>
+
+            <span class="stat-change">
+                Awaiting action
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         DISPUTES TABLE
+    ====================================================== -->
+
+    <div class="card">
+
+        <div class="card-header">
+
+            <div>
 
                 <h2>
-                    CreatorProof Analytics
+                    My Disputes
                 </h2>
 
                 <span>
-                    System overview
+                    Ownership and copyright cases
                 </span>
 
             </div>
 
 
-            <div class="alert alert-info">
+            <button
+                type="button"
+                class="btn btn-primary"
+                onclick="openDisputeModal()">
 
-                📊 Analytics are based on registration,
-                verification, licensing and dispute data
-                available in the application.
+                + New Dispute
+
+            </button>
+
+        </div>
+
+
+        <div
+            class="table-filter-info"
+            id="tableFilterInfo"
+            style="padding:0 20px;">
+
+            <span id="filterText">
+                Showing all disputes
+            </span>
+
+
+            <button
+                type="button"
+                class="clear-filter-btn"
+                id="clearFilterButton"
+                onclick="setDisputeFilter('all')"
+                style="display:none;">
+
+                Clear filter
+
+            </button>
+
+        </div>
+
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            DISPUTE ID
+                        </th>
+
+                        <th>
+                            CONTENT
+                        </th>
+
+                        <th>
+                            TYPE
+                        </th>
+
+                        <th>
+                            STATUS
+                        </th>
+
+                        <th>
+                            CREATED
+                        </th>
+
+                        <th>
+                            ACTION
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="disputesTable">
+
+                    <tr>
+
+                        <td
+                            colspan="6"
+                            style="
+                                text-align:center;
+                                padding:45px;
+                                color:#94a3b8;
+                            ">
+
+                            Loading disputes...
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         INFORMATION
+    ====================================================== -->
+
+    <div
+        class="card"
+        style="margin-top:20px;">
+
+        <div class="card-header">
+
+            <h2>
+                How Disputes Work
+            </h2>
+
+        </div>
+
+
+        <div
+            class="two-column"
+            style="margin-bottom:0;">
+
+            <div>
+
+                <div class="timeline-item">
+
+                    <div class="timeline-dot"></div>
+
+                    <h4>
+                        1. Submit a dispute
+                    </h4>
+
+                    <p>
+                        Select registered content and
+                        describe the ownership issue.
+                    </p>
+
+                </div>
+
+
+                <div class="timeline-item">
+
+                    <div class="timeline-dot"></div>
+
+                    <h4>
+                        2. Evidence review
+                    </h4>
+
+                    <p>
+                        Your content fingerprint and
+                        blockchain registration can be
+                        used as proof of ownership.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div>
+
+                <div class="timeline-item">
+
+                    <div class="timeline-dot"></div>
+
+                    <h4>
+                        3. Investigation
+                    </h4>
+
+                    <p>
+                        The dispute can be reviewed using
+                        the registered content information.
+                    </p>
+
+                </div>
+
+
+                <div class="timeline-item">
+
+                    <div class="timeline-dot"></div>
+
+                    <h4>
+                        4. Resolution
+                    </h4>
+
+                    <p>
+                        The final status of the dispute is
+                        recorded for future reference.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- =========================================================
+     CREATE DISPUTE MODAL
+========================================================= -->
+
+<div
+    class="modal-overlay"
+    id="disputeModal">
+
+
+    <div class="modal">
+
+
+        <div class="modal-header">
+
+            <div>
+
+                <h2>
+                    Create New Dispute
+                </h2>
+
+                <p style="
+                    margin:5px 0 0;
+                    color:#64748b;
+                    font-size:11px;
+                ">
+
+                    Submit a dispute regarding your
+                    registered content.
+
+                </p>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="modal-close"
+                onclick="closeDisputeModal()">
+
+                ×
+
+            </button>
+
+        </div>
+
+
+        <div id="disputeMessage"></div>
+
+
+        <form id="disputeForm">
+
+
+            <div
+                class="form-group"
+                style="margin-bottom:15px;">
+
+                <label>
+                    Content
+                </label>
+
+                <select
+                    id="disputeContent"
+                    required>
+
+                    <option value="">
+                        Select registered content
+                    </option>
+
+                </select>
 
             </div>
 
 
             <div
-                class="stats-grid"
-                style="margin-bottom:0;"
-            >
+                class="form-group"
+                style="margin-bottom:15px;">
 
+                <label>
+                    Dispute Type
+                </label>
 
-                <div>
+                <select
+                    id="disputeType"
+                    required>
 
-                    <p
-                        style="
-                            font-size:10px;
-                            color:#64748b;
-                        "
-                    >
-                        Content Protected
-                    </p>
+                    <option value="">
+                        Select dispute type
+                    </option>
 
-                    <strong
-                        id="analyticsContent"
-                        style="font-size:20px;"
-                    >
-                        0
-                    </strong>
+                    <option value="Copyright">
+                        Copyright Infringement
+                    </option>
 
-                </div>
+                    <option value="Ownership">
+                        Ownership Dispute
+                    </option>
 
+                    <option value="Unauthorized Use">
+                        Unauthorized Use
+                    </option>
 
-                <div>
+                    <option value="Other">
+                        Other
+                    </option>
 
-                    <p
-                        style="
-                            font-size:10px;
-                            color:#64748b;
-                        "
-                    >
-                        Blockchain Records
-                    </p>
-
-                    <strong
-                        id="analyticsBlockchain"
-                        style="font-size:20px;"
-                    >
-                        0
-                    </strong>
-
-                </div>
-
-
-                <div>
-
-                    <p
-                        style="
-                            font-size:10px;
-                            color:#64748b;
-                        "
-                    >
-                        Licenses Issued
-                    </p>
-
-                    <strong
-                        id="analyticsLicenses"
-                        style="font-size:20px;"
-                    >
-                        0
-                    </strong>
-
-                </div>
-
-
-                <div>
-
-                    <p
-                        style="
-                            font-size:10px;
-                            color:#64748b;
-                        "
-                    >
-                        Successful Verifications
-                    </p>
-
-                    <strong
-                        style="font-size:20px;"
-                    >
-                        98%
-                    </strong>
-
-                </div>
-
+                </select>
 
             </div>
 
 
+            <div
+                class="form-group"
+                style="margin-bottom:15px;">
+
+                <label>
+                    Description
+                </label>
+
+                <textarea
+                    id="disputeDescription"
+                    required
+                    placeholder="Explain the dispute and provide relevant details."></textarea>
+
+            </div>
+
+
+            <div class="form-actions">
+
+                <button
+                    type="button"
+                    class="btn btn-secondary"
+                    onclick="closeDisputeModal()">
+
+                    Cancel
+
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="btn btn-primary">
+
+                    Submit Dispute
+
+                </button>
+
+            </div>
+
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     VIEW DETAILS MODAL
+========================================================= -->
+
+<div
+    class="details-modal-overlay"
+    id="detailsModal">
+
+
+    <div class="details-modal">
+
+
+        <div class="details-modal-header">
+
+            <div>
+
+                <h2>
+                    Dispute Details
+                </h2>
+
+                <p>
+                    Complete information about this dispute.
+                </p>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="details-close"
+                onclick="closeDetailsModal()">
+
+                ×
+
+            </button>
+
         </div>
 
 
-    </section>
+        <div class="details-modal-body">
 
-</main>
+            <div class="details-grid">
 
 
-<script src="../js/app.js"></script>
+                <div class="detail-item">
+
+                    <span class="detail-label">
+                        Dispute ID
+                    </span>
+
+                    <div
+                        class="detail-value"
+                        id="detailDisputeId">
+
+                        —
+
+                    </div>
+
+                </div>
+
+
+                <div class="detail-item">
+
+                    <span class="detail-label">
+                        Status
+                    </span>
+
+                    <div
+                        class="detail-value"
+                        id="detailStatus">
+
+                        —
+
+                    </div>
+
+                </div>
+
+
+                <div class="detail-item">
+
+                    <span class="detail-label">
+                        Content
+                    </span>
+
+                    <div
+                        class="detail-value"
+                        id="detailContent">
+
+                        —
+
+                    </div>
+
+                </div>
+
+
+                <div class="detail-item">
+
+                    <span class="detail-label">
+                        Dispute Type
+                    </span>
+
+                    <div
+                        class="detail-value"
+                        id="detailType">
+
+                        —
+
+                    </div>
+
+                </div>
+
+
+                <div class="detail-item">
+
+                    <span class="detail-label">
+                        Created
+                    </span>
+
+                    <div
+                        class="detail-value"
+                        id="detailCreated">
+
+                        —
+
+                    </div>
+
+                </div>
+
+
+                <div class="detail-item">
+
+                    <span class="detail-label">
+                        Network
+                    </span>
+
+                    <div
+                        class="detail-value"
+                        id="detailNetwork">
+
+                        Ethereum Sepolia
+
+                    </div>
+
+                </div>
+
+
+                <div class="detail-item full">
+
+                    <span class="detail-label">
+                        Description
+                    </span>
+
+                    <div
+                        class="detail-value detail-description"
+                        id="detailDescription">
+
+                        —
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="detail-item full"
+                    id="hashSection">
+
+                    <span class="detail-label">
+                        SHA-256 Fingerprint
+                    </span>
+
+                    <div
+                        class="detail-value detail-hash"
+                        id="detailHash">
+
+                        —
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="detail-item full"
+                    id="transactionSection">
+
+                    <span class="detail-label">
+                        Blockchain Transaction
+                    </span>
+
+                    <div
+                        class="detail-value detail-hash"
+                        id="detailTransaction">
+
+                        —
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="details-modal-footer">
+
+            <div id="disputeActionButtons"></div>
+
+
+            <button
+                type="button"
+                class="btn btn-secondary"
+                onclick="closeDetailsModal()">
+
+                Close
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     CUSTOM STATUS CONFIRMATION MODAL
+========================================================= -->
+
+<div
+    class="confirm-modal-overlay"
+    id="confirmStatusModal">
+
+
+    <div class="confirm-modal">
+
+
+        <div class="confirm-header">
+
+            <div>
+
+                <h2 id="confirmTitle">
+                    Update Dispute
+                </h2>
+
+                <p id="confirmSubtitle">
+                    Confirm this action.
+                </p>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="confirm-close"
+                onclick="closeConfirmModal()">
+
+                ×
+
+            </button>
+
+        </div>
+
+
+        <div class="confirm-body">
+
+            <div class="confirm-message-box">
+
+                <div class="confirm-icon">
+                    ✓
+                </div>
+
+
+                <div>
+
+                    <p
+                        class="confirm-message-title"
+                        id="confirmMessageTitle">
+
+                        Are you sure?
+
+                    </p>
+
+
+                    <p
+                        class="confirm-message-text"
+                        id="confirmMessageText">
+
+                        This action will update the dispute status.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="confirm-error"
+                id="confirmError">
+
+            </div>
+
+        </div>
+
+
+        <div class="confirm-footer">
+
+            <button
+                type="button"
+                class="confirm-cancel"
+                onclick="closeConfirmModal()">
+
+                Cancel
+
+            </button>
+
+
+            <button
+                type="button"
+                class="confirm-action"
+                id="confirmActionButton"
+                onclick="confirmStatusChange()">
+
+                Confirm
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script src="/js/app.js"></script>
+
+
+<script>
+
+/* =========================================================
+   GLOBAL DATA
+========================================================= */
+
+let allDisputes = [];
+
+let currentDisputeFilter = "all";
+
+let selectedDispute = null;
+
+let pendingStatus = null;
+
+
+/* =========================================================
+   STATUS NORMALIZATION
+========================================================= */
+
+function normalizeStatus(status) {
+
+    if (!status) {
+        return "pending";
+    }
+
+    const value =
+        String(status)
+            .trim()
+            .toLowerCase()
+            .replace(/-/g, "_");
+
+    if (
+        value === "under_review" ||
+        value === "under review" ||
+        value === "in_review" ||
+        value === "in review" ||
+        value === "open"
+    ) {
+
+        return "open";
+
+    }
+
+    if (
+        value === "resolved" ||
+        value === "closed"
+    ) {
+
+        return "resolved";
+
+    }
+
+    return "pending";
+
+}
+
+
+/* =========================================================
+   CREATE DISPUTE MODAL
+========================================================= */
+
+function openDisputeModal() {
+
+    document
+        .getElementById("disputeModal")
+        .classList
+        .add("show");
+
+}
+
+
+function closeDisputeModal() {
+
+    document
+        .getElementById("disputeModal")
+        .classList
+        .remove("show");
+
+}
+
+
+/* =========================================================
+   DETAILS MODAL
+========================================================= */
+
+function openDetailsModal(dispute) {
+
+    selectedDispute = dispute;
+
+    const modal =
+        document.getElementById("detailsModal");
+
+
+    const disputeId =
+        dispute.id ||
+        dispute.dispute_id ||
+        "—";
+
+
+    const content =
+        dispute.content_title ||
+        dispute.title ||
+        dispute.content_name ||
+        dispute.file_name ||
+        "Registered Content";
+
+
+    const type =
+        dispute.type ||
+        dispute.dispute_type ||
+        "—";
+
+
+    const rawStatus =
+        dispute.status ||
+        "Pending";
+
+
+    const description =
+        dispute.description ||
+        "No description provided.";
+
+
+    const created =
+        dispute.created_at
+            ? formatDate(dispute.created_at)
+            : "—";
+
+
+    const hash =
+        dispute.sha256_hash ||
+        dispute.content_hash ||
+        dispute.hash ||
+        "Not available";
+
+
+    const transaction =
+        dispute.blockchain_tx_hash ||
+        dispute.transaction_hash ||
+        dispute.tx_hash ||
+        "Not available";
+
+
+    document.getElementById(
+        "detailDisputeId"
+    ).textContent =
+        disputeId;
+
+
+    document.getElementById(
+        "detailContent"
+    ).textContent =
+        content;
+
+
+    document.getElementById(
+        "detailType"
+    ).textContent =
+        type;
+
+
+    document.getElementById(
+        "detailCreated"
+    ).textContent =
+        created;
+
+
+    document.getElementById(
+        "detailDescription"
+    ).textContent =
+        description;
+
+
+    document.getElementById(
+        "detailHash"
+    ).textContent =
+        hash;
+
+
+    document.getElementById(
+        "detailTransaction"
+    ).textContent =
+        transaction;
+
+
+    const statusElement =
+        document.getElementById(
+            "detailStatus"
+        );
+
+
+    const normalized =
+        normalizeStatus(rawStatus);
+
+
+    statusElement.innerHTML = `
+
+        <span class="status-pill ${normalized}">
+
+            ${escapeHtml(String(rawStatus))}
+
+        </span>
+
+    `;
+
+
+    renderDisputeActionButtons(
+        dispute
+    );
+
+
+    modal
+        .classList
+        .add("show");
+
+}
+
+
+/* =========================================================
+   DETAILS ACTION BUTTONS
+========================================================= */
+
+function renderDisputeActionButtons(
+    dispute
+) {
+
+    const container =
+        document.getElementById(
+            "disputeActionButtons"
+        );
+
+
+    container.innerHTML = "";
+
+
+    const status =
+        normalizeStatus(
+            dispute.status
+        );
+
+
+    if (status === "pending") {
+
+        const button =
+            document.createElement("button");
+
+        button.type = "button";
+
+        button.className =
+            "dispute-open-btn";
+
+        button.textContent =
+            "⏳ Open Dispute";
+
+        button.onclick =
+            function() {
+
+                openConfirmModal(
+                    dispute,
+                    "open"
+                );
+
+            };
+
+        container.appendChild(
+            button
+        );
+
+    }
+
+
+    if (status === "open") {
+
+        const button =
+            document.createElement("button");
+
+        button.type = "button";
+
+        button.className =
+            "dispute-resolve-btn";
+
+        button.textContent =
+            "✓ Resolve Dispute";
+
+        button.onclick =
+            function() {
+
+                openConfirmModal(
+                    dispute,
+                    "resolved"
+                );
+
+            };
+
+        container.appendChild(
+            button
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   CLOSE DETAILS
+========================================================= */
+
+function closeDetailsModal() {
+
+    document
+        .getElementById("detailsModal")
+        .classList
+        .remove("show");
+
+}
+
+
+/* =========================================================
+   CUSTOM CONFIRM MODAL
+========================================================= */
+
+function openConfirmModal(
+    dispute,
+    newStatus
+) {
+
+    selectedDispute =
+        dispute;
+
+    pendingStatus =
+        newStatus;
+
+
+    const title =
+        document.getElementById(
+            "confirmTitle"
+        );
+
+
+    const subtitle =
+        document.getElementById(
+            "confirmSubtitle"
+        );
+
+
+    const messageTitle =
+        document.getElementById(
+            "confirmMessageTitle"
+        );
+
+
+    const messageText =
+        document.getElementById(
+            "confirmMessageText"
+        );
+
+
+    const actionButton =
+        document.getElementById(
+            "confirmActionButton"
+        );
+
+
+    const errorBox =
+        document.getElementById(
+            "confirmError"
+        );
+
+
+    errorBox.classList.remove(
+        "show"
+    );
+
+    errorBox.textContent =
+        "";
+
+
+    if (
+        newStatus === "resolved"
+    ) {
+
+        title.textContent =
+            "Resolve Dispute";
+
+        subtitle.textContent =
+            "Confirm the resolution of this dispute.";
+
+        messageTitle.textContent =
+            "Are you sure?";
+
+        messageText.innerHTML =
+            "Are you sure you want to resolve this dispute? The dispute status will be changed to <strong>Resolved</strong>.";
+
+        actionButton.textContent =
+            "✓ Resolve Dispute";
+
+        actionButton.classList.add(
+            "resolve"
+        );
+
+    } else {
+
+        title.textContent =
+            "Open Dispute";
+
+        subtitle.textContent =
+            "Move this dispute into active review.";
+
+        messageTitle.textContent =
+            "Open this dispute?";
+
+        messageText.innerHTML =
+            "The dispute status will be changed to <strong>Open</strong> and it can then be reviewed.";
+
+        actionButton.textContent =
+            "⏳ Open Dispute";
+
+        actionButton.classList.remove(
+            "resolve"
+        );
+
+    }
+
+
+    actionButton.disabled =
+        false;
+
+
+    document
+        .getElementById(
+            "confirmStatusModal"
+        )
+        .classList
+        .add("show");
+
+}
+
+
+function closeConfirmModal() {
+
+    document
+        .getElementById(
+            "confirmStatusModal"
+        )
+        .classList
+        .remove("show");
+
+    pendingStatus =
+        null;
+
+}
+
+
+/* =========================================================
+   UPDATE DISPUTE STATUS
+   =========================================================
+   
+   This function tries the supported REST formats
+   without requiring changes to your server.js.
+========================================================= */
+
+async function updateDisputeStatus(
+    dispute,
+    status
+) {
+
+    const id =
+        dispute.id ||
+        dispute.dispute_id;
+
+
+    if (!id) {
+
+        throw new Error(
+            "Dispute ID is missing."
+        );
+
+    }
+
+
+    const normalized =
+        status === "resolved"
+            ? "Resolved"
+            : "Open";
+
+
+    /*
+       Try the most common endpoint first.
+    */
+
+    const attempts = [
+
+        {
+            url:
+                `/api/disputes/${encodeURIComponent(id)}/status`,
+
+            method:
+                "PATCH",
+
+            body:
+                {
+                    status:
+                        normalized
+                }
+        },
+
+        {
+            url:
+                `/api/disputes/${encodeURIComponent(id)}/status`,
+
+            method:
+                "PUT",
+
+            body:
+                {
+                    status:
+                        normalized
+                }
+        },
+
+        {
+            url:
+                `/api/disputes/${encodeURIComponent(id)}`,
+
+            method:
+                "PATCH",
+
+            body:
+                {
+                    status:
+                        normalized
+                }
+        },
+
+        {
+            url:
+                `/api/disputes/${encodeURIComponent(id)}`,
+
+            method:
+                "PUT",
+
+            body:
+                {
+                    status:
+                        normalized
+                }
+        }
+
+    ];
+
+
+    let lastError =
+        null;
+
+
+    for (
+        const attempt of attempts
+    ) {
+
+        try {
+
+            const response =
+                await fetch(
+                    attempt.url,
+                    {
+
+                        method:
+                            attempt.method,
+
+                        credentials:
+                            "include",
+
+                        headers: {
+
+                            "Content-Type":
+                                "application/json"
+
+                        },
+
+                        body:
+                            JSON.stringify(
+                                attempt.body
+                            )
+
+                    }
+                );
+
+
+            let result =
+                null;
+
+
+            try {
+
+                result =
+                    await response.json();
+
+            } catch {
+
+                result =
+                    null;
+
+            }
+
+
+            /*
+               If endpoint does not exist,
+               try the next supported format.
+            */
+
+            if (
+                response.status === 404
+            ) {
+
+                lastError =
+                    new Error(
+                        "Endpoint not found."
+                    );
+
+                continue;
+
+            }
+
+
+            if (
+                !response.ok
+            ) {
+
+                throw new Error(
+
+                    result &&
+                    (
+                        result.message ||
+                        result.error
+                    )
+
+                    ||
+
+                    `Unable to update dispute (${response.status}).`
+
+                );
+
+            }
+
+
+            return (
+                result ||
+                {
+                    success: true
+                }
+            );
+
+        } catch (error) {
+
+            lastError =
+                error;
+
+            /*
+               Continue only for endpoint-related
+               failures.
+            */
+
+            if (
+                String(
+                    error.message
+                )
+                .toLowerCase()
+                .includes(
+                    "endpoint"
+                )
+            ) {
+
+                continue;
+
+            }
+
+            throw error;
+
+        }
+
+    }
+
+
+    throw (
+        lastError ||
+        new Error(
+            "Unable to update dispute status."
+        )
+    );
+
+}
+
+
+/* =========================================================
+   CONFIRM STATUS CHANGE
+========================================================= */
+
+async function confirmStatusChange() {
+
+    if (
+        !selectedDispute ||
+        !pendingStatus
+    ) {
+
+        return;
+
+    }
+
+
+    const actionButton =
+        document.getElementById(
+            "confirmActionButton"
+        );
+
+
+    const errorBox =
+        document.getElementById(
+            "confirmError"
+        );
+
+
+    actionButton.disabled =
+        true;
+
+
+    actionButton.textContent =
+        "Updating...";
+
+
+    errorBox.classList.remove(
+        "show"
+    );
+
+
+    try {
+
+        await updateDisputeStatus(
+            selectedDispute,
+            pendingStatus
+        );
+
+
+        /*
+           Update local object immediately.
+        */
+
+        selectedDispute.status =
+            pendingStatus === "resolved"
+                ? "Resolved"
+                : "Open";
+
+
+        const disputeId =
+            selectedDispute.id ||
+            selectedDispute.dispute_id;
+
+
+        const localDispute =
+            allDisputes.find(
+                function(item) {
+
+                    return (
+                        (
+                            item.id ||
+                            item.dispute_id
+                        ) ===
+                        disputeId
+                    );
+
+                }
+            );
+
+
+        if (localDispute) {
+
+            localDispute.status =
+                pendingStatus === "resolved"
+                    ? "Resolved"
+                    : "Open";
+
+        }
+
+
+        closeConfirmModal();
+
+
+        renderDisputes(
+            allDisputes
+        );
+
+
+        /*
+           Refresh details modal.
+        */
+
+        openDetailsModal(
+            selectedDispute
+        );
+
+
+        /*
+           Reload from database so the
+           change is persistent.
+        */
+
+        await loadDisputes();
+
+
+        /*
+           Find the updated dispute again.
+        */
+
+        const updated =
+            allDisputes.find(
+                function(item) {
+
+                    return (
+                        (
+                            item.id ||
+                            item.dispute_id
+                        ) ===
+                        disputeId
+                    );
+
+                }
+            );
+
+
+        if (updated) {
+
+            selectedDispute =
+                updated;
+
+            openDetailsModal(
+                updated
+            );
+
+        }
+
+
+    } catch (error) {
+
+        console.error(
+            "Dispute status update error:",
+            error
+        );
+
+
+        errorBox.textContent =
+            error.message ||
+            "Unable to update dispute.";
+
+
+        errorBox.classList.add(
+            "show"
+        );
+
+
+        actionButton.disabled =
+            false;
+
+
+        if (
+            pendingStatus ===
+            "resolved"
+        ) {
+
+            actionButton.textContent =
+                "✓ Resolve Dispute";
+
+        } else {
+
+            actionButton.textContent =
+                "⏳ Open Dispute";
+
+        }
+
+    }
+
+}
+
+
+/* =========================================================
+   MODAL OUTSIDE CLICK
+========================================================= */
+
+document
+    .getElementById(
+        "disputeModal"
+    )
+    .addEventListener(
+        "click",
+        function(event) {
+
+            if (
+                event.target === this
+            ) {
+
+                closeDisputeModal();
+
+            }
+
+        }
+    );
+
+
+document
+    .getElementById(
+        "detailsModal"
+    )
+    .addEventListener(
+        "click",
+        function(event) {
+
+            if (
+                event.target === this
+            ) {
+
+                closeDetailsModal();
+
+            }
+
+        }
+    );
+
+
+document
+    .getElementById(
+        "confirmStatusModal"
+    )
+    .addEventListener(
+        "click",
+        function(event) {
+
+            if (
+                event.target === this
+            ) {
+
+                closeConfirmModal();
+
+            }
+
+        }
+    );
+
+
+/* =========================================================
+   ESC KEY
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (
+            event.key === "Escape"
+        ) {
+
+            closeDisputeModal();
+
+            closeDetailsModal();
+
+            closeConfirmModal();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   LOAD REGISTERED CONTENT
+========================================================= */
+
+async function loadRegisteredContent() {
+
+    const select =
+        document.getElementById(
+            "disputeContent"
+        );
+
+
+    try {
+
+        const result =
+            await api(
+                "/api/content"
+            );
+
+
+        const contents =
+            result.data ||
+            result.contents ||
+            result ||
+            [];
+
+
+        if (
+            !Array.isArray(contents)
+        ) {
+
+            return;
+
+        }
+
+
+        contents.forEach(
+            function(content) {
+
+                const option =
+                    document.createElement(
+                        "option"
+                    );
+
+
+                option.value =
+                    content.id ||
+                    content.content_id;
+
+
+                option.textContent =
+                    content.title ||
+                    content.file_name ||
+                    "Registered Content";
+
+
+                select.appendChild(
+                    option
+                );
+
+            }
+        );
+
+
+    } catch (error) {
+
+        console.log(
+            "Could not load content:",
+            error.message
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   FILTER
+========================================================= */
+
+function setDisputeFilter(
+    filter
+) {
+
+    currentDisputeFilter =
+        filter;
+
+
+    updateActiveFilterCard();
+
+
+    renderDisputes(
+        allDisputes
+    );
+
+}
+
+
+function updateActiveFilterCard() {
+
+    const cards = {
+
+        all:
+            document.getElementById(
+                "totalFilterCard"
+            ),
+
+        open:
+            document.getElementById(
+                "openFilterCard"
+            ),
+
+        resolved:
+            document.getElementById(
+                "resolvedFilterCard"
+            ),
+
+        pending:
+            document.getElementById(
+                "pendingFilterCard"
+            )
+
+    };
+
+
+    Object.values(cards)
+        .forEach(
+            function(card) {
+
+                if (card) {
+
+                    card.classList.remove(
+                        "active-filter"
+                    );
+
+                }
+
+            }
+        );
+
+
+    if (
+        cards[currentDisputeFilter]
+    ) {
+
+        cards[currentDisputeFilter]
+            .classList
+            .add(
+                "active-filter"
+            );
+
+    }
+
+}
+
+
+/* =========================================================
+   LOAD DISPUTES
+========================================================= */
+
+async function loadDisputes() {
+
+    const table =
+        document.getElementById(
+            "disputesTable"
+        );
+
+
+    try {
+
+        const result =
+            await api(
+                "/api/disputes"
+            );
+
+
+        const disputes =
+            result.data ||
+            result.disputes ||
+            result ||
+            [];
+
+
+        if (
+            !Array.isArray(disputes)
+        ) {
+
+            throw new Error(
+                "Invalid disputes response."
+            );
+
+        }
+
+
+        allDisputes =
+            disputes;
+
+
+        renderDisputes(
+            allDisputes
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "Could not load disputes:",
+            error
+        );
+
+
+        table.innerHTML = `
+
+            <tr>
+
+                <td
+                    colspan="6"
+                    style="
+                        text-align:center;
+                        padding:45px;
+                        color:#94a3b8;
+                    ">
+
+                    <div style="
+                        font-size:30px;
+                        margin-bottom:10px;
+                    ">
+                        ⚖
+                    </div>
+
+                    <strong style="
+                        display:block;
+                        color:#475569;
+                        margin-bottom:5px;
+                    ">
+                        Unable to load disputes
+                    </strong>
+
+                    <span>
+                        ${escapeHtml(
+                            error.message
+                        )}
+                    </span>
+
+                </td>
+
+            </tr>
+
+        `;
+
+    }
+
+}
+
+
+/* =========================================================
+   RENDER DISPUTES
+========================================================= */
+
+function renderDisputes(
+    disputes
+) {
+
+    const table =
+        document.getElementById(
+            "disputesTable"
+        );
+
+
+    /* =====================================================
+       STATISTICS
+    ====================================================== */
+
+    const total =
+        disputes.length;
+
+
+    const open =
+        disputes.filter(
+            function(d) {
+
+                return (
+                    normalizeStatus(
+                        d.status
+                    ) === "open"
+                );
+
+            }
+        ).length;
+
+
+    const resolved =
+        disputes.filter(
+            function(d) {
+
+                return (
+                    normalizeStatus(
+                        d.status
+                    ) === "resolved"
+                );
+
+            }
+        ).length;
+
+
+    const pending =
+        disputes.filter(
+            function(d) {
+
+                return (
+                    normalizeStatus(
+                        d.status
+                    ) === "pending"
+                );
+
+            }
+        ).length;
+
+
+    document.getElementById(
+        "totalDisputes"
+    ).textContent =
+        total;
+
+
+    document.getElementById(
+        "openDisputes"
+    ).textContent =
+        open;
+
+
+    document.getElementById(
+        "resolvedDisputes"
+    ).textContent =
+        resolved;
+
+
+    document.getElementById(
+        "pendingDisputes"
+    ).textContent =
+        pending;
+
+
+    /* =====================================================
+       FILTER
+    ====================================================== */
+
+    const filteredDisputes =
+        disputes.filter(
+            function(dispute) {
+
+                if (
+                    currentDisputeFilter ===
+                    "all"
+                ) {
+
+                    return true;
+
+                }
+
+
+                return (
+                    normalizeStatus(
+                        dispute.status
+                    ) ===
+                    currentDisputeFilter
+                );
+
+            }
+        );
+
+
+    /* =====================================================
+       FILTER TEXT
+    ====================================================== */
+
+    const filterText =
+        document.getElementById(
+            "filterText"
+        );
+
+
+    const clearButton =
+        document.getElementById(
+            "clearFilterButton"
+        );
+
+
+    if (
+        currentDisputeFilter ===
+        "all"
+    ) {
+
+        filterText.textContent =
+            "Showing all disputes";
+
+
+        clearButton.style.display =
+            "none";
+
+    } else {
+
+        const name =
+            currentDisputeFilter
+                .charAt(0)
+                .toUpperCase()
+            +
+            currentDisputeFilter
+                .slice(1);
+
+
+        filterText.textContent =
+            `Showing ${name} disputes (${filteredDisputes.length})`;
+
+
+        clearButton.style.display =
+            "inline-block";
+
+    }
+
+
+    /* =====================================================
+       EMPTY
+    ====================================================== */
+
+    if (
+        filteredDisputes.length === 0
+    ) {
+
+        let message =
+            "You haven't created any disputes.";
+
+
+        if (
+            currentDisputeFilter !==
+            "all"
+        ) {
+
+            message =
+                `There are no ${currentDisputeFilter} disputes.`;
+
+        }
+
+
+        table.innerHTML = `
+
+            <tr>
+
+                <td
+                    colspan="6"
+                    style="
+                        text-align:center;
+                        padding:45px;
+                        color:#94a3b8;
+                    ">
+
+                    <div style="
+                        font-size:35px;
+                        margin-bottom:10px;
+                    ">
+                        ⚖
+                    </div>
+
+                    <strong style="
+                        display:block;
+                        color:#475569;
+                        margin-bottom:5px;
+                    ">
+                        No disputes found
+                    </strong>
+
+                    <span>
+                        ${escapeHtml(message)}
+                    </span>
+
+                </td>
+
+            </tr>
+
+        `;
+
+        return;
+
+    }
+
+
+    /* =====================================================
+       TABLE
+    ====================================================== */
+
+    table.innerHTML = "";
+
+
+    filteredDisputes.forEach(
+        function(dispute) {
+
+            const row =
+                document.createElement(
+                    "tr"
+                );
+
+
+            const status =
+                dispute.status ||
+                "Pending";
+
+
+            const normalized =
+                normalizeStatus(
+                    status
+                );
+
+
+            const disputeId =
+                dispute.id ||
+                dispute.dispute_id ||
+                "—";
+
+
+            const contentTitle =
+                dispute.content_title ||
+                dispute.title ||
+                dispute.content_name ||
+                dispute.file_name ||
+                "Registered Content";
+
+
+            const type =
+                dispute.type ||
+                dispute.dispute_type ||
+                "—";
+
+
+            let statusClass =
+                "badge-warning";
+
+
+            if (
+                normalized ===
+                "resolved"
+            ) {
+
+                statusClass =
+                    "badge-success";
+
+            }
+
+
+            if (
+                normalized ===
+                "open"
+            ) {
+
+                statusClass =
+                    "badge-info";
+
+            }
+
+
+            row.innerHTML = `
+
+                <td>
+
+                    <span class="hash">
+
+                        ${escapeHtml(
+                            String(disputeId)
+                        )}
+
+                    </span>
+
+                </td>
+
+
+                <td>
+
+                    ${escapeHtml(
+                        String(contentTitle)
+                    )}
+
+                </td>
+
+
+                <td>
+
+                    ${escapeHtml(
+                        String(type)
+                    )}
+
+                </td>
+
+
+                <td>
+
+                    <span class="badge ${statusClass}">
+
+                        ${escapeHtml(
+                            String(status)
+                        )}
+
+                    </span>
+
+                </td>
+
+
+                <td>
+
+                    ${
+                        dispute.created_at
+                            ? formatDate(
+                                dispute.created_at
+                              )
+                            : "—"
+                    }
+
+                </td>
+
+
+                <td>
+
+                    <button
+                        type="button"
+                        class="details-btn">
+
+                        View Details
+
+                    </button>
+
+                </td>
+
+            `;
+
+
+            row
+                .querySelector(
+                    ".details-btn"
+                )
+                .addEventListener(
+                    "click",
+                    function() {
+
+                        openDetailsModal(
+                            dispute
+                        );
+
+                    }
+                );
+
+
+            table.appendChild(
+                row
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   SUBMIT DISPUTE
+========================================================= */
+
+document
+    .getElementById(
+        "disputeForm"
+    )
+    .addEventListener(
+        "submit",
+        async function(event) {
+
+            event.preventDefault();
+
+
+            const message =
+                document.getElementById(
+                    "disputeMessage"
+                );
+
+
+            const contentId =
+                document.getElementById(
+                    "disputeContent"
+                ).value;
+
+
+            const type =
+                document.getElementById(
+                    "disputeType"
+                ).value;
+
+
+            const description =
+                document.getElementById(
+                    "disputeDescription"
+                ).value.trim();
+
+
+            if (!contentId) {
+
+                message.innerHTML = `
+
+                    <div class="alert alert-danger">
+
+                        Please select registered content.
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+
+            if (!type) {
+
+                message.innerHTML = `
+
+                    <div class="alert alert-danger">
+
+                        Please select a dispute type.
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+
+            if (!description) {
+
+                message.innerHTML = `
+
+                    <div class="alert alert-danger">
+
+                        Please enter a description.
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+
+            try {
+
+                await api(
+                    "/api/disputes",
+                    {
+
+                        method:
+                            "POST",
+
+                        headers: {
+
+                            "Content-Type":
+                                "application/json"
+
+                        },
+
+                        body:
+                            JSON.stringify({
+
+                                content_id:
+                                    contentId,
+
+                                type:
+                                    type,
+
+                                description:
+                                    description
+
+                            })
+
+                    }
+                );
+
+
+                message.innerHTML = `
+
+                    <div class="alert alert-success">
+
+                        ✓ Dispute submitted successfully.
+
+                    </div>
+
+                `;
+
+
+                document
+                    .getElementById(
+                        "disputeForm"
+                    )
+                    .reset();
+
+
+                await loadDisputes();
+
+
+                setTimeout(
+                    function() {
+
+                        closeDisputeModal();
+
+                        message.innerHTML = "";
+
+                    },
+                    1000
+                );
+
+
+            } catch (error) {
+
+                message.innerHTML = `
+
+                    <div class="alert alert-danger">
+
+                        ${escapeHtml(
+                            error.message
+                        )}
+
+                    </div>
+
+                `;
+
+            }
+
+        }
+    );
+
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    async function() {
+
+        try {
+
+            await requireUser();
+
+        } catch (error) {
+
+            console.log(
+                "Authentication check failed:",
+                error.message
+            );
+
+        }
+
+
+        await loadRegisteredContent();
+
+        await loadDisputes();
+
+    }
+);
+
+</script>
 
 
 </body>

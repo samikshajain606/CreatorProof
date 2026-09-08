@@ -5,19 +5,538 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
     <title>Licenses | CreatorProof</title>
 
-    <link rel="stylesheet"
-          href="../css/style.css">
+    <link
+        rel="stylesheet"
+        href="/css/style.css">
+
+    <!-- =====================================================
+         LICENSE PAGE DESIGN
+    ====================================================== -->
+
+    <style>
+
+        /* =====================================================
+           PAGE HERO
+        ====================================================== */
+
+        .license-hero {
+            position: relative;
+            overflow: hidden;
+            padding: 32px;
+            margin-bottom: 24px;
+            border-radius: 24px;
+            background:
+                linear-gradient(
+                    135deg,
+                    #111936 0%,
+                    #20235b 55%,
+                    #4f46e5 100%
+                );
+            color: white;
+            box-shadow:
+                0 18px 45px rgba(31, 41, 95, 0.20);
+        }
+
+        .license-hero::before {
+            content: "";
+            position: absolute;
+            width: 260px;
+            height: 260px;
+            border-radius: 50%;
+            right: -80px;
+            top: -110px;
+            background: rgba(255,255,255,0.08);
+        }
+
+        .license-hero::after {
+            content: "";
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            right: 120px;
+            bottom: -120px;
+            background: rgba(255,255,255,0.05);
+        }
+
+        .license-hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 760px;
+        }
+
+        .license-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 7px 12px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255,255,255,0.18);
+            border-radius: 999px;
+            background: rgba(255,255,255,0.10);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+        }
+
+        .license-hero h1 {
+            margin: 0 0 10px;
+            font-size: 30px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .license-hero p {
+            margin: 0;
+            max-width: 650px;
+            color: rgba(255,255,255,0.76);
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .license-hero-actions {
+            position: relative;
+            z-index: 2;
+            margin-top: 24px;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .license-primary-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 18px;
+            border-radius: 10px;
+            background: white;
+            color: #4338ca;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 800;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+            transition: 0.2s ease;
+        }
+
+        .license-primary-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.18);
+        }
+
+
+        /* =====================================================
+           STAT CARDS
+        ====================================================== */
+
+        .license-stats {
+            display: grid;
+            grid-template-columns:
+                repeat(3, minmax(0, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .license-stat {
+            position: relative;
+            overflow: hidden;
+            padding: 20px;
+            border: 1px solid #e5e7eb;
+            border-radius: 18px;
+            background: white;
+            box-shadow: 0 8px 25px rgba(15,23,42,0.05);
+        }
+
+        .license-stat::after {
+            content: "";
+            position: absolute;
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            right: -35px;
+            bottom: -35px;
+            background: #f1efff;
+        }
+
+        .license-stat-top {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 14px;
+        }
+
+        .license-stat-icon {
+            width: 42px;
+            height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            background: #eeebff;
+            color: #5b4df5;
+            font-size: 19px;
+            font-weight: 700;
+        }
+
+        .license-stat-label {
+            color: #64748b;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .license-stat-value {
+            position: relative;
+            z-index: 2;
+            display: block;
+            color: #111827;
+            font-size: 25px;
+            font-weight: 800;
+        }
+
+        .license-stat-description {
+            position: relative;
+            z-index: 2;
+            display: block;
+            margin-top: 4px;
+            color: #94a3b8;
+            font-size: 10px;
+        }
+
+
+        /* =====================================================
+           SECTION HEADER
+        ====================================================== */
+
+        .license-section-heading {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 20px;
+            margin: 30px 0 16px;
+        }
+
+        .license-section-heading h2 {
+            margin: 0;
+            color: #111827;
+            font-size: 19px;
+            font-weight: 800;
+        }
+
+        .license-section-heading p {
+            margin: 5px 0 0;
+            color: #64748b;
+            font-size: 11px;
+        }
+
+
+        /* =====================================================
+           LICENSE CARDS
+        ====================================================== */
+
+        .license-grid {
+            display: grid;
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .license-card {
+            position: relative;
+            overflow: hidden;
+            padding: 24px;
+            border: 1px solid #e5e7eb;
+            border-radius: 20px;
+            background: white;
+            box-shadow:
+                0 8px 28px rgba(15,23,42,0.055);
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease,
+                border-color 0.2s ease;
+        }
+
+        .license-card:hover {
+            transform: translateY(-3px);
+            border-color: #d8d2ff;
+            box-shadow:
+                0 15px 35px rgba(79,70,229,0.10);
+        }
+
+        .license-card-head {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .license-card-icon {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 14px;
+            background: #f0eeff;
+            color: #5849ef;
+            font-size: 22px;
+        }
+
+        .license-badge {
+            padding: 6px 9px;
+            border-radius: 999px;
+            background: #f1f5f9;
+            color: #475569;
+            font-size: 9px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .license-card h3 {
+            margin: 18px 0 7px;
+            color: #111827;
+            font-size: 16px;
+            font-weight: 800;
+        }
+
+        .license-card-description {
+            margin: 0 0 18px;
+            color: #64748b;
+            font-size: 11px;
+            line-height: 1.65;
+        }
+
+        .license-features {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            border-top: 1px solid #eef2f7;
+        }
+
+        .license-features li {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            padding: 10px 0;
+            border-bottom: 1px solid #f1f5f9;
+            color: #475569;
+            font-size: 10px;
+        }
+
+        .license-features li:last-child {
+            border-bottom: none;
+        }
+
+        .license-check {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: #ecfdf5;
+            color: #059669;
+            font-size: 10px;
+            font-weight: 800;
+        }
+
+
+        /* =====================================================
+           HOW IT WORKS
+        ====================================================== */
+
+        .license-info-card {
+            margin-top: 24px;
+            padding: 24px;
+            border: 1px solid #e5e7eb;
+            border-radius: 20px;
+            background: white;
+            box-shadow:
+                0 8px 28px rgba(15,23,42,0.045);
+        }
+
+        .license-info-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 22px;
+        }
+
+        .license-info-icon {
+            width: 42px;
+            height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            background: #eeebff;
+            color: #5b4df5;
+            font-size: 18px;
+        }
+
+        .license-info-header h2 {
+            margin: 0;
+            color: #111827;
+            font-size: 17px;
+        }
+
+        .license-info-header p {
+            margin: 4px 0 0;
+            color: #94a3b8;
+            font-size: 10px;
+        }
+
+        .license-process {
+            display: grid;
+            grid-template-columns:
+                repeat(4, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .license-process-step {
+            position: relative;
+            padding: 18px;
+            border-radius: 14px;
+            background: #f8fafc;
+            border: 1px solid #eef2f7;
+        }
+
+        .process-number {
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 12px;
+            border-radius: 9px;
+            background: #5b4df5;
+            color: white;
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        .license-process-step h4 {
+            margin: 0 0 6px;
+            color: #1e293b;
+            font-size: 11px;
+        }
+
+        .license-process-step p {
+            margin: 0;
+            color: #64748b;
+            font-size: 9px;
+            line-height: 1.6;
+        }
+
+
+        /* =====================================================
+           SECURITY CARD
+        ====================================================== */
+
+        .license-security {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            margin-top: 24px;
+            padding: 20px 22px;
+            border: 1px solid #bbf7d0;
+            border-radius: 18px;
+            background: #f0fdf4;
+        }
+
+        .security-icon {
+            width: 46px;
+            height: 46px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 14px;
+            background: #dcfce7;
+            color: #16a34a;
+            font-size: 20px;
+        }
+
+        .license-security h3 {
+            margin: 0 0 5px;
+            color: #166534;
+            font-size: 13px;
+        }
+
+        .license-security p {
+            margin: 0;
+            color: #4d7c5a;
+            font-size: 10px;
+            line-height: 1.6;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ====================================================== */
+
+        @media (max-width: 900px) {
+
+            .license-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .license-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .license-process {
+                grid-template-columns:
+                    repeat(2, minmax(0, 1fr));
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            .license-hero {
+                padding: 24px;
+                border-radius: 18px;
+            }
+
+            .license-hero h1 {
+                font-size: 24px;
+            }
+
+            .license-process {
+                grid-template-columns: 1fr;
+            }
+
+            .license-section-heading {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .license-security {
+                align-items: flex-start;
+            }
+
+        }
+
+    </style>
 
 </head>
 
 
 <body>
 
+
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
 
 <aside class="sidebar">
 
@@ -39,38 +558,54 @@
     </div>
 
 
-    <a class="nav-link"
-       href="dashboard.html">
+    <a
+        class="nav-link"
+        href="dashboard.html">
 
-        <span class="nav-icon">⌂</span>
-        <span>Dashboard</span>
+        <span class="nav-icon">
+            ⌂
+        </span>
 
-    </a>
-
-
-    <a class="nav-link"
-       href="register.html">
-
-        <span class="nav-icon">＋</span>
-        <span>Register Content</span>
+        Dashboard
 
     </a>
 
 
-    <a class="nav-link"
-       href="content.html">
+    <a
+        class="nav-link"
+        href="register.html">
 
-        <span class="nav-icon">▣</span>
-        <span>My Content</span>
+        <span class="nav-icon">
+            ＋
+        </span>
+
+        Register Content
 
     </a>
 
 
-    <a class="nav-link"
-       href="verify.html">
+    <a
+        class="nav-link"
+        href="content.html">
 
-        <span class="nav-icon">✓</span>
-        <span>Verify Content</span>
+        <span class="nav-icon">
+            ▣
+        </span>
+
+        My Content
+
+    </a>
+
+
+    <a
+        class="nav-link"
+        href="verify.html">
+
+        <span class="nav-icon">
+            ✓
+        </span>
+
+        Verify Content
 
     </a>
 
@@ -80,39 +615,56 @@
     </div>
 
 
-    <a class="nav-link active"
-       href="licenses.html">
+    <a
+        class="nav-link active"
+        href="licenses.html">
 
-        <span class="nav-icon">▤</span>
-        <span>Licenses</span>
+        <span class="nav-icon">
+            ▤
+        </span>
+
+        Licenses
 
     </a>
 
 
-    <a class="nav-link"
-       href="disputes.html">
+    <a
+        class="nav-link"
+        href="disputes.html">
 
-        <span class="nav-icon">⚖</span>
-        <span>Disputes</span>
+        <span class="nav-icon">
+            ⚖
+        </span>
+
+        Disputes
 
     </a>
 
 </aside>
 
 
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
 <main class="main">
 
+
+    <!-- =================================================
+         TOPBAR
+    ================================================== -->
 
     <header class="topbar">
 
         <div>
 
             <div class="page-title">
-                Ownership & Licenses
+                Licenses
             </div>
 
             <div class="breadcrumb">
-                CreatorProof / Licensing Management
+                CreatorProof / License Management
             </div>
 
         </div>
@@ -120,8 +672,86 @@
 
         <div class="top-actions">
 
-            <div class="demo-badge">
-                DEMO MODE
+
+            <!-- NOTIFICATION -->
+
+            <button
+                type="button"
+                class="notification-button"
+                id="notificationButton"
+                aria-label="Notifications">
+
+                🔔
+
+            </button>
+
+
+            <div
+                class="notification-panel"
+                id="notificationPanel">
+
+                <div class="notification-title">
+                    Notifications
+                </div>
+
+                <div class="notification-item">
+                    Your CreatorProof account is active.
+                </div>
+
+            </div>
+
+
+            <!-- PROFILE -->
+
+            <div class="profile-wrapper">
+
+                <div
+                    class="profile"
+                    id="profileButton">
+
+                    <div
+                        class="avatar"
+                        data-user-avatar>
+
+                        CP
+
+                    </div>
+
+
+                    <div class="profile-info">
+
+                        <strong data-user-name>
+                            Creator
+                        </strong>
+
+                        <span data-user-role>
+                            Creator
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="profile-menu"
+                    id="profileMenu">
+
+                    <a href="profile.html">
+                        👤 Profile
+                    </a>
+
+                    <button
+                        id="logoutButton"
+                        class="logout"
+                        type="button">
+
+                        ↪ Sign Out
+
+                    </button>
+
+                </div>
+
             </div>
 
         </div>
@@ -129,392 +759,589 @@
     </header>
 
 
+
+    <!-- =================================================
+         CONTENT
+    ================================================== -->
+
     <section class="content-area">
 
 
-        <div class="welcome">
+        <!-- =================================================
+             HERO
+        ================================================== -->
 
-            <div>
+        <div class="license-hero">
+
+            <div class="license-hero-content">
+
+                <div class="license-eyebrow">
+
+                    🔐
+
+                    CONTENT RIGHTS MANAGEMENT
+
+                </div>
+
 
                 <h1>
-                    License your content securely.
+                    Protect your work with the
+                    right license.
                 </h1>
 
+
                 <p>
-                    Define how your registered content can be used.
+
+                    Define how others can use your
+                    blockchain-registered content.
+                    Your ownership proof remains linked
+                    to your CreatorProof registration.
+
                 </p>
+
+
+                <div class="license-hero-actions">
+
+                    <a
+                        href="register.html"
+                        class="license-primary-button">
+
+                        ＋ Register Content
+
+                    </a>
+
+                </div>
 
             </div>
 
         </div>
+
+
+
+        <!-- =================================================
+             STATS
+        ================================================== -->
+
+        <div class="license-stats">
+
+
+            <div class="license-stat">
+
+                <div class="license-stat-top">
+
+                    <div class="license-stat-icon">
+                        📜
+                    </div>
+
+                    <span class="license-stat-label">
+                        AVAILABLE
+                    </span>
+
+                </div>
+
+                <strong class="license-stat-value">
+                    4
+                </strong>
+
+                <span class="license-stat-description">
+                    License options supported
+                </span>
+
+            </div>
+
+
+            <div class="license-stat">
+
+                <div class="license-stat-top">
+
+                    <div class="license-stat-icon">
+                        🔐
+                    </div>
+
+                    <span class="license-stat-label">
+                        PROTECTION
+                    </span>
+
+                </div>
+
+                <strong class="license-stat-value">
+                    SHA-256
+                </strong>
+
+                <span class="license-stat-description">
+                    Digital content fingerprinting
+                </span>
+
+            </div>
+
+
+            <div class="license-stat">
+
+                <div class="license-stat-top">
+
+                    <div class="license-stat-icon">
+                        ⛓
+                    </div>
+
+                    <span class="license-stat-label">
+                        NETWORK
+                    </span>
+
+                </div>
+
+                <strong class="license-stat-value">
+                    Sepolia
+                </strong>
+
+                <span class="license-stat-description">
+                    Ethereum blockchain network
+                </span>
+
+            </div>
+
+        </div>
+
 
 
         <!-- =================================================
              LICENSE TYPES
         ================================================== -->
 
+        <div class="license-section-heading">
+
+            <div>
+
+                <h2>
+                    License Types
+                </h2>
+
+                <p>
+                    Choose the usage rights that best
+                    describe your content.
+                </p>
+
+            </div>
+
+        </div>
+
+
         <div class="license-grid">
 
 
-            <!-- PERSONAL -->
+            <!-- ALL RIGHTS RESERVED -->
 
             <div class="license-card">
 
-                <div class="license-card-top">
+                <div class="license-card-head">
 
-                    <div class="license-icon">
-                        🎨
+                    <div class="license-card-icon">
+                        🔒
                     </div>
 
-                    <span class="badge badge-success">
-                        Available
+                    <span class="license-badge">
+                        Maximum Protection
                     </span>
 
                 </div>
 
+
                 <h3>
-                    Personal Use
+                    All Rights Reserved
                 </h3>
 
-                <p>
-                    Allows users to use your content for
-                    personal and non-commercial purposes.
+
+                <p class="license-card-description">
+
+                    You retain full rights to your
+                    original work. Others cannot use,
+                    reproduce or distribute it without
+                    your permission.
+
                 </p>
 
-                <div class="license-price">
-                    Free
-                </div>
 
-                <button
-                    type="button"
-                    class="btn btn-secondary license-create-btn"
-                    data-license-type="Personal Use"
-                    style="width:100%;">
+                <ul class="license-features">
 
-                    Create License
+                    <li>
 
-                </button>
+                        <span class="license-check">
+                            ✓
+                        </span>
+
+                        Full creator ownership
+
+                    </li>
+
+                    <li>
+
+                        <span class="license-check">
+                            ✓
+                        </span>
+
+                        Permission required for reuse
+
+                    </li>
+
+                    <li>
+
+                        <span class="license-check">
+                            ✓
+                        </span>
+
+                        Suitable for original creations
+
+                    </li>
+
+                </ul>
 
             </div>
+
 
 
             <!-- COMMERCIAL -->
 
             <div class="license-card">
 
-                <div class="license-card-top">
+                <div class="license-card-head">
 
-                    <div class="license-icon">
+                    <div class="license-card-icon">
                         💼
                     </div>
 
-                    <span class="badge badge-purple">
-                        Popular
+                    <span class="license-badge">
+                        Commercial
                     </span>
 
                 </div>
+
 
                 <h3>
                     Commercial License
                 </h3>
 
-                <p>
-                    Gives a user permission to use registered
-                    content commercially.
+
+                <p class="license-card-description">
+
+                    Allows approved commercial usage
+                    of your content while preserving
+                    the creator's ownership record.
+
                 </p>
 
-                <div class="license-price">
-                    ₹999
-                    <span>/license</span>
-                </div>
 
-                <button
-                    type="button"
-                    class="btn btn-primary license-create-btn"
-                    data-license-type="Commercial"
-                    style="width:100%;">
+                <ul class="license-features">
 
-                    Create License
+                    <li>
 
-                </button>
+                        <span class="license-check">
+                            ✓
+                        </span>
+
+                        Commercial usage permitted
+
+                    </li>
+
+                    <li>
+
+                        <span class="license-check">
+                            ✓
+                        </span>
+
+                        Ownership remains with creator
+
+                    </li>
+
+                    <li>
+
+                        <span class="license-check">
+                            ✓
+                        </span>
+
+                        Useful for business content
+
+                    </li>
+
+                </ul>
 
             </div>
 
 
-            <!-- CUSTOM -->
+
+            <!-- PERSONAL -->
 
             <div class="license-card">
 
-                <div class="license-card-top">
+                <div class="license-card-head">
 
-                    <div class="license-icon">
+                    <div class="license-card-icon">
+                        👤
+                    </div>
+
+                    <span class="license-badge">
+                        Personal
+                    </span>
+
+                </div>
+
+
+                <h3>
+                    Personal Use
+                </h3>
+
+
+                <p class="license-card-description">
+
+                    Your content can be used for
+                    personal, non-commercial purposes
+                    according to the selected terms.
+
+                </p>
+
+
+                <ul class="license-features">
+
+                    <li>
+
+                        <span class="license-check">
+                            ✓
+                        </span>
+
+                        Personal use permitted
+
+                    </li>
+
+                    <li>
+
+                        <span class="license-check">
+                            ✓
+                        </span>
+
+                        Commercial redistribution restricted
+
+                    </li>
+
+                    <li>
+
+                        <span class="license-check">
+                            ✓
+                        </span>
+
+                        Creator ownership preserved
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+
+            <!-- CREATIVE COMMONS -->
+
+            <div class="license-card">
+
+                <div class="license-card-head">
+
+                    <div class="license-card-icon">
                         🌐
                     </div>
 
-                    <span class="badge badge-warning">
-                        Custom
+                    <span class="license-badge">
+                        Open Sharing
                     </span>
 
                 </div>
 
+
                 <h3>
-                    Custom License
+                    Creative Commons
+                </h3>
+
+
+                <p class="license-card-description">
+
+                    Share your work under defined
+                    Creative Commons conditions while
+                    retaining the rights specified by
+                    your selected license.
+
+                </p>
+
+
+                <ul class="license-features">
+
+                    <li>
+
+                        <span class="license-check">
+                            ✓
+                        </span>
+
+                        Controlled content sharing
+
+                    </li>
+
+                    <li>
+
+                        <span class="license-check">
+                            ✓
+                        </span>
+
+                        Usage conditions can apply
+
+                    </li>
+
+                    <li>
+
+                        <span class="license-check">
+                            ✓
+                        </span>
+
+                        Suitable for public creators
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             HOW LICENSING WORKS
+        ================================================== -->
+
+        <div class="license-info-card">
+
+            <div class="license-info-header">
+
+                <div class="license-info-icon">
+                    ⚙
+                </div>
+
+                <div>
+
+                    <h2>
+                        How CreatorProof Licensing Works
+                    </h2>
+
+                    <p>
+                        Your license selection becomes part
+                        of your content registration information.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="license-process">
+
+
+                <div class="license-process-step">
+
+                    <div class="process-number">
+                        1
+                    </div>
+
+                    <h4>
+                        Upload Content
+                    </h4>
+
+                    <p>
+                        Select your original digital
+                        file and provide its content details.
+                    </p>
+
+                </div>
+
+
+                <div class="license-process-step">
+
+                    <div class="process-number">
+                        2
+                    </div>
+
+                    <h4>
+                        Select License
+                    </h4>
+
+                    <p>
+                        Choose the license type that
+                        defines how your content may be used.
+                    </p>
+
+                </div>
+
+
+                <div class="license-process-step">
+
+                    <div class="process-number">
+                        3
+                    </div>
+
+                    <h4>
+                        Generate Fingerprint
+                    </h4>
+
+                    <p>
+                        CreatorProof generates a unique
+                        SHA-256 fingerprint for the file.
+                    </p>
+
+                </div>
+
+
+                <div class="license-process-step">
+
+                    <div class="process-number">
+                        4
+                    </div>
+
+                    <h4>
+                        Register on Blockchain
+                    </h4>
+
+                    <p>
+                        The ownership proof is registered
+                        through the CreatorProof smart contract.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             SECURITY
+        ================================================== -->
+
+        <div class="license-security">
+
+            <div class="security-icon">
+                ✓
+            </div>
+
+
+            <div>
+
+                <h3>
+                    License information stays connected
+                    to your ownership proof
                 </h3>
 
                 <p>
-                    Define your own usage restrictions,
-                    duration and permissions.
+
+                    CreatorProof uses SHA-256 fingerprinting
+                    together with Ethereum Sepolia blockchain
+                    registration to create a verifiable record
+                    for your registered content.
+
                 </p>
-
-                <div class="license-price">
-                    Custom
-                </div>
-
-                <button
-                    type="button"
-                    class="btn btn-secondary license-create-btn"
-                    data-license-type="Custom"
-                    style="width:100%;">
-
-                    Configure
-
-                </button>
-
-            </div>
-
-
-        </div>
-
-
-        <!-- =================================================
-             LICENSE FORM
-        ================================================== -->
-
-        <div
-            id="licenseFormCard"
-            class="card"
-            style="
-                margin-top:22px;
-                display:none;
-            "
-        >
-
-            <div class="card-header">
-
-                <div>
-
-                    <h2>
-                        Create License
-                    </h2>
-
-                    <span>
-                        Link a license to your registered content
-                    </span>
-
-                </div>
-
-            </div>
-
-
-            <form id="licenseForm">
-
-
-                <!-- CONTENT ID -->
-
-                <div class="form-group">
-
-                    <label for="licenseContentId">
-                        Content ID
-                    </label>
-
-                    <input
-                        type="text"
-                        id="licenseContentId"
-                        placeholder="Enter registered Content ID"
-                        required
-                    >
-
-                    <small>
-                        Use the Content ID generated when you registered
-                        the content.
-                    </small>
-
-                </div>
-
-
-                <!-- LICENSE TYPE -->
-
-                <div class="form-group">
-
-                    <label for="licenseType">
-                        License Type
-                    </label>
-
-                    <input
-                        type="text"
-                        id="licenseType"
-                        readonly
-                    >
-
-                </div>
-
-
-                <!-- LICENSEE -->
-
-                <div class="form-group">
-
-                    <label for="licensee">
-                        Licensee
-                    </label>
-
-                    <input
-                        type="text"
-                        id="licensee"
-                        placeholder="Enter licensee name"
-                        required
-                    >
-
-                </div>
-
-
-                <!-- EXPIRY -->
-
-                <div class="form-group">
-
-                    <label for="licenseExpiry">
-                        Expiry Date
-                    </label>
-
-                    <input
-                        type="date"
-                        id="licenseExpiry"
-                        required
-                    >
-
-                </div>
-
-
-                <!-- PERMISSIONS -->
-
-                <div class="form-group">
-
-                    <label for="licensePermissions">
-                        Usage Permissions
-                    </label>
-
-                    <textarea
-                        id="licensePermissions"
-                        rows="4"
-                        placeholder="Describe permitted usage..."
-                    ></textarea>
-
-                </div>
-
-
-                <div
-                    style="
-                        display:flex;
-                        gap:10px;
-                        margin-top:20px;
-                    "
-                >
-
-                    <button
-                        type="submit"
-                        class="btn btn-primary"
-                    >
-
-                        ✓ Create License
-
-                    </button>
-
-
-                    <button
-                        type="button"
-                        id="cancelLicenseBtn"
-                        class="btn btn-secondary"
-                    >
-
-                        Cancel
-
-                    </button>
-
-                </div>
-
-
-            </form>
-
-        </div>
-
-
-        <!-- =================================================
-             ACTIVE LICENSES
-        ================================================== -->
-
-        <div
-            class="card"
-            style="margin-top:22px;"
-        >
-
-            <div class="card-header">
-
-                <div>
-
-                    <h2>
-                        Active Licenses
-                    </h2>
-
-                    <span id="licenseCount">
-                        0 active
-                    </span>
-
-                </div>
-
-            </div>
-
-
-            <div class="table-wrapper">
-
-                <table>
-
-                    <thead>
-
-                        <tr>
-
-                            <th>
-                                CONTENT
-                            </th>
-
-                            <th>
-                                CONTENT ID
-                            </th>
-
-                            <th>
-                                LICENSEE
-                            </th>
-
-                            <th>
-                                TYPE
-                            </th>
-
-                            <th>
-                                STATUS
-                            </th>
-
-                            <th>
-                                EXPIRY
-                            </th>
-
-                        </tr>
-
-                    </thead>
-
-
-                    <tbody id="licensesTableBody">
-
-                    </tbody>
-
-                </table>
 
             </div>
 
@@ -526,7 +1353,13 @@
 </main>
 
 
-<script src="../js/app.js"></script>
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script src="/js/app.js"></script>
+
 
 </body>
 

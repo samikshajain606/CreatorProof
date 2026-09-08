@@ -10,20 +10,467 @@
 
     <title>Register Content | CreatorProof</title>
 
-    <link rel="stylesheet"
-          href="../css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
+
+    <style>
+
+        /* =====================================================
+           REGISTER PAGE UI
+        ===================================================== */
+
+        .register-page {
+            max-width: 1080px;
+            margin: 0 auto;
+        }
+
+        .register-card {
+            width: 100%;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 18px;
+            box-shadow: 0 8px 30px rgba(15, 23, 42, 0.05);
+            overflow: hidden;
+        }
+
+        /* HEADER */
+
+        .register-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 20px;
+            padding: 28px 30px 24px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .register-header h1 {
+            margin: 0 0 7px;
+            font-size: 25px;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .register-header p {
+            margin: 0;
+            color: #64748b;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .secure-badge {
+            flex-shrink: 0;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 9px 13px;
+            border: 1px solid #c7d2fe;
+            border-radius: 999px;
+            background: #f8f7ff;
+            color: #4f46e5;
+            font-size: 11px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        /* MESSAGE */
+
+        #registerMessage {
+            margin: 0 30px;
+        }
+
+        #registerMessage:empty {
+            display: none;
+        }
+
+        /* FORM */
+
+        .register-form {
+            padding: 0 30px 30px;
+        }
+
+        /* SECTION */
+
+        .register-section {
+            padding: 28px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .register-section:last-of-type {
+            border-bottom: none;
+        }
+
+        .section-heading {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            margin-bottom: 22px;
+        }
+
+        .section-number {
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 9px;
+            background: #ede9fe;
+            color: #5b21b6;
+            font-size: 12px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .section-heading h2 {
+            margin: 0;
+            font-size: 15px;
+            color: #0f172a;
+            font-weight: 700;
+        }
+
+        .section-heading p {
+            margin: 3px 0 0;
+            font-size: 11px;
+            color: #64748b;
+        }
+
+        /* FORM GRID */
+
+        .register-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .register-grid .full {
+            grid-column: 1 / -1;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 7px;
+            color: #334155;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            box-sizing: border-box;
+            border: 1px solid #cbd5e1;
+            border-radius: 9px;
+            background: #ffffff;
+            color: #0f172a;
+            font-family: inherit;
+            font-size: 12px;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .form-group input,
+        .form-group select {
+            height: 40px;
+            padding: 0 12px;
+        }
+
+        .form-group textarea {
+            min-height: 105px;
+            padding: 11px 12px;
+            resize: vertical;
+            line-height: 1.5;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #8b5cf6;
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.10);
+        }
+
+        /* UPLOAD */
+
+        .upload-wrapper {
+            width: 100%;
+        }
+
+        .file-drop {
+            position: relative;
+            min-height: 210px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 28px;
+            border: 1.5px dashed #c4b5fd;
+            border-radius: 14px;
+            background: #faf9ff;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .file-drop:hover,
+        .file-drop.drag-active {
+            border-color: #7c3aed;
+            background: #f5f3ff;
+        }
+
+        .file-drop-icon {
+            width: 52px;
+            height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 13px;
+            border-radius: 14px;
+            background: #ede9fe;
+            color: #6d28d9;
+            font-size: 25px;
+        }
+
+        .file-drop h3 {
+            margin: 0 0 6px;
+            color: #1e293b;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .file-drop p {
+            margin: 0;
+            color: #64748b;
+            font-size: 12px;
+        }
+
+        .upload-hint {
+            margin-top: 9px;
+            color: #94a3b8;
+            font-size: 10px;
+        }
+
+        /* FILE INFORMATION */
+
+        .file-information {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 14px;
+            padding: 15px;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            background: #f8fafc;
+        }
+
+        .file-information > div {
+            min-width: 0;
+        }
+
+        .file-information strong {
+            display: block;
+            margin-bottom: 5px;
+            color: #64748b;
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .file-information span {
+            display: block;
+            overflow: hidden;
+            color: #334155;
+            font-size: 11px;
+            font-weight: 600;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        /* HASH */
+
+        .hash-box {
+            margin-top: 14px;
+            padding: 17px;
+            border: 1px solid #ddd6fe;
+            border-radius: 12px;
+            background: #faf9ff;
+        }
+
+        .hash-box small {
+            display: block;
+            margin-bottom: 9px;
+            color: #6d28d9;
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 0.06em;
+        }
+
+        .hash-box code {
+            display: block;
+            padding: 11px;
+            overflow-x: auto;
+            border: 1px solid #ede9fe;
+            border-radius: 8px;
+            background: #ffffff;
+            color: #475569;
+            font-family: Consolas, monospace;
+            font-size: 10px;
+            line-height: 1.5;
+            word-break: break-all;
+        }
+
+        .hash-box p {
+            margin: 9px 0 0;
+            color: #64748b;
+            font-size: 10px;
+        }
+
+        /* BLOCKCHAIN */
+
+        .blockchain-alert {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 16px;
+            padding: 13px 15px;
+            border: 1px solid #bbf7d0;
+            border-radius: 10px;
+            background: #f0fdf4;
+            color: #166534;
+            font-size: 11px;
+            line-height: 1.5;
+        }
+
+        .blockchain-preview {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .preview-item {
+            padding: 15px;
+            border: 1px solid #e2e8f0;
+            border-radius: 11px;
+            background: #ffffff;
+        }
+
+        .preview-item span {
+            display: block;
+            margin-bottom: 7px;
+            color: #64748b;
+            font-size: 9px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .preview-item strong {
+            display: block;
+            color: #1e293b;
+            font-size: 11px;
+            line-height: 1.4;
+        }
+
+        /* ACTIONS */
+
+        .register-actions {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 10px;
+            padding-top: 25px;
+        }
+
+        .register-actions .btn {
+            min-height: 40px;
+            padding: 0 18px;
+            border-radius: 9px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        /* ALERT */
+
+        #registerMessage .alert {
+            margin: 20px 0 0;
+            border-radius: 10px;
+            font-size: 11px;
+            line-height: 1.5;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 900px) {
+
+            .register-page {
+                max-width: 100%;
+            }
+
+            .register-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .register-grid .full {
+                grid-column: auto;
+            }
+
+            .blockchain-preview {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+        @media (max-width: 650px) {
+
+            .register-header {
+                flex-direction: column;
+                padding: 22px;
+            }
+
+            .register-form {
+                padding: 0 22px 22px;
+            }
+
+            #registerMessage {
+                margin: 0 22px;
+            }
+
+            .file-information {
+                grid-template-columns: 1fr;
+            }
+
+            .register-actions {
+                flex-direction: column-reverse;
+                align-items: stretch;
+            }
+
+            .register-actions .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+        }
+
+    </style>
 
 </head>
 
-
 <body>
 
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
 
 <aside class="sidebar">
 
     <div class="logo">
 
-        <div class="logo-icon">⛓</div>
+        <div class="logo-icon">
+            ⛓
+        </div>
 
         <div class="logo-text">
             Creator<span>Proof</span>
@@ -31,76 +478,71 @@
 
     </div>
 
-
     <div class="nav-title">
         Main Menu
     </div>
-
 
     <a class="nav-link"
        href="dashboard.html">
 
         <span class="nav-icon">⌂</span>
-        <span>Dashboard</span>
+        Dashboard
 
     </a>
-
 
     <a class="nav-link active"
        href="register.html">
 
         <span class="nav-icon">＋</span>
-        <span>Register Content</span>
+        Register Content
 
     </a>
-
 
     <a class="nav-link"
        href="content.html">
 
         <span class="nav-icon">▣</span>
-        <span>My Content</span>
+        My Content
 
     </a>
-
 
     <a class="nav-link"
        href="verify.html">
 
         <span class="nav-icon">✓</span>
-        <span>Verify Content</span>
+        Verify Content
 
     </a>
-
 
     <div class="nav-title">
         Management
     </div>
 
-
     <a class="nav-link"
        href="licenses.html">
 
         <span class="nav-icon">▤</span>
-        <span>Licenses</span>
+        Licenses
 
     </a>
-
 
     <a class="nav-link"
        href="disputes.html">
 
         <span class="nav-icon">⚖</span>
-        <span>Disputes</span>
+        Disputes
 
     </a>
 
-
 </aside>
 
+<!-- =====================================================
+     MAIN
+===================================================== -->
 
 <main class="main">
 
+    <!-- TOPBAR -->
 
     <header class="topbar">
 
@@ -116,28 +558,76 @@
 
         </div>
 
-
         <div class="top-actions">
 
-            <div class="demo-badge">
-                DEMO MODE
-            </div>
+            <button
+                type="button"
+                class="notification-button"
+                id="notificationButton"
+                aria-label="Notifications">
 
-            <div class="profile">
+                🔔
 
-                <div class="avatar">
-                    CD
+            </button>
+
+            <div
+                class="notification-panel"
+                id="notificationPanel">
+
+                <div class="notification-title">
+                    Notifications
                 </div>
 
-                <div class="profile-info">
+                <div class="notification-item">
+                    Your CreatorProof account is active.
+                </div>
 
-                    <strong>
-                        Creator Demo
-                    </strong>
+            </div>
 
-                    <span>
-                        Creator
-                    </span>
+            <div class="profile-wrapper">
+
+                <div
+                    class="profile"
+                    id="profileButton">
+
+                    <div
+                        class="avatar"
+                        data-user-avatar>
+
+                        CP
+
+                    </div>
+
+                    <div class="profile-info">
+
+                        <strong data-user-name>
+                            Creator
+                        </strong>
+
+                        <span data-user-role>
+                            Creator
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <div
+                    class="profile-menu"
+                    id="profileMenu">
+
+                    <a href="profile.html">
+                        👤 Profile
+                    </a>
+
+                    <button
+                        id="logoutButton"
+                        class="logout"
+                        type="button">
+
+                        ↪ Sign Out
+
+                    </button>
 
                 </div>
 
@@ -147,310 +637,973 @@
 
     </header>
 
+    <!-- =====================================================
+         PAGE CONTENT
+    ===================================================== -->
 
     <section class="content-area">
 
+        <div class="register-page">
 
-        <div class="form-card card">
+            <div class="register-card">
 
+                <!-- HEADER -->
 
-            <div style="margin-bottom:25px;">
+                <div class="register-header">
 
-                <h1 style="font-size:21px;margin-bottom:6px;">
-                    Register New Content
-                </h1>
+                    <div>
 
-                <p style="font-size:11px;color:#64748b;">
+                        <h1>
+                            Register New Content
+                        </h1>
 
-                    Create a unique SHA-256 fingerprint for your
-                    content and prepare it for blockchain registration.
-
-                </p>
-
-            </div>
-
-
-            <div class="alert alert-info">
-
-                🔐 Your file is fingerprinted using SHA-256.
-                The fingerprint can later be stored through a
-                Solidity smart contract on Ethereum.
-
-            </div>
-
-
-            <form id="registerForm">
-
-
-                <div class="form-section">
-
-                    <div class="form-section-title">
-
-                        <span>1</span>
-
-                        Content Information
-
-                    </div>
-
-
-                    <div class="form-grid">
-
-
-                        <div class="form-group">
-
-                            <label>
-                                Content Title *
-                            </label>
-
-                            <input
-                                id="contentTitle"
-                                type="text"
-                                placeholder="e.g. My Digital Artwork"
-                                required>
-
-                        </div>
-
-
-                        <div class="form-group">
-
-                            <label>
-                                Creator Name
-                            </label>
-
-                            <input
-                                id="creatorName"
-                                type="text"
-                                placeholder="Creator name"
-                                value="Creator Demo">
-
-                        </div>
-
-
-                        <div class="form-group">
-
-                            <label>
-                                Content Type
-                            </label>
-
-                            <select id="contentType">
-
-                                <option value="Image">
-                                    Image
-                                </option>
-
-                                <option value="Video">
-                                    Video
-                                </option>
-
-                                <option value="Audio">
-                                    Audio
-                                </option>
-
-                                <option value="Document">
-                                    Document
-                                </option>
-
-                                <option value="Code">
-                                    Source Code
-                                </option>
-
-                                <option value="Other">
-                                    Other
-                                </option>
-
-                            </select>
-
-                        </div>
-
-
-                        <div class="form-group">
-
-                            <label>
-                                License Type
-                            </label>
-
-                            <select>
-
-                                <option>
-                                    All Rights Reserved
-                                </option>
-
-                                <option>
-                                    Commercial License
-                                </option>
-
-                                <option>
-                                    Personal Use
-                                </option>
-
-                                <option>
-                                    Creative Commons
-                                </option>
-
-                            </select>
-
-                        </div>
-
-
-                    </div>
-
-                </div>
-
-
-                <div class="form-section">
-
-
-                    <div class="form-section-title">
-
-                        <span>2</span>
-
-                        Upload Content
-
-                    </div>
-
-
-                    <label class="file-drop">
-
-                        <div class="file-drop-icon">
-                            ☁
-                        </div>
-
-                        <h3>
-                            Click to upload your content
-                        </h3>
-
-                        <p id="fileName">
-                            PNG, JPG, PDF, MP4, MP3 and other files supported
+                        <p>
+                            Upload your original file and create
+                            a blockchain-backed proof of ownership.
                         </p>
 
-                        <input
-                            id="contentFile"
-                            type="file"
-                            required>
-
-                    </label>
-
-
-                    <div id="hashSection"
-                         class="hash-box"
-                         style="display:none;">
-
-                        <small>
-                            SHA-256 CONTENT FINGERPRINT
-                        </small>
-
-                        <code id="hashDisplay">
-                            -
-                        </code>
-
                     </div>
 
-
-                    <input
-                        type="hidden"
-                        id="sha256Hash">
+                    <div class="secure-badge">
+                        🔐 Secure Registration
+                    </div>
 
                 </div>
 
+                <!-- MESSAGE -->
 
-                <div class="form-section">
+                <div id="registerMessage"></div>
 
+                <!-- FORM -->
 
-                    <div class="form-section-title">
+                <form
+                    id="registerForm"
+                    class="register-form">
 
-                        <span>3</span>
+                    <!-- =================================================
+                         SECTION 1
+                    ================================================= -->
 
-                        Blockchain Registration
+                    <div class="register-section">
+
+                        <div class="section-heading">
+
+                            <div class="section-number">
+                                1
+                            </div>
+
+                            <div>
+
+                                <h2>
+                                    Content Information
+                                </h2>
+
+                                <p>
+                                    Tell us about the content you want
+                                    to protect.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <div class="register-grid">
+
+                            <!-- TITLE -->
+
+                            <div class="form-group">
+
+                                <label for="contentTitle">
+                                    Content Title *
+                                </label>
+
+                                <input
+                                    id="contentTitle"
+                                    type="text"
+                                    required
+                                    maxlength="200"
+                                    placeholder="e.g. My Digital Artwork">
+
+                            </div>
+
+                            <!-- TYPE -->
+
+                            <div class="form-group">
+
+                                <label for="contentType">
+                                    Content Type *
+                                </label>
+
+                                <select
+                                    id="contentType"
+                                    required>
+
+                                    <option value="Image">
+                                        Image
+                                    </option>
+
+                                    <option value="Video">
+                                        Video
+                                    </option>
+
+                                    <option value="Audio">
+                                        Audio
+                                    </option>
+
+                                    <option value="Document">
+                                        Document
+                                    </option>
+
+                                    <option value="Code">
+                                        Source Code
+                                    </option>
+
+                                    <option value="Other">
+                                        Other
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                            <!-- DESCRIPTION -->
+
+                            <div class="form-group full">
+
+                                <label for="description">
+                                    Content Description
+                                </label>
+
+                                <textarea
+                                    id="description"
+                                    maxlength="2000"
+                                    placeholder="Describe your content, its purpose, originality, or other relevant information."></textarea>
+
+                            </div>
+
+                            <!-- LICENSE -->
+
+                            <div class="form-group">
+
+                                <label for="licenseType">
+                                    License Type
+                                </label>
+
+                                <select
+                                    id="licenseType"
+                                    required>
+
+                                    <option value="All Rights Reserved">
+                                        All Rights Reserved
+                                    </option>
+
+                                    <option value="Commercial License">
+                                        Commercial License
+                                    </option>
+
+                                    <option value="Personal Use">
+                                        Personal Use
+                                    </option>
+
+                                    <option value="Creative Commons">
+                                        Creative Commons
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
 
                     </div>
 
+                    <!-- =================================================
+                         SECTION 2
+                    ================================================= -->
 
-                    <div class="alert alert-success">
+                    <div class="register-section">
 
-                        ✓ After backend integration, this fingerprint
-                        will be submitted to the CreatorProof smart
-                        contract and associated with the creator's wallet.
+                        <div class="section-heading">
 
-                    </div>
+                            <div class="section-number">
+                                2
+                            </div>
 
+                            <div>
 
-                    <div class="form-grid">
+                                <h2>
+                                    Upload Content
+                                </h2>
 
+                                <p>
+                                    Select the original file you want
+                                    to register.
+                                </p>
 
-                        <div class="form-group">
+                            </div>
 
-                            <label>
-                                Blockchain Network
+                        </div>
+
+                        <div class="upload-wrapper">
+
+                            <label
+                                class="file-drop"
+                                id="fileDrop">
+
+                                <div class="file-drop-icon">
+                                    ☁
+                                </div>
+
+                                <h3>
+                                    Click to upload your file
+                                </h3>
+
+                                <p id="fileName">
+                                    Drag & drop your file here
+                                    or click to browse
+                                </p>
+
+                                <span class="upload-hint">
+                                    Maximum file size: 100 MB
+                                </span>
+
+                                <!-- IMPORTANT:
+                                     Name must match:
+                                     upload.single("contentFile")
+                                     in server.js
+                                -->
+
+                                <input
+                                    id="contentFile"
+                                    name="contentFile"
+                                    type="file"
+                                    required
+                                    hidden>
+
                             </label>
 
-                            <select>
+                        </div>
 
-                                <option>
+                        <!-- FILE INFORMATION -->
+
+                        <div
+                            id="fileInformation"
+                            class="file-information"
+                            style="display:none;">
+
+                            <div>
+
+                                <strong>
+                                    Selected File
+                                </strong>
+
+                                <span id="selectedFileName">
+                                    -
+                                </span>
+
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    File Size
+                                </strong>
+
+                                <span id="selectedFileSize">
+                                    -
+                                </span>
+
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    File Type
+                                </strong>
+
+                                <span id="selectedFileType">
+                                    -
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                        <!-- HASH -->
+
+                        <div
+                            id="hashSection"
+                            class="hash-box"
+                            style="display:none;">
+
+                            <small>
+                                SHA-256 CONTENT FINGERPRINT
+                            </small>
+
+                            <code id="hashDisplay">
+                            </code>
+
+                            <p>
+                                This fingerprint uniquely represents
+                                the uploaded file and is used as its
+                                blockchain ownership proof.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <!-- =================================================
+                         SECTION 3
+                    ================================================= -->
+
+                    <div class="register-section">
+
+                        <div class="section-heading">
+
+                            <div class="section-number">
+                                3
+                            </div>
+
+                            <div>
+
+                                <h2>
+                                    Blockchain Registration
+                                </h2>
+
+                                <p>
+                                    Review how your ownership proof
+                                    will be recorded.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <div class="blockchain-alert">
+
+                            <span>✓</span>
+
+                            <span>
+                                Your SHA-256 fingerprint will be
+                                registered on the Ethereum Sepolia
+                                Testnet through the CreatorProof
+                                smart contract.
+                            </span>
+
+                        </div>
+
+                        <div class="blockchain-preview">
+
+                            <div class="preview-item">
+
+                                <span>
+                                    Network
+                                </span>
+
+                                <strong>
                                     Ethereum Sepolia Testnet
-                                </option>
+                                </strong>
 
-                                <option>
-                                    Ethereum Mainnet
-                                </option>
+                            </div>
 
-                            </select>
+                            <div class="preview-item">
+
+                                <span>
+                                    Proof Method
+                                </span>
+
+                                <strong>
+                                    SHA-256 + Smart Contract
+                                </strong>
+
+                            </div>
+
+                            <div class="preview-item">
+
+                                <span>
+                                    Status
+                                </span>
+
+                                <strong>
+                                    Ready for Registration
+                                </strong>
+
+                            </div>
 
                         </div>
-
-
-                        <div class="form-group">
-
-                            <label>
-                                Registration Status
-                            </label>
-
-                            <input
-                                type="text"
-                                value="Ready for Blockchain Registration"
-                                disabled>
-
-                        </div>
-
 
                     </div>
 
-                </div>
+                    <!-- ACTIONS -->
 
+                    <div class="register-actions">
 
-                <div class="form-actions">
+                        <a
+                            href="dashboard.html"
+                            class="btn btn-secondary">
 
-                    <a
-                        href="dashboard.html"
-                        class="btn btn-secondary">
+                            Cancel
 
-                        Cancel
+                        </a>
 
-                    </a>
+                        <button
+                            id="registerButton"
+                            type="submit"
+                            class="btn btn-primary">
 
+                            🔐 Register Content
 
-                    <button
-                        type="submit"
-                        class="btn btn-primary">
+                        </button>
 
-                        🔐 Register & Fingerprint
+                    </div>
 
-                    </button>
+                </form>
 
-                </div>
-
-
-            </form>
-
+            </div>
 
         </div>
-
 
     </section>
 
 </main>
 
+<script src="/js/app.js"></script>
 
-<script src="../js/app.js"></script>
+<!-- =====================================================
+     REGISTER JAVASCRIPT
+===================================================== -->
+
+<script>
+
+(function () {
+
+    "use strict";
+
+    let selectedFile = null;
+
+    let currentHash = "";
+
+    /* =====================================================
+       ELEMENTS
+    ===================================================== */
+
+    const fileInput =
+        document.getElementById("contentFile");
+
+    const fileDrop =
+        document.getElementById("fileDrop");
+
+    /* =====================================================
+       FILE SELECTION
+    ===================================================== */
+
+    fileInput.addEventListener(
+        "change",
+        handleFile
+    );
+
+    async function handleFile() {
+
+        selectedFile =
+            fileInput.files &&
+            fileInput.files[0];
+
+        if (!selectedFile) {
+
+            selectedFile = null;
+            currentHash = "";
+
+            return;
+
+        }
+
+        document.getElementById(
+            "fileName"
+        ).textContent =
+            selectedFile.name;
+
+        document.getElementById(
+            "selectedFileName"
+        ).textContent =
+            selectedFile.name;
+
+        document.getElementById(
+            "selectedFileSize"
+        ).textContent =
+            formatFileSize(
+                selectedFile.size
+            );
+
+        document.getElementById(
+            "selectedFileType"
+        ).textContent =
+            selectedFile.type ||
+            "Unknown";
+
+        document.getElementById(
+            "fileInformation"
+        ).style.display =
+            "grid";
+
+        const hashSection =
+            document.getElementById(
+                "hashSection"
+            );
+
+        hashSection.style.display =
+            "block";
+
+        document.getElementById(
+            "hashDisplay"
+        ).textContent =
+            "Calculating SHA-256...";
+
+        currentHash = "";
+
+        try {
+
+            currentHash =
+                await calculateSHA256(
+                    selectedFile
+                );
+
+            document.getElementById(
+                "hashDisplay"
+            ).textContent =
+                currentHash;
+
+        } catch (error) {
+
+            console.error(
+                "Hash calculation error:",
+                error
+            );
+
+            currentHash = "";
+
+            document.getElementById(
+                "hashDisplay"
+            ).textContent =
+                "Unable to calculate fingerprint.";
+
+        }
+
+    }
+
+    /* =====================================================
+       FILE SIZE
+    ===================================================== */
+
+    function formatFileSize(bytes) {
+
+        if (!bytes) {
+
+            return "0 Bytes";
+
+        }
+
+        const units = [
+            "Bytes",
+            "KB",
+            "MB",
+            "GB",
+            "TB"
+        ];
+
+        const index =
+            Math.floor(
+                Math.log(bytes) /
+                Math.log(1024)
+            );
+
+        return (
+            bytes /
+            Math.pow(
+                1024,
+                index
+            )
+        )
+        .toFixed(2)
+        + " "
+        + units[index];
+
+    }
+
+    /* =====================================================
+       DRAG & DROP
+    ===================================================== */
+
+    [
+        "dragenter",
+        "dragover"
+
+    ].forEach(
+        eventName => {
+
+            fileDrop.addEventListener(
+                eventName,
+                function (event) {
+
+                    event.preventDefault();
+                    event.stopPropagation();
+
+                    fileDrop.classList.add(
+                        "drag-active"
+                    );
+
+                }
+            );
+
+        }
+    );
+
+    [
+        "dragleave",
+        "drop"
+
+    ].forEach(
+        eventName => {
+
+            fileDrop.addEventListener(
+                eventName,
+                function (event) {
+
+                    event.preventDefault();
+                    event.stopPropagation();
+
+                    fileDrop.classList.remove(
+                        "drag-active"
+                    );
+
+                }
+            );
+
+        }
+    );
+
+    fileDrop.addEventListener(
+        "drop",
+        function (event) {
+
+            const files =
+                event.dataTransfer.files;
+
+            if (
+                files &&
+                files.length > 0
+            ) {
+
+                try {
+
+                    const dataTransfer =
+                        new DataTransfer();
+
+                    dataTransfer.items.add(
+                        files[0]
+                    );
+
+                    fileInput.files =
+                        dataTransfer.files;
+
+                } catch (error) {
+
+                    console.error(
+                        "Unable to assign dropped file:",
+                        error
+                    );
+
+                }
+
+                handleFile();
+
+            }
+
+        }
+    );
+
+    /* =====================================================
+       REGISTER FORM
+    ===================================================== */
+
+    document
+        .getElementById("registerForm")
+        .addEventListener(
+            "submit",
+            async function (event) {
+
+                event.preventDefault();
+
+                const message =
+                    document.getElementById(
+                        "registerMessage"
+                    );
+
+                const button =
+                    document.getElementById(
+                        "registerButton"
+                    );
+
+                /* FILE CHECK */
+
+                if (!selectedFile) {
+
+                    message.innerHTML = `
+                        <div class="alert alert-danger">
+                            Please select a file before registering.
+                        </div>
+                    `;
+
+                    return;
+
+                }
+
+                /* HASH CHECK */
+
+                if (!currentHash) {
+
+                    message.innerHTML = `
+                        <div class="alert alert-danger">
+                            The SHA-256 fingerprint could not
+                            be generated. Please select the file
+                            again and wait for the hash to finish.
+                        </div>
+                    `;
+
+                    return;
+
+                }
+
+                /* TITLE */
+
+                const title =
+                    document.getElementById(
+                        "contentTitle"
+                    )
+                    .value
+                    .trim();
+
+                if (!title) {
+
+                    message.innerHTML = `
+                        <div class="alert alert-danger">
+                            Please enter a content title.
+                        </div>
+                    `;
+
+                    return;
+
+                }
+
+                /* DISABLE BUTTON */
+
+                button.disabled = true;
+
+                button.textContent =
+                    "⏳ Registering...";
+
+                message.innerHTML = `
+                    <div class="alert alert-info">
+                        <strong>Processing your content...</strong>
+                        <br><br>
+                        Uploading your file and registering
+                        the SHA-256 proof on Ethereum Sepolia.
+                        Please wait...
+                    </div>
+                `;
+
+                try {
+
+                    /* =================================================
+                       FORM DATA
+                       
+                       IMPORTANT:
+                       "contentFile" MUST match
+                       upload.single("contentFile")
+                       in server.js
+                    ================================================= */
+
+                    const formData =
+                        new FormData();
+
+                    formData.append(
+                        "contentFile",
+                        selectedFile
+                    );
+
+                    formData.append(
+                        "title",
+                        title
+                    );
+
+                    formData.append(
+                        "description",
+                        document
+                            .getElementById(
+                                "description"
+                            )
+                            .value
+                            .trim()
+                    );
+
+                    formData.append(
+                        "contentType",
+                        document
+                            .getElementById(
+                                "contentType"
+                            )
+                            .value
+                    );
+
+                    formData.append(
+                        "licenseType",
+                        document
+                            .getElementById(
+                                "licenseType"
+                            )
+                            .value
+                    );
+
+                    formData.append(
+                        "sha256Hash",
+                        currentHash
+                    );
+
+                    /* =================================================
+                       API REQUEST
+                    ================================================= */
+
+                    const result =
+                        await api(
+                            "/api/content/register",
+                            {
+                                method: "POST",
+                                body: formData
+                            }
+                        );
+
+                    /* =================================================
+                       TRANSACTION
+                    ================================================= */
+
+                    const tx =
+                        result.data &&
+                        result.data.transactionHash
+                            ? result.data.transactionHash
+                            : "Confirmed";
+
+                    /* =================================================
+                       SUCCESS
+                    ================================================= */
+
+                    message.innerHTML = `
+                        <div class="alert alert-success">
+
+                            <strong>
+                                ✓ Content Registered Successfully
+                            </strong>
+
+                            <br><br>
+
+                            Your content has been fingerprinted
+                            and registered on Ethereum Sepolia.
+
+                            <br><br>
+
+                            <strong>
+                                Transaction:
+                            </strong>
+
+                            <br>
+
+                            <code>
+                                ${escapeHtml(tx)}
+                            </code>
+
+                        </div>
+                    `;
+
+                    /* =================================================
+                       RESET FORM
+                    ================================================= */
+
+                    document
+                        .getElementById(
+                            "registerForm"
+                        )
+                        .reset();
+
+                    selectedFile = null;
+
+                    currentHash = "";
+
+                    document.getElementById(
+                        "fileInformation"
+                    ).style.display =
+                        "none";
+
+                    document.getElementById(
+                        "hashSection"
+                    ).style.display =
+                        "none";
+
+                    document.getElementById(
+                        "fileName"
+                    ).textContent =
+                        "Drag & drop your file here or click to browse";
+
+                    /* =================================================
+                       REDIRECT
+                    ================================================= */
+
+                    setTimeout(
+                        function () {
+
+                            window.location.href =
+                                "content.html";
+
+                        },
+                        2200
+                    );
+
+                } catch (error) {
+
+                    console.error(
+                        "Registration error:",
+                        error
+                    );
+
+                    message.innerHTML = `
+                        <div class="alert alert-danger">
+
+                            <strong>
+                                Registration Failed
+                            </strong>
+
+                            <br><br>
+
+                            ${escapeHtml(
+                                error.message ||
+                                "Something went wrong."
+                            )}
+
+                        </div>
+                    `;
+
+                    button.disabled =
+                        false;
+
+                    button.textContent =
+                        "🔐 Register Content";
+
+                }
+
+            }
+        );
+
+})();
+
+</script>
 
 </body>
 

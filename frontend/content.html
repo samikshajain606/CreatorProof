@@ -5,19 +5,19 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
     <title>My Content | CreatorProof</title>
 
-    <link rel="stylesheet"
-          href="../css/style.css">
+    <link
+        rel="stylesheet"
+        href="/css/style.css">
 
 </head>
 
-
 <body>
-
 
 <!-- =====================================================
      SIDEBAR
@@ -37,97 +37,65 @@
 
     </div>
 
-
     <div class="nav-title">
         Main Menu
     </div>
 
+    <a
+        class="nav-link"
+        href="dashboard.html">
 
-    <a class="nav-link"
-       href="dashboard.html">
-
-        <span class="nav-icon">
-            ⌂
-        </span>
-
-        <span>
-            Dashboard
-        </span>
+        <span class="nav-icon">⌂</span>
+        Dashboard
 
     </a>
 
+    <a
+        class="nav-link"
+        href="register.html">
 
-    <a class="nav-link"
-       href="register.html">
-
-        <span class="nav-icon">
-            ＋
-        </span>
-
-        <span>
-            Register Content
-        </span>
+        <span class="nav-icon">＋</span>
+        Register Content
 
     </a>
 
+    <a
+        class="nav-link active"
+        href="content.html">
 
-    <a class="nav-link active"
-       href="content.html">
-
-        <span class="nav-icon">
-            ▣
-        </span>
-
-        <span>
-            My Content
-        </span>
+        <span class="nav-icon">▣</span>
+        My Content
 
     </a>
 
+    <a
+        class="nav-link"
+        href="verify.html">
 
-    <a class="nav-link"
-       href="verify.html">
-
-        <span class="nav-icon">
-            ✓
-        </span>
-
-        <span>
-            Verify Content
-        </span>
+        <span class="nav-icon">✓</span>
+        Verify Content
 
     </a>
-
 
     <div class="nav-title">
         Management
     </div>
 
+    <a
+        class="nav-link"
+        href="licenses.html">
 
-    <a class="nav-link"
-       href="licenses.html">
-
-        <span class="nav-icon">
-            ▤
-        </span>
-
-        <span>
-            Licenses
-        </span>
+        <span class="nav-icon">▤</span>
+        Licenses
 
     </a>
 
+    <a
+        class="nav-link"
+        href="disputes.html">
 
-    <a class="nav-link"
-       href="disputes.html">
-
-        <span class="nav-icon">
-            ⚖
-        </span>
-
-        <span>
-            Disputes
-        </span>
+        <span class="nav-icon">⚖</span>
+        Disputes
 
     </a>
 
@@ -135,15 +103,15 @@
 
 
 <!-- =====================================================
-     MAIN CONTENT
+     MAIN
 ===================================================== -->
 
 <main class="main">
 
 
     <!-- =================================================
-         TOP BAR
-    ================================================== -->
+         TOPBAR
+    ================================================= -->
 
     <header class="topbar">
 
@@ -154,7 +122,7 @@
             </div>
 
             <div class="breadcrumb">
-                CreatorProof / Registered Content
+                CreatorProof / My Content
             </div>
 
         </div>
@@ -162,17 +130,92 @@
 
         <div class="top-actions">
 
-            <div class="demo-badge">
-                DEMO MODE
+
+            <!-- NOTIFICATIONS -->
+
+            <div class="notification-wrapper">
+
+                <button
+                    type="button"
+                    class="notification-button"
+                    id="notificationButton"
+                    aria-label="Notifications">
+
+                    🔔
+
+                    <span class="notification-dot"></span>
+
+                </button>
+
+
+                <div
+                    class="notification-panel"
+                    id="notificationPanel">
+
+                    <div class="notification-title">
+                        Notifications
+                    </div>
+
+                    <div class="notification-item">
+                        Your registered content appears here.
+                    </div>
+
+                </div>
+
             </div>
 
 
-            <a href="register.html"
-               class="btn btn-primary">
+            <!-- PROFILE -->
 
-                + Register
+            <div class="profile-wrapper">
 
-            </a>
+                <div
+                    class="profile"
+                    id="profileButton">
+
+                    <div
+                        class="avatar"
+                        data-user-avatar>
+
+                        CP
+
+                    </div>
+
+                    <div class="profile-info">
+
+                        <strong data-user-name>
+                            Creator
+                        </strong>
+
+                        <span data-user-role>
+                            Creator
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="profile-menu"
+                    id="profileMenu">
+
+                    <a href="profile.html">
+                        👤 Profile
+                    </a>
+
+                    <button
+                        id="logoutButton"
+                        type="button"
+                        class="logout">
+
+                        ↪ Sign Out
+
+                    </button>
+
+                </div>
+
+            </div>
 
         </div>
 
@@ -181,290 +224,2639 @@
 
     <!-- =================================================
          CONTENT AREA
-    ================================================== -->
+    ================================================= -->
 
     <section class="content-area">
 
 
-        <!-- =================================================
-             WELCOME SECTION
-        ================================================== -->
+        <!-- PAGE HEADER -->
 
-        <div class="welcome">
+        <div class="page-header-row">
 
             <div>
 
                 <h1>
-                    Your Protected Content
+                    My Content
                 </h1>
 
                 <p>
-                    Every registered file has a unique digital fingerprint.
+                    View and manage your blockchain-registered
+                    content and ownership proofs.
+                </p>
+
+            </div>
+
+
+            <a
+                href="register.html"
+                class="btn btn-primary">
+
+                ＋ Register New Content
+
+            </a>
+
+        </div>
+
+
+        <!-- =================================================
+             STATISTICS
+        ================================================= -->
+
+        <div class="stats-grid">
+
+
+            <!-- TOTAL -->
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+
+                    <div>
+
+                        <span>
+                            Total Content
+                        </span>
+
+                        <strong id="totalContent">
+                            0
+                        </strong>
+
+                    </div>
+
+                    <div class="stat-icon">
+                        ▣
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- REGISTERED -->
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+
+                    <div>
+
+                        <span>
+                            Registered
+                        </span>
+
+                        <strong id="registeredContent">
+                            0
+                        </strong>
+
+                    </div>
+
+                    <div class="stat-icon">
+                        ✓
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- BLOCKCHAIN -->
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+
+                    <div>
+
+                        <span>
+                            Blockchain Proofs
+                        </span>
+
+                        <strong id="blockchainContent">
+                            0
+                        </strong>
+
+                    </div>
+
+                    <div class="stat-icon">
+                        ⛓
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             SEARCH TOOLBAR
+        ================================================= -->
+
+        <div class="card content-toolbar">
+
+
+            <div class="search-box">
+
+                <span>
+                    🔍
+                </span>
+
+                <input
+                    id="searchInput"
+                    type="text"
+                    autocomplete="off"
+                    placeholder="Search by title, file name or content ID...">
+
+            </div>
+
+
+            <button
+                id="refreshButton"
+                type="button"
+                class="btn btn-secondary">
+
+                ↻ Refresh
+
+            </button>
+
+        </div>
+
+
+        <!-- =================================================
+             MESSAGE
+        ================================================= -->
+
+        <div id="contentMessage"></div>
+
+
+        <!-- =================================================
+             CONTENT LIST
+        ================================================= -->
+
+        <div
+            id="contentContainer"
+            class="content-list">
+
+            <div class="loading-card">
+
+                <div class="loading-spinner">
+                    ⟳
+                </div>
+
+                <p>
+                    Loading your registered content...
                 </p>
 
             </div>
 
         </div>
 
-
-        <!-- =================================================
-             CONTENT REGISTRY
-        ================================================== -->
-
-        <div class="card">
-
-
-            <div class="card-header">
-
-                <div>
-
-                    <h2>
-                        Content Registry
-                    </h2>
-
-                    <span>
-                        Blockchain-ready content records
-                    </span>
-
-                </div>
-
-
-                <a href="verify.html"
-                   class="view-link">
-
-                    Verify a File →
-
-                </a>
-
-            </div>
-
-
-            <div class="table-wrapper">
-
-                <table>
-
-                    <thead>
-
-                        <tr>
-
-                            <th>
-                                CONTENT
-                            </th>
-
-                            <th>
-                                CONTENT ID
-                            </th>
-
-                            <th>
-                                SHA-256 FINGERPRINT
-                            </th>
-
-                            <th>
-                                STATUS
-                            </th>
-
-                            <th>
-                                VERSION
-                            </th>
-
-                            <th>
-                                REGISTERED
-                            </th>
-
-                        </tr>
-
-                    </thead>
-
-
-                    <!--
-                        IMPORTANT:
-                        This ID must match the
-                        loadContentTable() function
-                        in app.js.
-                    -->
-
-                    <tbody id="contentTableBody">
-
-                        <!--
-                            Registered content will
-                            automatically appear here.
-                        -->
-
-                    </tbody>
-
-                </table>
-
-            </div>
-
-
-        </div>
-
-
-        <!-- =================================================
-             TWO COLUMN SECTION
-        ================================================== -->
-
-        <div class="two-column"
-             style="margin-top:20px;">
-
-
-            <!-- =================================================
-                 PROVENANCE
-            ================================================== -->
-
-            <div class="card">
-
-                <div class="card-header">
-
-                    <h2>
-                        Provenance
-                    </h2>
-
-                    <span>
-                        Immutable history
-                    </span>
-
-                </div>
-
-
-                <div class="timeline">
-
-
-                    <div class="timeline-item">
-
-                        <div class="timeline-dot">
-                        </div>
-
-
-                        <h4>
-                            Original content registered
-                        </h4>
-
-
-                        <p>
-                            SHA-256 fingerprint generated
-                        </p>
-
-                    </div>
-
-
-                    <div class="timeline-item">
-
-                        <div class="timeline-dot">
-                        </div>
-
-
-                        <h4>
-                            Ownership established
-                        </h4>
-
-
-                        <p>
-                            Creator wallet will be linked
-                        </p>
-
-                    </div>
-
-
-                    <div class="timeline-item">
-
-                        <div class="timeline-dot">
-                        </div>
-
-
-                        <h4>
-                            Blockchain transaction
-                        </h4>
-
-
-                        <p>
-                            Smart contract record
-                        </p>
-
-                    </div>
-
-
-                </div>
-
-            </div>
-
-
-            <!-- =================================================
-                 VERSION MANAGEMENT
-            ================================================== -->
-
-            <div class="card">
-
-                <div class="card-header">
-
-                    <h2>
-                        Version Management
-                    </h2>
-
-                </div>
-
-
-                <div class="alert alert-info">
-
-                    Each modification to a registered file
-                    produces a different SHA-256 fingerprint.
-
-                </div>
-
-
-                <div style="
-                    display:flex;
-                    justify-content:space-between;
-                    padding:12px 0;
-                    border-bottom:1px solid #eee;
-                ">
-
-                    <span style="font-size:11px;">
-                        Current Version
-                    </span>
-
-
-                    <strong style="font-size:11px;">
-                        v1
-                    </strong>
-
-                </div>
-
-
-                <div style="
-                    display:flex;
-                    justify-content:space-between;
-                    padding:12px 0;
-                ">
-
-                    <span style="font-size:11px;">
-                        Previous Version
-                    </span>
-
-
-                    <span class="badge badge-purple">
-                        —
-                    </span>
-
-                </div>
-
-            </div>
-
-
-        </div>
-
-
     </section>
-
 
 </main>
 
 
 <!-- =====================================================
-     JAVASCRIPT
+     DETAILS MODAL
 ===================================================== -->
 
-<script src="../js/app.js"></script>
+<div
+    id="contentModal"
+    class="modal-overlay"
+    aria-hidden="true">
+
+    <div
+        class="content-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modalTitle">
+
+
+        <!-- MODAL HEADER -->
+
+        <div class="modal-header">
+
+            <div>
+
+                <h2 id="modalTitle">
+                    Content Details
+                </h2>
+
+                <span
+                    id="modalStatus"
+                    class="status-badge success">
+
+                    Registered
+
+                </span>
+
+            </div>
+
+
+            <button
+                id="closeModal"
+                type="button"
+                class="modal-close"
+                aria-label="Close">
+
+                ×
+
+            </button>
+
+        </div>
+
+
+        <!-- =================================================
+             DETAILS
+        ================================================= -->
+
+        <div class="detail-grid">
+
+
+            <!-- CONTENT ID -->
+
+            <div class="detail-item">
+
+                <span>
+                    Content ID
+                </span>
+
+                <strong id="modalContentId">
+                    -
+                </strong>
+
+            </div>
+
+
+            <!-- CONTENT TYPE -->
+
+            <div class="detail-item">
+
+                <span>
+                    Content Type
+                </span>
+
+                <strong id="modalContentType">
+                    -
+                </strong>
+
+            </div>
+
+
+            <!-- FILE NAME -->
+
+            <div class="detail-item">
+
+                <span>
+                    File Name
+                </span>
+
+                <strong id="modalFileName">
+                    -
+                </strong>
+
+            </div>
+
+
+            <!-- CREATOR -->
+
+            <div class="detail-item">
+
+                <span>
+                    Creator
+                </span>
+
+                <strong id="modalCreator">
+                    -
+                </strong>
+
+            </div>
+
+
+            <!-- LICENSE -->
+
+            <div class="detail-item">
+
+                <span>
+                    License
+                </span>
+
+                <strong id="modalLicense">
+                    -
+                </strong>
+
+            </div>
+
+
+            <!-- NETWORK -->
+
+            <div class="detail-item">
+
+                <span>
+                    Network
+                </span>
+
+                <strong id="modalNetwork">
+                    Ethereum Sepolia
+                </strong>
+
+            </div>
+
+
+            <!-- DATE -->
+
+            <div class="detail-item full-detail">
+
+                <span>
+                    Registration Date
+                </span>
+
+                <strong id="modalDate">
+                    -
+                </strong>
+
+            </div>
+
+
+            <!-- DESCRIPTION -->
+
+            <div class="detail-item full-detail">
+
+                <span>
+                    Description
+                </span>
+
+                <p id="modalDescription">
+                    No description provided.
+                </p>
+
+            </div>
+
+
+            <!-- SHA256 -->
+
+            <div class="detail-item full-detail">
+
+                <span>
+                    SHA-256 Fingerprint
+                </span>
+
+                <code
+                    id="modalHash"
+                    class="hash-value">
+
+                    -
+
+                </code>
+
+            </div>
+
+
+            <!-- TRANSACTION -->
+
+            <div class="detail-item full-detail">
+
+                <span>
+                    Blockchain Transaction
+                </span>
+
+                <code
+                    id="modalTransaction"
+                    class="hash-value">
+
+                    -
+
+                </code>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             MODAL ACTIONS
+        ================================================= -->
+
+        <div class="modal-actions">
+
+            <button
+                id="copyHashButton"
+                type="button"
+                class="btn btn-secondary">
+
+                📋 Copy Hash
+
+            </button>
+
+
+            <button
+                id="exportPdfButton"
+                type="button"
+                class="btn btn-primary">
+
+                📄 Export PDF
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     APP.JS
+
+     DO NOT CHANGE app.js
+===================================================== -->
+
+<script src="/js/app.js"></script>
+
+
+<!-- =====================================================
+     CONTENT PAGE JAVASCRIPT
+===================================================== -->
+
+<script>
+
+(function () {
+
+    "use strict";
+
+
+    /* =====================================================
+       VARIABLES
+    ===================================================== */
+
+    let allContent = [];
+
+    let selectedContent = null;
+
+
+    /* =====================================================
+       DOM READY
+    ===================================================== */
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        function () {
+
+            loadContent();
+
+            setupContentPage();
+
+        }
+    );
+
+
+    /* =====================================================
+       SETUP PAGE
+    ===================================================== */
+
+    function setupContentPage() {
+
+
+        /* SEARCH */
+
+        const searchInput =
+            document.getElementById(
+                "searchInput"
+            );
+
+        if (searchInput) {
+
+            searchInput.addEventListener(
+                "input",
+                handleSearch
+            );
+
+        }
+
+
+        /* REFRESH */
+
+        const refreshButton =
+            document.getElementById(
+                "refreshButton"
+            );
+
+        if (refreshButton) {
+
+            refreshButton.addEventListener(
+                "click",
+                loadContent
+            );
+
+        }
+
+
+        /* CLOSE MODAL */
+
+        const closeButton =
+            document.getElementById(
+                "closeModal"
+            );
+
+        if (closeButton) {
+
+            closeButton.addEventListener(
+                "click",
+                closeModal
+            );
+
+        }
+
+
+        /* COPY HASH */
+
+        const copyHashButton =
+            document.getElementById(
+                "copyHashButton"
+            );
+
+        if (copyHashButton) {
+
+            copyHashButton.addEventListener(
+                "click",
+                function () {
+
+                    if (
+                        selectedContent &&
+                        selectedContent.sha256_hash
+                    ) {
+
+                        copyText(
+                            selectedContent.sha256_hash
+                        );
+
+                    } else {
+
+                        showMessage(
+                            "SHA-256 hash is not available.",
+                            "danger"
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+
+
+        /* EXPORT PDF */
+
+        const exportPdfButton =
+            document.getElementById(
+                "exportPdfButton"
+            );
+
+        if (exportPdfButton) {
+
+            exportPdfButton.addEventListener(
+                "click",
+                exportPDF
+            );
+
+        }
+
+
+        /* MODAL BACKGROUND */
+
+        const modal =
+            document.getElementById(
+                "contentModal"
+            );
+
+        if (modal) {
+
+            modal.addEventListener(
+                "click",
+                function (event) {
+
+                    if (
+                        event.target === modal
+                    ) {
+
+                        closeModal();
+
+                    }
+
+                }
+            );
+
+        }
+
+
+        /* ESCAPE */
+
+        document.addEventListener(
+            "keydown",
+            function (event) {
+
+                if (
+                    event.key === "Escape"
+                ) {
+
+                    const modal =
+                        document.getElementById(
+                            "contentModal"
+                        );
+
+                    if (
+                        modal &&
+                        modal.classList.contains(
+                            "show"
+                        )
+                    ) {
+
+                        closeModal();
+
+                    }
+
+                }
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       LOAD CONTENT
+    ===================================================== */
+
+    async function loadContent() {
+
+        const container =
+            document.getElementById(
+                "contentContainer"
+            );
+
+
+        if (!container) {
+            return;
+        }
+
+
+        container.innerHTML = `
+
+            <div class="loading-card">
+
+                <div class="loading-spinner">
+                    ⟳
+                </div>
+
+                <p>
+                    Loading your registered content...
+                </p>
+
+            </div>
+
+        `;
+
+
+        try {
+
+            const result =
+                await api(
+                    "/api/content"
+                );
+
+
+            /*
+             * Support the normal:
+             *
+             * {
+             *     data: [...]
+             * }
+             *
+             * response.
+             *
+             * Also safely handle:
+             *
+             * {
+             *     content: [...]
+             * }
+             *
+             * or a direct array.
+             */
+
+            if (
+                Array.isArray(result)
+            ) {
+
+                allContent =
+                    result;
+
+            } else if (
+                Array.isArray(
+                    result.data
+                )
+            ) {
+
+                allContent =
+                    result.data;
+
+            } else if (
+                Array.isArray(
+                    result.content
+                )
+            ) {
+
+                allContent =
+                    result.content;
+
+            } else {
+
+                allContent = [];
+
+            }
+
+
+            updateStats();
+
+
+            renderContent(
+                allContent
+            );
+
+
+        } catch (error) {
+
+            console.error(
+                "Content loading error:",
+                error
+            );
+
+
+            allContent = [];
+
+            updateStats();
+
+
+            container.innerHTML = `
+
+                <div class="empty-card">
+
+                    <div class="empty-icon">
+                        ⚠
+                    </div>
+
+                    <h3>
+                        Unable to load content
+                    </h3>
+
+                    <p>
+                        ${escapeHtml(
+                            error.message ||
+                            "Unable to retrieve your registered content."
+                        )}
+                    </p>
+
+                    <button
+                        type="button"
+                        class="btn btn-primary"
+                        id="tryAgainButton">
+
+                        ↻ Try Again
+
+                    </button>
+
+                </div>
+
+            `;
+
+
+            const tryAgain =
+                document.getElementById(
+                    "tryAgainButton"
+                );
+
+
+            if (tryAgain) {
+
+                tryAgain.addEventListener(
+                    "click",
+                    loadContent
+                );
+
+            }
+
+        }
+
+    }
+
+
+    /* =====================================================
+       UPDATE STATISTICS
+    ===================================================== */
+
+    function updateStats() {
+
+
+        const total =
+            document.getElementById(
+                "totalContent"
+            );
+
+
+        const registered =
+            document.getElementById(
+                "registeredContent"
+            );
+
+
+        const blockchain =
+            document.getElementById(
+                "blockchainContent"
+            );
+
+
+        if (total) {
+
+            total.textContent =
+                allContent.length;
+
+        }
+
+
+        /*
+         * Count content that has successfully
+         * been registered.
+         *
+         * If blockchain transaction exists,
+         * it is also considered registered.
+         */
+
+        const registeredCount =
+            allContent.filter(
+                function (item) {
+
+                    const status =
+                        String(
+                            item.status ||
+                            item.blockchain_status ||
+                            ""
+                        )
+                        .toLowerCase();
+
+
+                    const hasTransaction =
+                        Boolean(
+                            item.blockchain_tx_hash
+                        );
+
+
+                    return (
+                        status.includes(
+                            "register"
+                        ) ||
+                        status.includes(
+                            "confirm"
+                        ) ||
+                        status.includes(
+                            "success"
+                        ) ||
+                        hasTransaction
+                    );
+
+                }
+            ).length;
+
+
+        if (registered) {
+
+            registered.textContent =
+                registeredCount;
+
+        }
+
+
+        /*
+         * Blockchain proofs are determined
+         * by the transaction hash.
+         */
+
+        const blockchainCount =
+            allContent.filter(
+                function (item) {
+
+                    return Boolean(
+                        item.blockchain_tx_hash
+                    );
+
+                }
+            ).length;
+
+
+        if (blockchain) {
+
+            blockchain.textContent =
+                blockchainCount;
+
+        }
+
+    }
+
+
+    /* =====================================================
+       RENDER CONTENT
+    ===================================================== */
+
+    function renderContent(
+        items
+    ) {
+
+        const container =
+            document.getElementById(
+                "contentContainer"
+            );
+
+
+        if (!container) {
+            return;
+        }
+
+
+        if (
+            !Array.isArray(items) ||
+            items.length === 0
+        ) {
+
+            container.innerHTML = `
+
+                <div class="empty-card">
+
+                    <div class="empty-icon">
+                        ▣
+                    </div>
+
+                    <h3>
+                        No Content Registered Yet
+                    </h3>
+
+                    <p>
+                        Register your first piece of content
+                        to create a blockchain ownership proof.
+                    </p>
+
+                    <a
+                        href="register.html"
+                        class="btn btn-primary">
+
+                        ＋ Register Content
+
+                    </a>
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        container.innerHTML =
+            items
+                .map(
+                    function (item) {
+
+                        return createContentCard(
+                            item
+                        );
+
+                    }
+                )
+                .join("");
+
+
+        /*
+         * IMPORTANT FIX
+         *
+         * The old code used the index of the item
+         * inside allContent.
+         *
+         * That breaks when search filtering is active.
+         *
+         * We now attach the actual item to the
+         * button using a safe numeric index from
+         * the CURRENT rendered array.
+         */
+
+        const viewButtons =
+            container.querySelectorAll(
+                "[data-view-index]"
+            );
+
+
+        viewButtons.forEach(
+            function (button) {
+
+                button.addEventListener(
+                    "click",
+                    function () {
+
+                        const index =
+                            Number(
+                                button.dataset.viewIndex
+                            );
+
+
+                        const item =
+                            items[index];
+
+
+                        if (item) {
+
+                            openContentModal(
+                                item
+                            );
+
+                        }
+
+                    }
+                );
+
+            }
+        );
+
+
+        /* COPY TRANSACTION BUTTONS */
+
+        const copyButtons =
+            container.querySelectorAll(
+                "[data-copy-index]"
+            );
+
+
+        copyButtons.forEach(
+            function (button) {
+
+                button.addEventListener(
+                    "click",
+                    function () {
+
+                        const index =
+                            Number(
+                                button.dataset.copyIndex
+                            );
+
+
+                        const item =
+                            items[index];
+
+
+                        if (
+                            item &&
+                            item.blockchain_tx_hash
+                        ) {
+
+                            copyText(
+                                item.blockchain_tx_hash
+                            );
+
+                        }
+
+                    }
+                );
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       CREATE CONTENT CARD
+    ===================================================== */
+
+    function createContentCard(
+        item
+    ) {
+
+
+        const title =
+            item.title ||
+            "Untitled Content";
+
+
+        const fileName =
+            item.file_name ||
+            "No file name";
+
+
+        const type =
+            item.content_type ||
+            "Other";
+
+
+        const contentId =
+            item.content_id ||
+            "-";
+
+
+        const hash =
+            item.sha256_hash ||
+            "-";
+
+
+        const tx =
+            item.blockchain_tx_hash ||
+            "";
+
+
+        const date =
+            formatDate(
+                item.created_at
+            );
+
+
+        const status =
+            item.status ||
+            item.blockchain_status ||
+            (
+                tx
+                    ? "Registered"
+                    : "Pending"
+            );
+
+
+        /*
+         * This index is intentionally NOT obtained
+         * from allContent.
+         *
+         * The card receives its index from renderContent()
+         * so search results work correctly.
+         */
+
+        return `
+
+            <div class="content-card">
+
+
+                <!-- CARD MAIN -->
+
+                <div class="content-card-main">
+
+
+                    <!-- TYPE ICON -->
+
+                    <div class="content-type-icon">
+
+                        ${getTypeIcon(type)}
+
+                    </div>
+
+
+                    <!-- INFORMATION -->
+
+                    <div class="content-card-info">
+
+
+                        <div class="content-card-title-row">
+
+                            <h3>
+                                ${escapeHtml(
+                                    title
+                                )}
+                            </h3>
+
+
+                            <span
+                                class="status-badge ${
+                                    getStatusClass(
+                                        status
+                                    )
+                                }">
+
+                                ${getStatusIcon(
+                                    status
+                                )}
+
+                                ${escapeHtml(
+                                    status
+                                )}
+
+                            </span>
+
+                        </div>
+
+
+                        <p class="content-file">
+
+                            📄
+                            ${escapeHtml(
+                                fileName
+                            )}
+
+                        </p>
+
+
+                        <div class="content-meta">
+
+
+                            <span>
+
+                                <b>Type:</b>
+                                ${escapeHtml(
+                                    type
+                                )}
+
+                            </span>
+
+
+                            <span>
+
+                                <b>Content ID:</b>
+                                ${escapeHtml(
+                                    contentId
+                                )}
+
+                            </span>
+
+
+                            <span>
+
+                                <b>Registered:</b>
+                                ${escapeHtml(
+                                    date
+                                )}
+
+                            </span>
+
+                        </div>
+
+
+                        <div class="hash-preview">
+
+                            <span>
+                                SHA-256
+                            </span>
+
+                            <code>
+
+                                ${escapeHtml(
+                                    shortenHash(
+                                        hash
+                                    )
+                                )}
+
+                            </code>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CARD ACTIONS -->
+
+                <div class="content-card-actions">
+
+
+                    <button
+                        type="button"
+                        class="btn btn-secondary btn-small"
+                        data-view-index="">
+
+                        👁 View Details
+
+                    </button>
+
+
+                    ${
+                        tx
+                            ? `
+
+                                <button
+                                    type="button"
+                                    class="btn btn-secondary btn-small"
+                                    data-copy-index="">
+
+                                    📋 Copy TX
+
+                                </button>
+
+                              `
+                            : ""
+                    }
+
+                </div>
+
+            </div>
+
+        `;
+
+    }
+
+
+    /* =====================================================
+       RENDER CARD INDEXES
+    ===================================================== */
+
+    function applyCardIndexes(
+        items
+    ) {
+
+        const container =
+            document.getElementById(
+                "contentContainer"
+            );
+
+
+        if (!container) {
+            return;
+        }
+
+
+        const cards =
+            container.querySelectorAll(
+                ".content-card"
+            );
+
+
+        cards.forEach(
+            function (card, index) {
+
+                const viewButton =
+                    card.querySelector(
+                        "[data-view-index]"
+                    );
+
+
+                if (viewButton) {
+
+                    viewButton.dataset.viewIndex =
+                        String(index);
+
+                }
+
+
+                const copyButton =
+                    card.querySelector(
+                        "[data-copy-index]"
+                    );
+
+
+                if (copyButton) {
+
+                    copyButton.dataset.copyIndex =
+                        String(index);
+
+                }
+
+            }
+        );
+
+    }
+
+
+    /*
+     * Re-render helper.
+     *
+     * This keeps the index of each card aligned
+     * with the currently displayed items.
+     */
+
+    const originalRenderContent =
+        renderContent;
+
+
+    /*
+     * Replace renderContent with a wrapper that
+     * applies current-array indexes after rendering.
+     */
+
+    renderContent =
+        function (items) {
+
+            originalRenderContent(
+                items
+            );
+
+            applyCardIndexes(
+                items
+            );
+
+        };
+
+
+    /* =====================================================
+       STATUS CLASS
+    ===================================================== */
+
+    function getStatusClass(
+        status
+    ) {
+
+        const value =
+            String(
+                status || ""
+            )
+            .toLowerCase();
+
+
+        if (
+            value.includes("pending") ||
+            value.includes("processing")
+        ) {
+
+            return "badge-warning";
+
+        }
+
+
+        if (
+            value.includes("fail") ||
+            value.includes("error") ||
+            value.includes("reject")
+        ) {
+
+            return "badge-danger";
+
+        }
+
+
+        return "success";
+
+    }
+
+
+    /* =====================================================
+       STATUS ICON
+    ===================================================== */
+
+    function getStatusIcon(
+        status
+    ) {
+
+        const value =
+            String(
+                status || ""
+            )
+            .toLowerCase();
+
+
+        if (
+            value.includes("pending") ||
+            value.includes("processing")
+        ) {
+
+            return "⏳";
+
+        }
+
+
+        if (
+            value.includes("fail") ||
+            value.includes("error") ||
+            value.includes("reject")
+        ) {
+
+            return "⚠";
+
+        }
+
+
+        return "✓";
+
+    }
+
+
+    /* =====================================================
+       TYPE ICON
+    ===================================================== */
+
+    function getTypeIcon(
+        type
+    ) {
+
+        const value =
+            String(
+                type || ""
+            )
+            .toLowerCase();
+
+
+        if (
+            value.includes("image") ||
+            value.includes("jpg") ||
+            value.includes("jpeg") ||
+            value.includes("png") ||
+            value.includes("gif") ||
+            value.includes("webp")
+        ) {
+
+            return "🖼";
+
+        }
+
+
+        if (
+            value.includes("video") ||
+            value.includes("mp4") ||
+            value.includes("mov") ||
+            value.includes("avi")
+        ) {
+
+            return "🎬";
+
+        }
+
+
+        if (
+            value.includes("audio") ||
+            value.includes("mp3") ||
+            value.includes("wav")
+        ) {
+
+            return "🎵";
+
+        }
+
+
+        if (
+            value.includes("code") ||
+            value.includes("source") ||
+            value.includes("javascript") ||
+            value.includes("python") ||
+            value.includes("html") ||
+            value.includes("css")
+        ) {
+
+            return "💻";
+
+        }
+
+
+        if (
+            value.includes("document") ||
+            value.includes("pdf") ||
+            value.includes("doc") ||
+            value.includes("text")
+        ) {
+
+            return "📄";
+
+        }
+
+
+        return "📁";
+
+    }
+
+
+    /* =====================================================
+       OPEN CONTENT MODAL
+    ===================================================== */
+
+    function openContentModal(
+        item
+    ) {
+
+        if (!item) {
+            return;
+        }
+
+
+        selectedContent =
+            item;
+
+
+        setText(
+            "modalTitle",
+            item.title ||
+            "Untitled Content"
+        );
+
+
+        const status =
+            item.status ||
+            item.blockchain_status ||
+            (
+                item.blockchain_tx_hash
+                    ? "Registered"
+                    : "Pending"
+            );
+
+
+        setText(
+            "modalStatus",
+            status
+        );
+
+
+        const modalStatus =
+            document.getElementById(
+                "modalStatus"
+            );
+
+
+        if (modalStatus) {
+
+            modalStatus.className =
+                "status-badge " +
+                getStatusClass(
+                    status
+                );
+
+        }
+
+
+        setText(
+            "modalContentId",
+            item.content_id ||
+            "-"
+        );
+
+
+        setText(
+            "modalContentType",
+            item.content_type ||
+            "Other"
+        );
+
+
+        setText(
+            "modalFileName",
+            item.file_name ||
+            "-"
+        );
+
+
+        /*
+         * The content table stores creator_id.
+         *
+         * We display that value here without
+         * changing the register page.
+         */
+
+        setText(
+            "modalCreator",
+            item.creator_id ||
+            "Current Creator"
+        );
+
+
+        setText(
+            "modalLicense",
+            item.license_type ||
+            "All Rights Reserved"
+        );
+
+
+        setText(
+            "modalNetwork",
+            item.blockchain_network ||
+            "Ethereum Sepolia"
+        );
+
+
+        setText(
+            "modalDate",
+            formatDate(
+                item.created_at
+            )
+        );
+
+
+        setText(
+            "modalDescription",
+            item.description ||
+            "No description provided."
+        );
+
+
+        setText(
+            "modalHash",
+            item.sha256_hash ||
+            "Not available"
+        );
+
+
+        setText(
+            "modalTransaction",
+            item.blockchain_tx_hash ||
+            "Not available"
+        );
+
+
+        const modal =
+            document.getElementById(
+                "contentModal"
+            );
+
+
+        if (!modal) {
+            return;
+        }
+
+
+        /*
+         * Do NOT use style.display = flex here.
+         *
+         * Your style.css controls modal visibility
+         * using .modal-overlay.show.
+         */
+
+        modal.classList.add(
+            "show"
+        );
+
+
+        modal.setAttribute(
+            "aria-hidden",
+            "false"
+        );
+
+
+        document.body.style.overflow =
+            "hidden";
+
+    }
+
+
+    /* =====================================================
+       SET TEXT SAFELY
+    ===================================================== */
+
+    function setText(
+        id,
+        value
+    ) {
+
+        const element =
+            document.getElementById(
+                id
+            );
+
+
+        if (element) {
+
+            element.textContent =
+                value === null ||
+                value === undefined
+                    ? "-"
+                    : String(value);
+
+        }
+
+    }
+
+
+    /* =====================================================
+       CLOSE MODAL
+    ===================================================== */
+
+    function closeModal() {
+
+        const modal =
+            document.getElementById(
+                "contentModal"
+            );
+
+
+        if (!modal) {
+            return;
+        }
+
+
+        modal.classList.remove(
+            "show"
+        );
+
+
+        modal.setAttribute(
+            "aria-hidden",
+            "true"
+        );
+
+
+        document.body.style.overflow =
+            "";
+
+
+        selectedContent =
+            null;
+
+    }
+
+
+    /* =====================================================
+       COPY TEXT
+    ===================================================== */
+
+    async function copyText(
+        value
+    ) {
+
+        if (!value) {
+
+            showMessage(
+                "Nothing to copy.",
+                "danger"
+            );
+
+            return;
+
+        }
+
+
+        try {
+
+
+            if (
+                navigator.clipboard &&
+                window.isSecureContext
+            ) {
+
+                await navigator.clipboard.writeText(
+                    value
+                );
+
+            } else {
+
+                const textarea =
+                    document.createElement(
+                        "textarea"
+                    );
+
+
+                textarea.value =
+                    value;
+
+
+                textarea.style.position =
+                    "fixed";
+
+
+                textarea.style.left =
+                    "-9999px";
+
+
+                textarea.style.top =
+                    "0";
+
+
+                textarea.style.opacity =
+                    "0";
+
+
+                document.body.appendChild(
+                    textarea
+                );
+
+
+                textarea.focus();
+
+
+                textarea.select();
+
+
+                document.execCommand(
+                    "copy"
+                );
+
+
+                textarea.remove();
+
+            }
+
+
+            showMessage(
+                "Copied successfully.",
+                "success"
+            );
+
+
+        } catch (error) {
+
+            console.error(
+                "Copy error:",
+                error
+            );
+
+
+            showMessage(
+                "Unable to copy.",
+                "danger"
+            );
+
+        }
+
+    }
+
+
+    /* =====================================================
+       EXPORT PDF
+    ===================================================== */
+
+    function exportPDF() {
+
+        if (!selectedContent) {
+
+            showMessage(
+                "No content selected.",
+                "danger"
+            );
+
+            return;
+
+        }
+
+
+        const item =
+            selectedContent;
+
+
+        const printWindow =
+            window.open(
+                "",
+                "_blank"
+            );
+
+
+        if (!printWindow) {
+
+            alert(
+                "Please allow pop-ups to export the PDF."
+            );
+
+            return;
+
+        }
+
+
+        const title =
+            escapeHtml(
+                item.title ||
+                "CreatorProof Content"
+            );
+
+
+        const description =
+            escapeHtml(
+                item.description ||
+                "No description provided."
+            );
+
+
+        const contentId =
+            escapeHtml(
+                item.content_id ||
+                "-"
+            );
+
+
+        const fileName =
+            escapeHtml(
+                item.file_name ||
+                "-"
+            );
+
+
+        const contentType =
+            escapeHtml(
+                item.content_type ||
+                "-"
+            );
+
+
+        const creator =
+            escapeHtml(
+                item.creator_id ||
+                "-"
+            );
+
+
+        const license =
+            escapeHtml(
+                item.license_type ||
+                "All Rights Reserved"
+            );
+
+
+        const network =
+            escapeHtml(
+                item.blockchain_network ||
+                "Ethereum Sepolia"
+            );
+
+
+        const registrationDate =
+            escapeHtml(
+                formatDate(
+                    item.created_at
+                )
+            );
+
+
+        const hash =
+            escapeHtml(
+                item.sha256_hash ||
+                "-"
+            );
+
+
+        const transaction =
+            escapeHtml(
+                item.blockchain_tx_hash ||
+                "-"
+            );
+
+
+        const status =
+            escapeHtml(
+                item.status ||
+                item.blockchain_status ||
+                "Registered"
+            );
+
+
+        printWindow.document.write(`
+
+            <!DOCTYPE html>
+
+            <html>
+
+            <head>
+
+                <meta
+                    charset="UTF-8">
+
+                <title>
+                    CreatorProof Ownership Certificate
+                </title>
+
+
+                <style>
+
+                    * {
+                        box-sizing: border-box;
+                    }
+
+
+                    body {
+
+                        font-family:
+                            Arial,
+                            Helvetica,
+                            sans-serif;
+
+                        padding:
+                            45px;
+
+                        color:
+                            #172033;
+
+                        line-height:
+                            1.6;
+
+                        background:
+                            white;
+
+                    }
+
+
+                    .header {
+
+                        border-bottom:
+                            3px solid #635bff;
+
+                        padding-bottom:
+                            20px;
+
+                        margin-bottom:
+                            30px;
+
+                    }
+
+
+                    .logo {
+
+                        font-size:
+                            28px;
+
+                        font-weight:
+                            800;
+
+                        color:
+                            #635bff;
+
+                    }
+
+
+                    .subtitle {
+
+                        color:
+                            #64748b;
+
+                        margin-top:
+                            3px;
+
+                    }
+
+
+                    .verified {
+
+                        background:
+                            #dcfce7;
+
+                        color:
+                            #166534;
+
+                        padding:
+                            12px 18px;
+
+                        border-radius:
+                            8px;
+
+                        display:
+                            inline-block;
+
+                        font-weight:
+                            700;
+
+                        margin-bottom:
+                            20px;
+
+                    }
+
+
+                    h1 {
+
+                        margin:
+                            10px 0 25px;
+
+                        font-size:
+                            27px;
+
+                    }
+
+
+                    .box {
+
+                        border:
+                            1px solid #dbe3ef;
+
+                        border-radius:
+                            12px;
+
+                        padding:
+                            18px;
+
+                        margin:
+                            13px 0;
+
+                    }
+
+
+                    .label {
+
+                        font-size:
+                            10px;
+
+                        text-transform:
+                            uppercase;
+
+                        color:
+                            #64748b;
+
+                        font-weight:
+                            700;
+
+                        letter-spacing:
+                            0.7px;
+
+                    }
+
+
+                    .value {
+
+                        margin-top:
+                            5px;
+
+                        word-break:
+                            break-word;
+
+                    }
+
+
+                    .hash {
+
+                        font-family:
+                            "Courier New",
+                            monospace;
+
+                        background:
+                            #f1f5f9;
+
+                        padding:
+                            12px;
+
+                        border-radius:
+                            8px;
+
+                        word-break:
+                            break-all;
+
+                        font-size:
+                            11px;
+
+                    }
+
+
+                    .footer {
+
+                        margin-top:
+                            45px;
+
+                        font-size:
+                            10px;
+
+                        color:
+                            #64748b;
+
+                        border-top:
+                            1px solid #dbe3ef;
+
+                        padding-top:
+                            15px;
+
+                    }
+
+
+                    @media print {
+
+                        body {
+                            padding: 20px;
+                        }
+
+                    }
+
+                </style>
+
+            </head>
+
+
+            <body>
+
+
+                <div class="header">
+
+                    <div class="logo">
+                        CreatorProof
+                    </div>
+
+                    <div class="subtitle">
+                        Blockchain Content Protection System
+                    </div>
+
+                </div>
+
+
+                <div class="verified">
+                    ✓ Blockchain Registration Certificate
+                </div>
+
+
+                <h1>
+                    ${title}
+                </h1>
+
+
+                <div class="box">
+
+                    <div class="label">
+                        Registration Status
+                    </div>
+
+                    <div class="value">
+                        ${status}
+                    </div>
+
+                </div>
+
+
+                <div class="box">
+
+                    <div class="label">
+                        Content ID
+                    </div>
+
+                    <div class="value">
+                        ${contentId}
+                    </div>
+
+                </div>
+
+
+                <div class="box">
+
+                    <div class="label">
+                        Description
+                    </div>
+
+                    <div class="value">
+                        ${description}
+                    </div>
+
+                </div>
+
+
+                <div class="box">
+
+                    <div class="label">
+                        File
+                    </div>
+
+                    <div class="value">
+                        ${fileName}
+                    </div>
+
+                </div>
+
+
+                <div class="box">
+
+                    <div class="label">
+                        Content Type
+                    </div>
+
+                    <div class="value">
+                        ${contentType}
+                    </div>
+
+                </div>
+
+
+                <div class="box">
+
+                    <div class="label">
+                        Creator
+                    </div>
+
+                    <div class="value">
+                        ${creator}
+                    </div>
+
+                </div>
+
+
+                <div class="box">
+
+                    <div class="label">
+                        License
+                    </div>
+
+                    <div class="value">
+                        ${license}
+                    </div>
+
+                </div>
+
+
+                <div class="box">
+
+                    <div class="label">
+                        Registration Date
+                    </div>
+
+                    <div class="value">
+                        ${registrationDate}
+                    </div>
+
+                </div>
+
+
+                <div class="box">
+
+                    <div class="label">
+                        Blockchain Network
+                    </div>
+
+                    <div class="value">
+                        ${network}
+                    </div>
+
+                </div>
+
+
+                <div class="box">
+
+                    <div class="label">
+                        SHA-256 Fingerprint
+                    </div>
+
+                    <div class="hash">
+                        ${hash}
+                    </div>
+
+                </div>
+
+
+                <div class="box">
+
+                    <div class="label">
+                        Blockchain Transaction
+                    </div>
+
+                    <div class="hash">
+                        ${transaction}
+                    </div>
+
+                </div>
+
+
+                <div class="footer">
+
+                    This certificate was generated by
+                    CreatorProof. The SHA-256 fingerprint
+                    represents the digital content registered
+                    by the creator. The blockchain transaction
+                    provides a timestamped registration record
+                    on the configured blockchain network.
+
+                </div>
+
+
+                <script>
+
+                    window.onload =
+                        function () {
+
+                            setTimeout(
+                                function () {
+
+                                    window.print();
+
+                                },
+                                300
+                            );
+
+                        };
+
+                <\/script>
+
+
+            </body>
+
+            </html>
+
+        `);
+
+
+        printWindow.document.close();
+
+    }
+
+
+    /* =====================================================
+       SEARCH
+    ===================================================== */
+
+    function handleSearch() {
+
+        const searchInput =
+            document.getElementById(
+                "searchInput"
+            );
+
+
+        if (!searchInput) {
+            return;
+        }
+
+
+        const query =
+            searchInput.value
+                .trim()
+                .toLowerCase();
+
+
+        if (!query) {
+
+            renderContent(
+                allContent
+            );
+
+            return;
+
+        }
+
+
+        const filtered =
+            allContent.filter(
+                function (item) {
+
+                    return [
+
+                        item.title,
+
+                        item.file_name,
+
+                        item.content_id,
+
+                        item.content_type,
+
+                        item.sha256_hash,
+
+                        item.blockchain_tx_hash,
+
+                        item.description
+
+                    ]
+                    .some(
+                        function (value) {
+
+                            return String(
+                                value ||
+                                ""
+                            )
+                            .toLowerCase()
+                            .includes(
+                                query
+                            );
+
+                        }
+                    );
+
+                }
+            );
+
+
+        renderContent(
+            filtered
+        );
+
+    }
+
+
+    /* =====================================================
+       SHOW MESSAGE
+    ===================================================== */
+
+    function showMessage(
+        text,
+        type
+    ) {
+
+        const element =
+            document.getElementById(
+                "contentMessage"
+            );
+
+
+        if (!element) {
+            return;
+        }
+
+
+        const safeType =
+            [
+                "success",
+                "danger",
+                "warning",
+                "info"
+            ]
+            .includes(type)
+                ? type
+                : "info";
+
+
+        element.innerHTML = `
+
+            <div class="alert alert-${safeType}">
+
+                ${escapeHtml(
+                    text
+                )}
+
+            </div>
+
+        `;
+
+
+        setTimeout(
+            function () {
+
+                element.innerHTML =
+                    "";
+
+            },
+            2500
+        );
+
+    }
+
+
+})();
+
+</script>
 
 
 </body>

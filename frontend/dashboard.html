@@ -5,18 +5,26 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
     <title>Dashboard | CreatorProof</title>
 
-    <link rel="stylesheet"
-          href="../css/style.css">
+    <!-- MAIN CSS -->
+    <link
+        rel="stylesheet"
+        href="/css/style.css">
 
 </head>
 
+
 <body>
 
+
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
 
 <aside class="sidebar">
 
@@ -38,38 +46,46 @@
     </div>
 
 
-    <a class="nav-link active"
-       href="dashboard.html">
+    <a
+        class="nav-link active"
+        href="dashboard.html">
 
         <span class="nav-icon">⌂</span>
-        <span>Dashboard</span>
+
+        Dashboard
 
     </a>
 
 
-    <a class="nav-link"
-       href="register.html">
+    <a
+        class="nav-link"
+        href="register.html">
 
         <span class="nav-icon">＋</span>
-        <span>Register Content</span>
+
+        Register Content
 
     </a>
 
 
-    <a class="nav-link"
-       href="content.html">
+    <a
+        class="nav-link"
+        href="content.html">
 
         <span class="nav-icon">▣</span>
-        <span>My Content</span>
+
+        My Content
 
     </a>
 
 
-    <a class="nav-link"
-       href="verify.html">
+    <a
+        class="nav-link"
+        href="verify.html">
 
         <span class="nav-icon">✓</span>
-        <span>Verify Content</span>
+
+        Verify Content
 
     </a>
 
@@ -79,43 +95,41 @@
     </div>
 
 
-    <a class="nav-link"
-       href="licenses.html">
+    <a
+        class="nav-link"
+        href="licenses.html">
 
         <span class="nav-icon">▤</span>
-        <span>Licenses</span>
+
+        Licenses
 
     </a>
 
 
-    <a class="nav-link"
-       href="disputes.html">
+    <a
+        class="nav-link"
+        href="disputes.html">
 
         <span class="nav-icon">⚖</span>
-        <span>Disputes</span>
+
+        Disputes
 
     </a>
-
-
-    <div class="sidebar-bottom">
-
-        <div class="network-status">
-
-            <p>Blockchain Network</p>
-
-            <strong>
-                <span class="status-dot"></span>
-                Ethereum • Demo
-            </strong>
-
-        </div>
-
-    </div>
 
 </aside>
 
 
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
 <main class="main">
+
+
+    <!-- =================================================
+         TOPBAR
+    ================================================= -->
 
     <header class="topbar">
 
@@ -134,29 +148,103 @@
 
         <div class="top-actions">
 
-            <div class="demo-badge">
-                DEMO MODE
-            </div>
 
-            <div class="notification">
-                🔔
-            </div>
+            <!-- NOTIFICATION -->
 
-            <div class="profile">
+            <div class="notification-wrapper">
 
-                <div class="avatar">
-                    CD
+                <button
+                    type="button"
+                    class="notification"
+                    id="notificationButton"
+                    aria-label="Notifications">
+
+                    🔔
+
+                    <span
+                        class="notification-dot">
+                    </span>
+
+                </button>
+
+
+                <div
+                    class="notification-panel"
+                    id="notificationPanel">
+
+                    <h4>
+                        Notifications
+                    </h4>
+
+                    <p>
+                        Your CreatorProof account and
+                        blockchain services are active.
+                    </p>
+
                 </div>
 
-                <div class="profile-info">
+            </div>
 
-                    <strong>
-                        Creator Demo
-                    </strong>
 
-                    <span>
-                        Creator
-                    </span>
+
+            <!-- PROFILE -->
+
+            <div class="profile-wrapper">
+
+                <div
+                    class="profile"
+                    id="profileButton">
+
+                    <div
+                        class="avatar"
+                        data-user-avatar>
+
+                        CP
+
+                    </div>
+
+
+                    <div class="profile-info">
+
+                        <strong
+                            data-user-name>
+
+                            Creator
+
+                        </strong>
+
+
+                        <span
+                            data-user-role>
+
+                            Creator
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="profile-menu"
+                    id="profileMenu">
+
+                    <a href="profile.html">
+
+                        👤 Profile
+
+                    </a>
+
+
+                    <button
+                        class="logout"
+                        id="logoutButton"
+                        type="button">
+
+                        ↪ Sign Out
+
+                    </button>
 
                 </div>
 
@@ -167,45 +255,145 @@
     </header>
 
 
+
+    <!-- =================================================
+         CONTENT AREA
+    ================================================= -->
+
     <section class="content-area">
 
+
+        <!-- =================================================
+             WELCOME
+        ================================================= -->
 
         <div class="welcome">
 
             <div>
 
                 <h1>
-                    Welcome to CreatorProof 👋
+
+                    Welcome,
+                    <span data-user-name>
+                        Creator
+                    </span>
+                    👋
+
                 </h1>
 
+
                 <p>
+
                     Protect, verify and manage your digital
                     content using blockchain technology.
+
                 </p>
 
             </div>
 
-            <a href="register.html"
-               class="btn-white">
 
-                + Register Content
+            <a
+                href="register.html"
+                class="btn-white">
+
+                ＋ Register Content
 
             </a>
 
         </div>
 
 
+
+        <!-- =================================================
+             QUICK ACCESS
+        ================================================= -->
+
+        <div
+            class="card"
+            style="margin-bottom:20px;">
+
+            <div class="card-header">
+
+                <div>
+
+                    <h2>
+                        Quick Access
+                    </h2>
+
+                    <span>
+                        Manage your protected content
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div
+                style="
+                    display:flex;
+                    gap:10px;
+                    flex-wrap:wrap;
+                ">
+
+
+                <a
+                    href="register.html"
+                    class="btn btn-primary">
+
+                    ＋ Register Content
+
+                </a>
+
+
+                <a
+                    href="verify.html"
+                    class="btn btn-secondary">
+
+                    ✓ Verify Content
+
+                </a>
+
+
+                <a
+                    href="content.html"
+                    class="btn btn-secondary">
+
+                    ▣ View My Content
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             STATISTICS
+        ================================================= -->
+
         <div class="stats-grid">
 
+
+            <!-- REGISTERED -->
 
             <div class="stat-card">
 
                 <div class="stat-top">
 
                     <div>
-                        <p>Registered Content</p>
-                        <h3 id="totalContents">0</h3>
+
+                        <p>
+                            Registered Content
+                        </p>
+
+                        <h3 id="totalContents">
+                            0
+                        </h3>
+
                     </div>
+
 
                     <div class="stat-icon">
                         📁
@@ -213,21 +401,33 @@
 
                 </div>
 
+
                 <span class="stat-change">
-                    ↑ Protected
+                    Protected
                 </span>
 
             </div>
 
+
+
+            <!-- VERIFIED -->
 
             <div class="stat-card">
 
                 <div class="stat-top">
 
                     <div>
-                        <p>Verified Content</p>
-                        <h3 id="verifiedContents">0</h3>
+
+                        <p>
+                            Verified Content
+                        </p>
+
+                        <h3 id="verifiedContents">
+                            0
+                        </h3>
+
                     </div>
+
 
                     <div class="stat-icon">
                         ✓
@@ -235,21 +435,33 @@
 
                 </div>
 
+
                 <span class="stat-change">
-                    Secure
+                    Blockchain confirmed
                 </span>
 
             </div>
 
+
+
+            <!-- LICENSES -->
 
             <div class="stat-card">
 
                 <div class="stat-top">
 
                     <div>
-                        <p>Active Licenses</p>
-                        <h3>12</h3>
+
+                        <p>
+                            Active Licenses
+                        </p>
+
+                        <h3>
+                            0
+                        </h3>
+
                     </div>
+
 
                     <div class="stat-icon">
                         📜
@@ -257,21 +469,33 @@
 
                 </div>
 
+
                 <span class="stat-change">
-                    ↑ 8.2%
+                    No fake data
                 </span>
 
             </div>
 
+
+
+            <!-- DISPUTES -->
 
             <div class="stat-card">
 
                 <div class="stat-top">
 
                     <div>
-                        <p>Open Disputes</p>
-                        <h3>2</h3>
+
+                        <p>
+                            Open Disputes
+                        </p>
+
+                        <h3>
+                            0
+                        </h3>
+
                     </div>
+
 
                     <div class="stat-icon">
                         ⚖
@@ -279,18 +503,25 @@
 
                 </div>
 
+
                 <span class="stat-change">
-                    Review required
+                    No fake data
                 </span>
 
             </div>
 
-
         </div>
 
 
+
+        <!-- =================================================
+             TWO COLUMN SECTION
+        ================================================= -->
+
         <div class="two-column">
 
+
+            <!-- RECENT CONTENT -->
 
             <div class="card">
 
@@ -300,8 +531,14 @@
                         Recent Registered Content
                     </h2>
 
-                    <a class="view-link"
-                       href="content.html">
+
+                    <a
+                        href="content.html"
+                        style="
+                            color:#2563eb;
+                            font-size:11px;
+                            text-decoration:none;
+                        ">
 
                         View all →
 
@@ -318,60 +555,29 @@
 
                             <tr>
 
-                                <th>CONTENT</th>
-                                <th>HASH</th>
-                                <th>STATUS</th>
+                                <th>
+                                    CONTENT
+                                </th>
+
+                                <th>
+                                    HASH
+                                </th>
+
+                                <th>
+                                    STATUS
+                                </th>
+
+                                <th>
+                                    DETAILS
+                                </th>
 
                             </tr>
 
                         </thead>
 
-                        <tbody>
 
-                            <tr>
-
-                                <td>
-                                    <strong>My Original Artwork</strong>
-                                    <br>
-                                    <span class="hash">
-                                        digital-art.png
-                                    </span>
-                                </td>
-
-                                <td class="hash">
-                                    a8f5f167f44f4964...
-                                </td>
-
-                                <td>
-                                    <span class="badge badge-success">
-                                        ✓ Verified
-                                    </span>
-                                </td>
-
-                            </tr>
-
-
-                            <tr>
-
-                                <td>
-                                    <strong>Photography Collection</strong>
-                                    <br>
-                                    <span class="hash">
-                                        photography.zip
-                                    </span>
-                                </td>
-
-                                <td class="hash">
-                                    7b2c1d9e8a4f6b3c...
-                                </td>
-
-                                <td>
-                                    <span class="badge badge-success">
-                                        ✓ Verified
-                                    </span>
-                                </td>
-
-                            </tr>
+                        <tbody
+                            id="recentContentBody">
 
                         </tbody>
 
@@ -382,6 +588,9 @@
             </div>
 
 
+
+            <!-- ACTIVITY -->
+
             <div class="card">
 
                 <div class="card-header">
@@ -389,10 +598,6 @@
                     <h2>
                         Provenance Activity
                     </h2>
-
-                    <span>
-                        Recent
-                    </span>
 
                 </div>
 
@@ -405,18 +610,15 @@
                         <div class="timeline-dot"></div>
 
                         <h4>
-                            Content fingerprint created
+                            SHA-256 fingerprint
                         </h4>
 
                         <p>
-                            My Original Artwork
+                            Generated from your uploaded file.
                         </p>
 
-                        <div class="hash">
-                            SHA-256 fingerprint generated
-                        </div>
-
                     </div>
+
 
 
                     <div class="timeline-item">
@@ -428,10 +630,11 @@
                         </h4>
 
                         <p>
-                            Creator Demo
+                            Linked to your CreatorProof account.
                         </p>
 
                     </div>
+
 
 
                     <div class="timeline-item">
@@ -439,23 +642,26 @@
                         <div class="timeline-dot"></div>
 
                         <h4>
-                            Blockchain record created
+                            Blockchain record
                         </h4>
 
                         <p>
-                            Ethereum Demo Network
+                            Registered on Ethereum Sepolia.
                         </p>
 
                     </div>
-
 
                 </div>
 
             </div>
 
-
         </div>
 
+
+
+        <!-- =================================================
+             BLOCKCHAIN SECURITY
+        ================================================= -->
 
         <div class="card">
 
@@ -470,67 +676,661 @@
 
             <div class="alert alert-success">
 
-                ✓ CreatorProof security layer is active.
-                SHA-256 fingerprints are generated before
-                blockchain registration.
+                ✓ CreatorProof uses SHA-256 fingerprints
+                and Ethereum Sepolia blockchain registration.
 
             </div>
 
 
-            <div class="stats-grid"
-                 style="margin-bottom:0;">
+            <div
+                class="stats-grid"
+                style="margin-bottom:0;">
+
 
                 <div>
-                    <p style="font-size:10px;color:#64748b;">
+
+                    <p
+                        style="
+                            color:#64748b;
+                            font-size:10px;
+                        ">
+
                         Network
+
                     </p>
 
-                    <strong style="font-size:12px;">
-                        Ethereum
+                    <strong>
+                        Ethereum Sepolia
                     </strong>
+
                 </div>
 
+
+
                 <div>
-                    <p style="font-size:10px;color:#64748b;">
+
+                    <p
+                        style="
+                            color:#64748b;
+                            font-size:10px;
+                        ">
+
                         Consensus
+
                     </p>
 
-                    <strong style="font-size:12px;">
-                        Proof of Work / Demo
+                    <strong>
+                        Proof of Stake
                     </strong>
+
                 </div>
 
+
+
                 <div>
-                    <p style="font-size:10px;color:#64748b;">
+
+                    <p
+                        style="
+                            color:#64748b;
+                            font-size:10px;
+                        ">
+
                         Hash Algorithm
+
                     </p>
 
-                    <strong style="font-size:12px;">
+                    <strong>
                         SHA-256
                     </strong>
+
                 </div>
 
+
+
                 <div>
-                    <p style="font-size:10px;color:#64748b;">
+
+                    <p
+                        style="
+                            color:#64748b;
+                            font-size:10px;
+                        ">
+
                         Smart Contract
+
                     </p>
 
-                    <strong style="font-size:12px;">
-                        Ready for Web3
+                    <strong>
+                        Connected
                     </strong>
+
                 </div>
 
             </div>
 
         </div>
 
-
     </section>
 
 </main>
 
 
-<script src="../js/app.js"></script>
+
+<!-- =====================================================
+     CONTENT DETAILS MODAL
+===================================================== -->
+
+<div
+    class="modal-overlay"
+    id="contentModal">
+
+
+    <div class="modal">
+
+
+        <div class="modal-header">
+
+            <h2 id="modalTitle">
+                Content Details
+            </h2>
+
+
+            <button
+                class="modal-close"
+                type="button"
+                onclick="closeContentModal()">
+
+                ×
+
+            </button>
+
+        </div>
+
+
+        <div
+            class="details-grid"
+            id="modalDetails">
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     APP.JS
+===================================================== -->
+
+<script src="/js/app.js"></script>
+
+
+
+<!-- =====================================================
+     DASHBOARD JAVASCRIPT
+===================================================== -->
+
+<script>
+
+"use strict";
+
+
+let dashboardContent = [];
+
+
+
+/* =====================================================
+   LOAD DASHBOARD
+===================================================== */
+
+async function loadDashboard() {
+
+    try {
+
+        const result =
+            await api(
+                "/api/content"
+            );
+
+
+        dashboardContent =
+            Array.isArray(
+                result.data
+            )
+                ? result.data
+                : [];
+
+
+
+        /* TOTAL CONTENT */
+
+        document
+            .getElementById(
+                "totalContents"
+            )
+            .textContent =
+            dashboardContent.length;
+
+
+
+        /* VERIFIED CONTENT */
+
+        document
+            .getElementById(
+                "verifiedContents"
+            )
+            .textContent =
+
+            dashboardContent.filter(
+                item => {
+
+                    const status =
+                        String(
+                            item.blockchain_status ||
+                            item.status ||
+                            ""
+                        )
+                        .toLowerCase();
+
+
+                    return (
+                        status.includes("confirm") ||
+                        status.includes("register")
+                    );
+
+                }
+            ).length;
+
+
+
+        /* RECENT CONTENT */
+
+        const body =
+            document.getElementById(
+                "recentContentBody"
+            );
+
+
+        const recent =
+            dashboardContent.slice(
+                0,
+                5
+            );
+
+
+
+        if (!recent.length) {
+
+            body.innerHTML = `
+
+                <tr>
+
+                    <td
+                        colspan="4"
+                        style="
+                            text-align:center;
+                            padding:30px;
+                            color:#64748b;
+                        ">
+
+                        No registered content yet.
+
+                        <br><br>
+
+                        <a
+                            href="register.html"
+                            class="btn btn-primary">
+
+                            ＋ Register Content
+
+                        </a>
+
+                    </td>
+
+                </tr>
+
+            `;
+
+            return;
+
+        }
+
+
+
+        body.innerHTML =
+
+            recent
+                .map(
+                    (item, index) => {
+
+                        const status =
+                            item.blockchain_status ||
+                            item.status ||
+                            "Registered";
+
+
+                        return `
+
+                        <tr class="content-row">
+
+
+                            <td>
+
+                                <strong>
+
+                                    ${escapeHtml(
+                                        item.title ||
+                                        "Untitled"
+                                    )}
+
+                                </strong>
+
+                                <br>
+
+                                <span class="hash">
+
+                                    ${escapeHtml(
+                                        item.file_name ||
+                                        ""
+                                    )}
+
+                                </span>
+
+                            </td>
+
+
+
+                            <td class="hash">
+
+                                ${escapeHtml(
+                                    shortenHash(
+                                        item.sha256_hash ||
+                                        ""
+                                    )
+                                )}
+
+                            </td>
+
+
+
+                            <td>
+
+                                <span
+                                    class="badge badge-success">
+
+                                    ✓
+                                    ${escapeHtml(
+                                        status
+                                    )}
+
+                                </span>
+
+                            </td>
+
+
+
+                            <td>
+
+                                <button
+                                    type="button"
+                                    class="details-btn"
+                                    onclick="
+                                        openContentDetails(
+                                            ${index}
+                                        )
+                                    ">
+
+                                    View Details →
+
+                                </button>
+
+                            </td>
+
+                        </tr>
+
+                        `;
+
+                    }
+                )
+                .join("");
+
+
+    } catch (error) {
+
+        console.error(
+            "Dashboard loading error:",
+            error
+        );
+
+
+        const body =
+            document.getElementById(
+                "recentContentBody"
+            );
+
+
+        body.innerHTML = `
+
+            <tr>
+
+                <td
+                    colspan="4"
+                    style="
+                        text-align:center;
+                        padding:30px;
+                        color:#dc2626;
+                    ">
+
+                    Unable to load dashboard data.
+
+                </td>
+
+            </tr>
+
+        `;
+
+    }
+
+}
+
+
+
+/* =====================================================
+   OPEN CONTENT DETAILS
+===================================================== */
+
+function openContentDetails(index) {
+
+    const item =
+        dashboardContent[index];
+
+
+    if (!item) {
+        return;
+    }
+
+
+
+    document
+        .getElementById(
+            "modalTitle"
+        )
+        .textContent =
+
+        item.title ||
+        "Content Details";
+
+
+
+    const fields = [
+
+        [
+            "Content ID",
+            item.content_id
+        ],
+
+        [
+            "Title",
+            item.title
+        ],
+
+        [
+            "Description",
+            item.description ||
+            "Not provided"
+        ],
+
+        [
+            "File Name",
+            item.file_name
+        ],
+
+        [
+            "Content Type",
+            item.content_type
+        ],
+
+        [
+            "License",
+            item.license_type ||
+            "All Rights Reserved"
+        ],
+
+        [
+            "SHA-256 Fingerprint",
+            item.sha256_hash
+        ],
+
+        [
+            "Creator Wallet",
+            item.creator_wallet
+        ],
+
+        [
+            "Blockchain Network",
+            item.blockchain_network ||
+            "Ethereum Sepolia"
+        ],
+
+        [
+            "Blockchain Status",
+            item.blockchain_status
+        ],
+
+        [
+            "Transaction Hash",
+            item.blockchain_tx_hash
+        ],
+
+        [
+            "Registration Status",
+            item.status
+        ],
+
+        [
+            "Registered At",
+            formatDate(
+                item.created_at
+            )
+
+        ]
+
+    ];
+
+
+
+    document
+        .getElementById(
+            "modalDetails"
+        )
+        .innerHTML =
+
+        fields
+            .map(
+                field => {
+
+                    const full =
+                        field[0] ===
+                            "Description" ||
+
+                        field[0] ===
+                            "SHA-256 Fingerprint" ||
+
+                        field[0] ===
+                            "Transaction Hash" ||
+
+                        field[0] ===
+                            "Creator Wallet";
+
+
+
+                    return `
+
+                        <div
+                            class="
+                                detail-item
+                                ${full ? "full" : ""}
+                            ">
+
+                            <span
+                                class="detail-label">
+
+                                ${escapeHtml(
+                                    field[0]
+                                )}
+
+                            </span>
+
+
+                            <span
+                                class="detail-value">
+
+                                ${escapeHtml(
+                                    field[1] ||
+                                    "Not available"
+                                )}
+
+                            </span>
+
+                        </div>
+
+                    `;
+
+                }
+            )
+            .join("");
+
+
+
+    document
+        .getElementById(
+            "contentModal"
+        )
+        .classList
+        .add("show");
+
+}
+
+
+
+/* =====================================================
+   CLOSE MODAL
+===================================================== */
+
+function closeContentModal() {
+
+    document
+        .getElementById(
+            "contentModal"
+        )
+        .classList
+        .remove("show");
+
+}
+
+
+
+/* =====================================================
+   CLOSE MODAL WHEN CLICKING OUTSIDE
+===================================================== */
+
+document
+    .getElementById(
+        "contentModal"
+    )
+    .addEventListener(
+        "click",
+        function(event) {
+
+            if (
+                event.target ===
+                this
+            ) {
+
+                closeContentModal();
+
+            }
+
+        }
+    );
+
+
+
+/* =====================================================
+   INITIAL LOAD
+===================================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        loadDashboard();
+
+    }
+);
+
+</script>
 
 </body>
+
 </html>

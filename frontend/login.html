@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Sign In | CreatorProof</title>
+
+    <!-- CreatorProof Main Stylesheet -->
+    <link
+        rel="stylesheet"
+        href="/css/style.css">
+
+</head>
+
+<body>
+
+<!-- =====================================================
+     AUTHENTICATION PAGE
+===================================================== -->
+
+<div class="auth-page">
+
+    <!-- Decorative Background -->
+    <div class="auth-bg-orb auth-bg-orb-one"></div>
+    <div class="auth-bg-orb auth-bg-orb-two"></div>
+
+
+    <div class="auth-container">
+
+
+        <!-- =================================================
+             LOGO
+        ================================================== -->
+
+        <div class="auth-logo">
+
+            <div class="logo-icon">
+
+                ⛓
+
+            </div>
+
+            <h2>
+                Creator<span>Proof</span>
+            </h2>
+
+            <p>
+                Blockchain Content Protection
+            </p>
+
+        </div>
+
+
+        <!-- =================================================
+             LOGIN CARD
+        ================================================== -->
+
+        <div class="auth-card">
+
+
+            <!-- Card Header -->
+
+            <div class="auth-card-header">
+
+                <div class="auth-badge">
+                    🔐 Secure Access
+                </div>
+
+                <h1>
+                    Welcome back
+                </h1>
+
+                <p>
+                    Sign in to protect, verify and manage
+                    your digital content.
+                </p>
+
+            </div>
+
+
+            <!-- =================================================
+                 MESSAGE
+            ================================================== -->
+
+            <div
+                id="loginMessage"
+                class="auth-message">
+            </div>
+
+
+            <!-- =================================================
+                 LOGIN FORM
+            ================================================== -->
+
+            <form
+                id="loginForm"
+                class="auth-form">
+
+
+                <!-- EMAIL -->
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Email Address
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <span class="input-icon">
+                            ✉
+                        </span>
+
+                        <input
+                            id="email"
+                            name="email"
+                            type="email"
+                            autocomplete="email"
+                            placeholder="you@example.com"
+                            required>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PASSWORD -->
+
+                <div class="form-group">
+
+                    <div class="label-row">
+
+                        <label for="password">
+                            Password
+                        </label>
+
+                    </div>
+
+                    <div class="input-wrapper">
+
+                        <span class="input-icon">
+                            🔒
+                        </span>
+
+                        <input
+                            id="password"
+                            name="password"
+                            type="password"
+                            autocomplete="current-password"
+                            placeholder="Enter your password"
+                            required>
+
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            id="passwordToggle"
+                            aria-label="Show password">
+
+                            👁
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SUBMIT -->
+
+                <button
+                    id="loginButton"
+                    class="btn btn-primary auth-submit"
+                    type="submit">
+
+                    <span class="button-icon">
+                        → 
+                    </span>
+
+                    <span id="loginButtonText">
+                        Sign In
+                    </span>
+
+                </button>
+
+
+            </form>
+
+
+            <!-- =================================================
+                 SECURITY INFO
+            ================================================== -->
+
+            <div class="auth-security">
+
+                <div class="security-icon">
+                    🛡
+                </div>
+
+                <div>
+
+                    <strong>
+                        Your content stays protected
+                    </strong>
+
+                    <span>
+                        Secure access to your CreatorProof account.
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 FOOTER
+            ================================================== -->
+
+            <div class="auth-footer">
+
+                <span>
+                    Don't have an account?
+                </span>
+
+                <a href="signup.html">
+                    Create an account
+                    <span>→</span>
+                </a>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- =================================================
+             BOTTOM TRUST TEXT
+        ================================================== -->
+
+        <div class="auth-trust">
+
+            <span>
+                ✓ SHA-256 Fingerprinting
+            </span>
+
+            <span>
+                ✓ Blockchain Registration
+            </span>
+
+            <span>
+                ✓ Ethereum Sepolia
+            </span>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     APPLICATION JAVASCRIPT
+===================================================== -->
+
+<script src="/js/app.js"></script>
+
+
+<!-- =====================================================
+     LOGIN SCRIPT
+===================================================== -->
+
+<script>
+
+(function () {
+
+    "use strict";
+
+
+    /* =====================================================
+       ELEMENTS
+    ===================================================== */
+
+    const loginForm =
+        document.getElementById(
+            "loginForm"
+        );
+
+    const loginMessage =
+        document.getElementById(
+            "loginMessage"
+        );
+
+    const loginButton =
+        document.getElementById(
+            "loginButton"
+        );
+
+    const loginButtonText =
+        document.getElementById(
+            "loginButtonText"
+        );
+
+    const passwordInput =
+        document.getElementById(
+            "password"
+        );
+
+    const passwordToggle =
+        document.getElementById(
+            "passwordToggle"
+        );
+
+
+    /* =====================================================
+       PASSWORD VISIBILITY
+    ===================================================== */
+
+    if (passwordToggle) {
+
+        passwordToggle.addEventListener(
+            "click",
+            function () {
+
+                const isPassword =
+                    passwordInput.type ===
+                    "password";
+
+
+                passwordInput.type =
+                    isPassword
+                        ? "text"
+                        : "password";
+
+
+                passwordToggle.textContent =
+                    isPassword
+                        ? "🙈"
+                        : "👁";
+
+
+                passwordToggle.setAttribute(
+                    "aria-label",
+                    isPassword
+                        ? "Hide password"
+                        : "Show password"
+                );
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       LOGIN
+    ===================================================== */
+
+    loginForm.addEventListener(
+        "submit",
+        async function (event) {
+
+            event.preventDefault();
+
+
+            /* Clear previous message */
+
+            loginMessage.innerHTML =
+                "";
+
+
+            /* Get values */
+
+            const email =
+                document
+                    .getElementById(
+                        "email"
+                    )
+                    .value
+                    .trim();
+
+
+            const password =
+                passwordInput.value;
+
+
+            /* Basic validation */
+
+            if (!email || !password) {
+
+                loginMessage.innerHTML = `
+                    <div class="alert alert-danger">
+                        <span>⚠</span>
+                        Please enter your email and password.
+                    </div>
+                `;
+
+                return;
+
+            }
+
+
+            /* Disable button */
+
+            loginButton.disabled =
+                true;
+
+
+            loginButtonText.textContent =
+                "Signing in";
+
+
+            /* Loading animation */
+
+            const originalIcon =
+                loginButton.querySelector(
+                    ".button-icon"
+                );
+
+
+            if (originalIcon) {
+
+                originalIcon.textContent =
+                    "⟳";
+
+            }
+
+
+            try {
+
+
+                /* =================================================
+                   API REQUEST
+                ================================================== */
+
+                const result =
+                    await api(
+                        "/api/auth/login",
+                        {
+
+                            method:
+                                "POST",
+
+                            headers: {
+
+                                "Content-Type":
+                                    "application/json"
+
+                            },
+
+                            body:
+                                JSON.stringify({
+
+                                    email:
+                                        email,
+
+                                    password:
+                                        password
+
+                                })
+
+                        }
+                    );
+
+
+                /* =================================================
+                   SUCCESS
+                ================================================== */
+
+                loginMessage.innerHTML = `
+                    <div class="alert alert-success">
+                        <span>✓</span>
+                        ${escapeHtml(
+                            result.message ||
+                            "Login successful."
+                        )}
+                    </div>
+                `;
+
+
+                loginButtonText.textContent =
+                    "Success";
+
+
+                if (originalIcon) {
+
+                    originalIcon.textContent =
+                        "✓";
+
+                }
+
+
+                /* Redirect */
+
+                setTimeout(
+                    function () {
+
+                        window.location.href =
+                            "dashboard.html";
+
+                    },
+                    700
+                );
+
+
+            } catch (error) {
+
+
+                /* =================================================
+                   ERROR
+                ================================================== */
+
+                console.error(
+                    "Login error:",
+                    error
+                );
+
+
+                loginMessage.innerHTML = `
+                    <div class="alert alert-danger">
+                        <span>⚠</span>
+                        ${escapeHtml(
+                            error.message ||
+                            "Unable to sign in. Please try again."
+                        )}
+                    </div>
+                `;
+
+
+                /* Re-enable */
+
+                loginButton.disabled =
+                    false;
+
+
+                loginButtonText.textContent =
+                    "Sign In";
+
+
+                if (originalIcon) {
+
+                    originalIcon.textContent =
+                        "→";
+
+                }
+
+            }
+
+        }
+    );
+
+
+})();
+
+</script>
+
+
+</body>
+
+</html>

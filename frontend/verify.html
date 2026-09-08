@@ -5,13 +5,803 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
     <title>Verify Content | CreatorProof</title>
 
-    <link rel="stylesheet"
-          href="../css/style.css">
+    <link
+        rel="stylesheet"
+        href="/css/style.css">
+
+    <!-- =====================================================
+         VERIFY PAGE UI OVERRIDES
+    ====================================================== -->
+
+    <style>
+
+        /* =====================================================
+           PAGE LAYOUT
+        ====================================================== */
+
+        .verify-page {
+            max-width: 1250px;
+            margin: 0 auto;
+        }
+
+
+        .verify-intro {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 30px;
+            margin-bottom: 24px;
+        }
+
+
+        .verify-intro-left {
+            max-width: 760px;
+        }
+
+
+        .verify-eyebrow {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .08em;
+            color: #6366f1;
+            margin-bottom: 7px;
+        }
+
+
+        .verify-intro h1 {
+            margin: 0;
+            font-size: 30px;
+            line-height: 1.15;
+            color: #0f172a;
+        }
+
+
+        .verify-intro p {
+            margin: 8px 0 0;
+            font-size: 13px;
+            line-height: 1.6;
+            color: #64748b;
+        }
+
+
+        .verify-online {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 9px 14px;
+            border: 1px solid #dbe4ef;
+            border-radius: 10px;
+            background: #ffffff;
+            color: #334155;
+            font-size: 12px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+
+        .verify-online-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #22c55e;
+            box-shadow: 0 0 0 4px #dcfce7;
+        }
+
+
+        /* =====================================================
+           MAIN TWO COLUMN LAYOUT
+        ====================================================== */
+
+        .verify-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1.65fr) minmax(280px, .75fr);
+            gap: 20px;
+            align-items: start;
+        }
+
+
+        /* =====================================================
+           MAIN VERIFY CARD
+        ====================================================== */
+
+        .verify-main-card {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(15, 23, 42, .05);
+            overflow: hidden;
+        }
+
+
+        .verify-card-top {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            padding: 20px 22px;
+            border-bottom: 1px solid #eef2f7;
+        }
+
+
+        .verify-main-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 11px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #eef2ff;
+            color: #4f46e5;
+            font-size: 19px;
+            font-weight: 700;
+        }
+
+
+        .verify-card-top h2 {
+            margin: 0;
+            font-size: 17px;
+            color: #0f172a;
+        }
+
+
+        .verify-card-top p {
+            margin: 3px 0 0;
+            color: #64748b;
+            font-size: 11px;
+        }
+
+
+        .verify-form {
+            padding: 22px;
+        }
+
+
+        /* =====================================================
+           STEPS
+        ====================================================== */
+
+        .verify-step {
+            padding-bottom: 22px;
+            margin-bottom: 22px;
+            border-bottom: 1px solid #eef2f7;
+        }
+
+
+        .verify-step:last-of-type {
+            border-bottom: 0;
+            margin-bottom: 0;
+            padding-bottom: 5px;
+        }
+
+
+        .verify-step-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 13px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #1e293b;
+        }
+
+
+        .step-number {
+            width: 25px;
+            height: 25px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #ede9fe;
+            color: #5b21b6;
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+
+        .verify-form-group {
+            margin-bottom: 0;
+        }
+
+
+        .verify-form-group label {
+            display: block;
+            margin-bottom: 7px;
+            color: #334155;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+
+        .verify-form-group select {
+            width: 100%;
+            height: 43px;
+            padding: 0 13px;
+            border: 1px solid #d7dee8;
+            border-radius: 9px;
+            background: #ffffff;
+            color: #334155;
+            font-size: 12px;
+            outline: none;
+            transition: .2s;
+        }
+
+
+        .verify-form-group select:focus {
+            border-color: #6366f1;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, .10);
+        }
+
+
+        .verify-help {
+            display: block;
+            margin-top: 7px;
+            color: #94a3b8;
+            font-size: 10px;
+            line-height: 1.5;
+        }
+
+
+        /* =====================================================
+           UPLOAD AREA
+        ====================================================== */
+
+        .verify-upload {
+            position: relative;
+            min-height: 175px;
+            padding: 28px 20px;
+            border: 1.5px dashed #c7d2fe;
+            border-radius: 12px;
+            background: #fafaff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+
+        .verify-upload:hover,
+        .verify-upload.drag-active {
+            border-color: #6366f1;
+            background: #f5f3ff;
+        }
+
+
+        .verify-upload-icon {
+            width: 46px;
+            height: 46px;
+            border-radius: 12px;
+            background: #ede9fe;
+            color: #6366f1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 23px;
+            margin-bottom: 10px;
+        }
+
+
+        .verify-upload h3 {
+            margin: 0 0 5px;
+            font-size: 13px;
+            color: #1e293b;
+        }
+
+
+        .verify-upload p {
+            margin: 0;
+            font-size: 11px;
+            color: #64748b;
+        }
+
+
+        .verify-upload-hint {
+            margin-top: 7px;
+            font-size: 10px;
+            color: #94a3b8;
+        }
+
+
+        .verify-upload input {
+            display: none;
+        }
+
+
+        /* =====================================================
+           HASH BOX
+        ====================================================== */
+
+        .verify-hash-box {
+            margin-top: 13px;
+            padding: 14px;
+            border: 1px solid #dbeafe;
+            border-radius: 10px;
+            background: #f8fbff;
+        }
+
+
+        .verify-hash-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+
+        .verify-hash-label {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+
+        .verify-hash-label small {
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: .06em;
+            color: #64748b;
+        }
+
+
+        .verify-hash-label span {
+            font-size: 10px;
+            color: #94a3b8;
+        }
+
+
+        .verify-hash-check {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #dcfce7;
+            color: #16a34a;
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+
+        .verify-hash-box code {
+            display: block;
+            padding: 10px;
+            border-radius: 7px;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            color: #334155;
+            font-size: 10px;
+            line-height: 1.5;
+            word-break: break-all;
+        }
+
+
+        .verify-hash-box p {
+            margin: 7px 0 0;
+            font-size: 9px;
+            color: #94a3b8;
+        }
+
+
+        /* =====================================================
+           BLOCKCHAIN INFO
+        ====================================================== */
+
+        .blockchain-info {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+
+        .blockchain-info-item {
+            padding: 12px;
+            border: 1px solid #e5e7eb;
+            border-radius: 9px;
+            background: #fafbfc;
+        }
+
+
+        .blockchain-info-item span {
+            display: block;
+            margin-bottom: 5px;
+            color: #94a3b8;
+            font-size: 9px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .04em;
+        }
+
+
+        .blockchain-info-item strong {
+            color: #334155;
+            font-size: 11px;
+        }
+
+
+        /* =====================================================
+           BUTTONS
+        ====================================================== */
+
+        .verify-actions {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 10px;
+            padding-top: 20px;
+            margin-top: 15px;
+            border-top: 1px solid #eef2f7;
+        }
+
+
+        .verify-submit {
+            min-width: 190px;
+        }
+
+
+        .verify-submit:disabled {
+            opacity: .65;
+            cursor: not-allowed;
+        }
+
+
+        /* =====================================================
+           RIGHT SIDEBAR
+        ====================================================== */
+
+        .verify-side {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+
+        .verify-side-card {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 14px;
+            padding: 18px;
+            box-shadow: 0 6px 24px rgba(15, 23, 42, .04);
+        }
+
+
+        .security-icon-large {
+            width: 42px;
+            height: 42px;
+            border-radius: 11px;
+            background: #eef2ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+
+        .verify-side-card h3 {
+            margin: 0 0 7px;
+            font-size: 15px;
+            color: #1e293b;
+        }
+
+
+        .verify-side-card > p {
+            margin: 0;
+            color: #64748b;
+            font-size: 11px;
+            line-height: 1.65;
+        }
+
+
+        /* =====================================================
+           SECURITY LIST
+        ====================================================== */
+
+        .security-list {
+            margin-top: 15px;
+            padding-top: 12px;
+            border-top: 1px solid #eef2f7;
+        }
+
+
+        .security-list-item {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            padding: 7px 0;
+            color: #475569;
+            font-size: 11px;
+        }
+
+
+        .security-check {
+            width: 20px;
+            height: 20px;
+            flex: 0 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: #dcfce7;
+            color: #16a34a;
+            font-size: 10px;
+            font-weight: 800;
+        }
+
+
+        /* =====================================================
+           HOW IT WORKS
+        ====================================================== */
+
+        .how-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+
+        .how-header h3 {
+            margin: 0;
+            font-size: 14px;
+            color: #1e293b;
+        }
+
+
+        .how-header span {
+            font-size: 10px;
+            color: #94a3b8;
+        }
+
+
+        .how-step {
+            display: flex;
+            gap: 11px;
+            padding: 11px 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+
+        .how-step:last-child {
+            border-bottom: 0;
+            padding-bottom: 0;
+        }
+
+
+        .how-number {
+            width: 29px;
+            height: 29px;
+            flex: 0 0 29px;
+            border-radius: 8px;
+            background: #f1f5f9;
+            color: #6366f1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 9px;
+            font-weight: 800;
+        }
+
+
+        .how-step strong {
+            display: block;
+            margin-bottom: 3px;
+            color: #334155;
+            font-size: 11px;
+        }
+
+
+        .how-step p {
+            margin: 0;
+            color: #94a3b8;
+            font-size: 10px;
+            line-height: 1.5;
+        }
+
+
+        /* =====================================================
+           NETWORK CARD
+        ====================================================== */
+
+        .network-card {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 13px 15px;
+            border-radius: 12px;
+            background: #0f172a;
+            color: white;
+        }
+
+
+        .network-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: rgba(255,255,255,.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+
+        .network-details {
+            flex: 1;
+        }
+
+
+        .network-details span {
+            display: block;
+            font-size: 8px;
+            letter-spacing: .06em;
+            color: #94a3b8;
+            margin-bottom: 2px;
+        }
+
+
+        .network-details strong {
+            font-size: 11px;
+            color: #ffffff;
+        }
+
+
+        .network-online {
+            font-size: 9px;
+            color: #86efac;
+            font-weight: 700;
+        }
+
+
+        /* =====================================================
+           VERIFICATION RESULT
+        ====================================================== */
+
+        .verification-result {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 15px;
+            margin-bottom: 18px;
+            border-radius: 10px;
+            border: 1px solid;
+        }
+
+
+        .verified-result {
+            background: #f0fdf4;
+            border-color: #bbf7d0;
+        }
+
+
+        .failed-result {
+            background: #fef2f2;
+            border-color: #fecaca;
+        }
+
+
+        .result-icon {
+            width: 32px;
+            height: 32px;
+            flex: 0 0 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-weight: 800;
+            font-size: 16px;
+        }
+
+
+        .verified-result .result-icon {
+            background: #dcfce7;
+            color: #16a34a;
+        }
+
+
+        .failed-result .result-icon {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+
+        .verification-result strong {
+            display: block;
+            font-size: 12px;
+            margin-bottom: 4px;
+        }
+
+
+        .verified-result strong {
+            color: #166534;
+        }
+
+
+        .failed-result strong {
+            color: #991b1b;
+        }
+
+
+        .verification-result p {
+            margin: 0;
+            font-size: 10px;
+            line-height: 1.5;
+            color: #64748b;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ====================================================== */
+
+        @media (max-width: 1050px) {
+
+            .verify-layout {
+                grid-template-columns: 1fr;
+            }
+
+
+            .verify-side {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+            }
+
+
+            .network-card {
+                grid-column: 1 / -1;
+            }
+
+        }
+
+
+        @media (max-width: 750px) {
+
+            .verify-intro {
+                display: block;
+            }
+
+
+            .verify-online {
+                margin-top: 15px;
+            }
+
+
+            .blockchain-info {
+                grid-template-columns: 1fr;
+            }
+
+
+            .verify-side {
+                display: flex;
+            }
+
+
+            .verify-actions {
+                flex-direction: column-reverse;
+                align-items: stretch;
+            }
+
+
+            .verify-actions .btn {
+                width: 100%;
+            }
+
+
+            .verify-intro h1 {
+                font-size: 25px;
+            }
+
+        }
+
+    </style>
 
 </head>
 
@@ -39,73 +829,98 @@
 
 
     <div class="nav-title">
-        Main Menu
+        MAIN MENU
     </div>
 
 
-    <a class="nav-link"
-       href="dashboard.html">
+    <a
+        class="nav-link"
+        href="dashboard.html">
 
         <span class="nav-icon">⌂</span>
-
-        <span>Dashboard</span>
+        Dashboard
 
     </a>
 
 
-    <a class="nav-link"
-       href="register.html">
+    <a
+        class="nav-link"
+        href="register.html">
 
         <span class="nav-icon">＋</span>
-
-        <span>Register Content</span>
+        Register Content
 
     </a>
 
 
-    <a class="nav-link"
-       href="content.html">
+    <a
+        class="nav-link"
+        href="content.html">
 
         <span class="nav-icon">▣</span>
-
-        <span>My Content</span>
+        My Content
 
     </a>
 
 
-    <a class="nav-link active"
-       href="verify.html">
+    <a
+        class="nav-link active"
+        href="verify.html">
 
         <span class="nav-icon">✓</span>
-
-        <span>Verify Content</span>
+        Verify Content
 
     </a>
 
 
     <div class="nav-title">
-        Management
+        MANAGEMENT
     </div>
 
 
-    <a class="nav-link"
-       href="licenses.html">
+    <a
+        class="nav-link"
+        href="licenses.html">
 
         <span class="nav-icon">▤</span>
-
-        <span>Licenses</span>
+        Licenses
 
     </a>
 
 
-    <a class="nav-link"
-       href="disputes.html">
+    <a
+        class="nav-link"
+        href="disputes.html">
 
         <span class="nav-icon">⚖</span>
-
-        <span>Disputes</span>
+        Disputes
 
     </a>
+
+
+    <div class="sidebar-bottom">
+
+        <div class="sidebar-security">
+
+            <div class="security-icon">
+                🔐
+            </div>
+
+            <div>
+
+                <strong>
+                    Protected
+                </strong>
+
+                <span>
+                    Blockchain secured
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </aside>
 
@@ -117,81 +932,79 @@
 <main class="main">
 
 
-    <!-- =================================================
-         TOP BAR
-    ================================================== -->
+<header class="topbar">
 
-    <header class="topbar">
+    <div>
 
-        <div>
-
-            <div class="page-title">
-                Verify Content
-            </div>
-
-            <div class="breadcrumb">
-                CreatorProof / Content Verification
-            </div>
-
+        <div class="page-title">
+            Verify Content
         </div>
 
-
-        <div class="top-actions">
-
-            <div class="demo-badge">
-                DEMO MODE
-            </div>
-
+        <div class="breadcrumb">
+            CreatorProof / Blockchain Verification
         </div>
 
-    </header>
+    </div>
 
 
-    <!-- =================================================
-         CONTENT AREA
-    ================================================== -->
+    <div class="top-actions">
 
-    <section class="content-area">
+        <div class="notification-wrapper">
+
+            <button
+                type="button"
+                class="notification-button"
+                id="notificationButton"
+                aria-label="Notifications">
+
+                🔔
+
+                <span class="notification-dot"></span>
+
+            </button>
 
 
-        <!-- =================================================
-             INTRO
-        ================================================== -->
+            <div
+                class="notification-panel"
+                id="notificationPanel">
 
-        <div class="welcome">
+                <div class="notification-title">
+                    Notifications
+                </div>
 
-            <div>
-
-                <h1>
-                    Verify Your Content
-                </h1>
-
-                <p>
-                    Upload a file to compare its digital fingerprint
-                    with registered CreatorProof content.
-                </p>
+                <div class="notification-item">
+                    Your CreatorProof account and
+                    blockchain services are active.
+                </div>
 
             </div>
 
         </div>
 
 
-        <!-- =================================================
-             VERIFICATION CARD
-        ================================================== -->
+        <div class="profile-wrapper">
 
-        <div class="card">
+            <div
+                class="profile"
+                id="profileButton">
 
-            <div class="card-header">
+                <div
+                    class="avatar"
+                    data-user-avatar>
 
-                <div>
+                    CP
 
-                    <h2>
-                        File Verification
-                    </h2>
+                </div>
 
-                    <span>
-                        SHA-256 fingerprint comparison
+
+                <div class="profile-info">
+
+                    <strong data-user-name>
+                        Creator
+                    </strong>
+
+                    <span data-user-role>
+                        Creator
                     </span>
 
                 </div>
@@ -199,128 +1012,347 @@
             </div>
 
 
-            <form id="verifyForm">
+            <div
+                class="profile-menu"
+                id="profileMenu">
+
+                <a href="profile.html">
+                    👤 Profile
+                </a>
+
+                <button
+                    id="logoutButton"
+                    class="logout"
+                    type="button">
+
+                    ↪ Sign Out
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</header>
 
 
-                <!-- CONTENT ID -->
+<!-- =====================================================
+     CONTENT
+===================================================== -->
 
-                <div class="form-group">
+<section class="content-area">
 
-                    <label for="contentId">
-                        Content ID
-                    </label>
+<div class="verify-page">
 
-                    <input
-                        type="text"
-                        id="contentId"
-                        name="contentId"
-                        placeholder="Enter registered Content ID"
-                        required
-                    >
 
-                    <small>
-                        Enter the Content ID generated when the content was registered.
-                    </small>
+    <!-- =================================================
+         PAGE INTRO
+    ================================================== -->
+
+    <div class="verify-intro">
+
+        <div class="verify-intro-left">
+
+            <div class="verify-eyebrow">
+                BLOCKCHAIN VERIFICATION
+            </div>
+
+            <h1>
+                Verify Content Authenticity
+            </h1>
+
+            <p>
+                Check whether a file matches the SHA-256
+                fingerprint registered on the CreatorProof
+                blockchain record.
+            </p>
+
+        </div>
+
+
+        <div class="verify-online">
+
+            <span class="verify-online-dot"></span>
+
+            Blockchain Online
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         TWO COLUMN CONTENT
+    ================================================== -->
+
+    <div class="verify-layout">
+
+
+        <!-- =================================================
+             LEFT
+        ================================================== -->
+
+        <div class="verify-main-card">
+
+
+            <div class="verify-card-top">
+
+                <div class="verify-main-icon">
+                    ✓
+                </div>
+
+                <div>
+
+                    <h2>
+                        Verify a File
+                    </h2>
+
+                    <p>
+                        Compare your file against a registered
+                        ownership proof.
+                    </p>
 
                 </div>
 
-
-                <!-- FILE -->
-
-                <div class="form-group">
-
-                    <label for="verifyFile">
-                        Select File
-                    </label>
+            </div>
 
 
-                    <input
-                        type="file"
-                        id="verifyFile"
-                        required
-                    >
+            <div
+                id="verifyMessage">
+            </div>
 
 
-                    <small>
-                        Select the original registered file
-                        or a file you want to check.
-                    </small>
-
-                </div>
+            <form
+                id="verifyForm"
+                class="verify-form">
 
 
-                <!-- SHA-256 HASH -->
+                <!-- STEP 1 -->
 
-                <div class="form-group"
-                     style="margin-top:20px;">
+                <div class="verify-step">
 
-                    <label for="sha256Hash">
-                        SHA-256 Hash
-                    </label>
+                    <div class="verify-step-title">
 
-                    <input
-                        type="text"
-                        id="sha256Hash"
-                        name="sha256Hash"
-                        placeholder="SHA-256 hash will appear here"
-                        readonly
-                        required
-                    >
+                        <span class="step-number">
+                            1
+                        </span>
 
-                    <small>
-                        This hash is generated automatically from the selected file.
-                    </small>
+                        Select Registered Content
 
-                </div>
-
-
-                <!-- HASH PREVIEW -->
-
-                <div
-                    id="verifyHashSection"
-                    style="
-                        display:none;
-                        margin-top:20px;
-                        padding:18px;
-                        border-radius:12px;
-                        background:#f5f3ff;
-                        border:1px solid #ddd6fe;
-                    "
-                >
-
-                    <div style="
-                        font-size:12px;
-                        font-weight:600;
-                        margin-bottom:10px;
-                    ">
-                        SHA-256 FINGERPRINT
                     </div>
 
+
+                    <div class="verify-form-group">
+
+                        <label for="contentSelect">
+                            Registered Content
+                        </label>
+
+
+                        <select
+                            id="contentSelect"
+                            required>
+
+                            <option value="">
+                                Loading registered content...
+                            </option>
+
+                        </select>
+
+
+                        <small class="verify-help">
+                            Select the blockchain record you
+                            want to compare your file against.
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <!-- STEP 2 -->
+
+                <div class="verify-step">
+
+                    <div class="verify-step-title">
+
+                        <span class="step-number">
+                            2
+                        </span>
+
+                        Upload File
+
+                    </div>
+
+
+                    <label
+                        class="verify-upload"
+                        id="verifyDrop">
+
+
+                        <div class="verify-upload-icon">
+                            ↑
+                        </div>
+
+
+                        <h3>
+                            Upload file to verify
+                        </h3>
+
+
+                        <p id="verifyFileName">
+                            Drag & drop your file here or
+                            click to browse
+                        </p>
+
+
+                        <span class="verify-upload-hint">
+                            SHA-256 fingerprint will be
+                            calculated automatically
+                        </span>
+
+
+                        <input
+                            id="verifyFile"
+                            type="file"
+                            required>
+
+                    </label>
+
+
+                    <!-- HASH -->
 
                     <div
-                        id="verifyHashDisplay"
-                        style="
-                            font-family:monospace;
-                            font-size:11px;
-                            word-break:break-all;
-                            line-height:1.6;
-                        "
-                    >
+                        id="verifyHashBox"
+                        class="verify-hash-box"
+                        style="display:none;">
+
+                        <div class="verify-hash-header">
+
+                            <div class="verify-hash-label">
+
+                                <small>
+                                    CALCULATED SHA-256
+                                </small>
+
+                                <span>
+                                    File fingerprint
+                                </span>
+
+                            </div>
+
+
+                            <span class="verify-hash-check">
+                                ✓
+                            </span>
+
+                        </div>
+
+
+                        <code id="verifyHash"></code>
+
+
+                        <p>
+                            This fingerprint is generated
+                            directly from the uploaded file.
+                        </p>
+
                     </div>
 
                 </div>
 
 
-                <!-- BUTTON -->
+                <!-- STEP 3 -->
 
-                <div style="margin-top:24px;">
+                <div class="verify-step">
+
+                    <div class="verify-step-title">
+
+                        <span class="step-number">
+                            3
+                        </span>
+
+                        Blockchain Verification
+
+                    </div>
+
+
+                    <div class="blockchain-info">
+
+
+                        <div class="blockchain-info-item">
+
+                            <span>
+                                Network
+                            </span>
+
+                            <strong>
+                                Ethereum Sepolia
+                            </strong>
+
+                        </div>
+
+
+                        <div class="blockchain-info-item">
+
+                            <span>
+                                Algorithm
+                            </span>
+
+                            <strong>
+                                SHA-256
+                            </strong>
+
+                        </div>
+
+
+                        <div class="blockchain-info-item">
+
+                            <span>
+                                Method
+                            </span>
+
+                            <strong>
+                                Smart Contract
+                            </strong>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+                <!-- ACTIONS -->
+
+                <div class="verify-actions">
+
+
+                    <a
+                        href="dashboard.html"
+                        class="btn btn-secondary">
+
+                        Cancel
+
+                    </a>
+
 
                     <button
+                        class="btn btn-primary verify-submit"
                         type="submit"
-                        class="btn btn-primary"
-                    >
-                        ✓ Verify Content
+                        id="verifyButton">
+
+                        <span>
+                            ✓
+                        </span>
+
+                        Verify on Blockchain
+
                     </button>
+
 
                 </div>
 
@@ -331,99 +1363,804 @@
 
 
         <!-- =================================================
-             RESULT
+             RIGHT
         ================================================== -->
 
-        <div
-            id="verificationResult"
-            class="card"
-            style="
-                display:none;
-                margin-top:20px;
-            "
-        >
-        </div>
+        <div class="verify-side">
 
 
-        <!-- =================================================
-             HOW IT WORKS
-        ================================================== -->
+            <!-- SECURITY -->
 
-        <div
-            class="two-column"
-            style="margin-top:20px;"
-        >
+            <div class="verify-side-card">
 
-
-            <!-- AUTHENTIC -->
-
-            <div class="card">
-
-                <div class="card-header">
-
-                    <h2>
-                        Authentic Content
-                    </h2>
-
+                <div class="security-icon-large">
+                    🔐
                 </div>
 
 
-                <div class="alert alert-info">
+                <h3>
+                    Secure Verification
+                </h3>
 
-                    <strong>
-                        MATCH
-                    </strong>
 
-                    <br><br>
+                <p>
+                    CreatorProof uses cryptographic
+                    fingerprinting to determine whether
+                    the uploaded file matches the registered
+                    ownership record.
+                </p>
 
-                    If the uploaded file produces the same
-                    SHA-256 fingerprint as a registered record,
-                    CreatorProof identifies it as authentic.
+
+                <div class="security-list">
+
+
+                    <div class="security-list-item">
+
+                        <span class="security-check">
+                            ✓
+                        </span>
+
+                        SHA-256 fingerprint
+
+                    </div>
+
+
+                    <div class="security-list-item">
+
+                        <span class="security-check">
+                            ✓
+                        </span>
+
+                        Blockchain timestamp
+
+                    </div>
+
+
+                    <div class="security-list-item">
+
+                        <span class="security-check">
+                            ✓
+                        </span>
+
+                        Smart contract record
+
+                    </div>
+
+
+                    <div class="security-list-item">
+
+                        <span class="security-check">
+                            ✓
+                        </span>
+
+                        Tamper detection
+
+                    </div>
+
 
                 </div>
 
             </div>
 
 
-            <!-- TAMPERED -->
+            <!-- HOW IT WORKS -->
 
-            <div class="card">
+            <div class="verify-side-card">
 
-                <div class="card-header">
+                <div class="how-header">
 
-                    <h2>
-                        Modified Content
-                    </h2>
+                    <h3>
+                        How Verification Works
+                    </h3>
+
+                    <span>
+                        3 steps
+                    </span>
 
                 </div>
 
 
-                <div class="alert alert-info">
+                <div class="how-step">
 
-                    <strong>
-                        NO MATCH
-                    </strong>
+                    <div class="how-number">
+                        01
+                    </div>
 
-                    <br><br>
+                    <div>
 
-                    Even a small modification changes the
-                    SHA-256 fingerprint, allowing the system
-                    to detect that the file is different.
+                        <strong>
+                            Select Content
+                        </strong>
+
+                        <p>
+                            Choose an existing blockchain
+                            registration.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="how-step">
+
+                    <div class="how-number">
+                        02
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Upload File
+                        </strong>
+
+                        <p>
+                            CreatorProof calculates its
+                            SHA-256 fingerprint.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="how-step">
+
+                    <div class="how-number">
+                        03
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Compare
+                        </strong>
+
+                        <p>
+                            The fingerprint is compared with
+                            the registered record.
+                        </p>
+
+                    </div>
 
                 </div>
 
             </div>
 
 
+            <!-- NETWORK -->
+
+            <div class="network-card">
+
+                <div class="network-icon">
+                    ⛓
+                </div>
+
+
+                <div class="network-details">
+
+                    <span>
+                        BLOCKCHAIN NETWORK
+                    </span>
+
+                    <strong>
+                        Ethereum Sepolia
+                    </strong>
+
+                </div>
+
+
+                <span class="network-online">
+                    ● Online
+                </span>
+
+            </div>
+
+
         </div>
 
+    </div>
 
-    </section>
+</div>
+
+</section>
 
 </main>
 
 
-<script src="../js/app.js"></script>
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script src="/js/app.js"></script>
+
+
+<script>
+
+"use strict";
+
+
+let contentList = [];
+
+let verifyFile = null;
+
+
+/* =====================================================
+   LOAD REGISTERED CONTENT
+===================================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    loadRegisteredContent
+);
+
+
+async function loadRegisteredContent() {
+
+    const select =
+        document.getElementById(
+            "contentSelect"
+        );
+
+
+    try {
+
+        const result =
+            await api(
+                "/api/content"
+            );
+
+
+        contentList =
+            Array.isArray(
+                result.data
+            )
+                ? result.data
+                : [];
+
+
+        select.innerHTML = `
+            <option value="">
+                Select registered content
+            </option>
+        `;
+
+
+        if (!contentList.length) {
+
+            select.innerHTML = `
+                <option value="">
+                    No registered content available
+                </option>
+            `;
+
+            return;
+
+        }
+
+
+        contentList.forEach(
+            (item, index) => {
+
+                const option =
+                    document.createElement(
+                        "option"
+                    );
+
+
+                option.value =
+                    index;
+
+
+                option.textContent =
+                    (
+                        item.title ||
+                        "Untitled Content"
+                    )
+                    +
+                    " — "
+                    +
+                    (
+                        item.file_name ||
+                        "No file name"
+                    );
+
+
+                select.appendChild(
+                    option
+                );
+
+            }
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "Unable to load content:",
+            error
+        );
+
+
+        select.innerHTML = `
+            <option value="">
+                Unable to load registered content
+            </option>
+        `;
+
+
+        document.getElementById(
+            "verifyMessage"
+        ).innerHTML = `
+            <div class="alert alert-danger">
+                ${escapeHtml(
+                    error.message ||
+                    "Unable to load registered content."
+                )}
+            </div>
+        `;
+
+    }
+
+}
+
+
+/* =====================================================
+   FILE SELECTION
+===================================================== */
+
+document
+    .getElementById(
+        "verifyFile"
+    )
+    .addEventListener(
+        "change",
+        handleVerifyFile
+    );
+
+
+async function handleVerifyFile() {
+
+    verifyFile =
+        this.files &&
+        this.files[0];
+
+
+    if (!verifyFile) {
+        return;
+    }
+
+
+    document
+        .getElementById(
+            "verifyFileName"
+        )
+        .textContent =
+        verifyFile.name;
+
+
+    await calculateAndDisplayHash();
+
+}
+
+
+/* =====================================================
+   DRAG & DROP
+===================================================== */
+
+const verifyDrop =
+    document.getElementById(
+        "verifyDrop"
+    );
+
+
+if (verifyDrop) {
+
+    [
+        "dragenter",
+        "dragover"
+    ].forEach(
+        eventName => {
+
+            verifyDrop.addEventListener(
+                eventName,
+                function(event) {
+
+                    event.preventDefault();
+
+                    event.stopPropagation();
+
+                    verifyDrop.classList.add(
+                        "drag-active"
+                    );
+
+                }
+            );
+
+        }
+    );
+
+
+    [
+        "dragleave",
+        "drop"
+    ].forEach(
+        eventName => {
+
+            verifyDrop.addEventListener(
+                eventName,
+                function(event) {
+
+                    event.preventDefault();
+
+                    event.stopPropagation();
+
+                    verifyDrop.classList.remove(
+                        "drag-active"
+                    );
+
+                }
+            );
+
+        }
+    );
+
+
+    verifyDrop.addEventListener(
+        "drop",
+        function(event) {
+
+            const files =
+                event.dataTransfer.files;
+
+
+            if (
+                files &&
+                files.length > 0
+            ) {
+
+                const file =
+                    files[0];
+
+
+                try {
+
+                    const dataTransfer =
+                        new DataTransfer();
+
+
+                    dataTransfer.items.add(
+                        file
+                    );
+
+
+                    document
+                        .getElementById(
+                            "verifyFile"
+                        )
+                        .files =
+                        dataTransfer.files;
+
+                } catch (error) {
+
+                    console.error(
+                        error
+                    );
+
+                }
+
+
+                verifyFile =
+                    file;
+
+
+                document
+                    .getElementById(
+                        "verifyFileName"
+                    )
+                    .textContent =
+                    file.name;
+
+
+                calculateAndDisplayHash();
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   CALCULATE HASH
+===================================================== */
+
+async function calculateAndDisplayHash() {
+
+    if (!verifyFile) {
+        return;
+    }
+
+
+    const hashBox =
+        document.getElementById(
+            "verifyHashBox"
+        );
+
+
+    const hashElement =
+        document.getElementById(
+            "verifyHash"
+        );
+
+
+    hashBox.style.display =
+        "block";
+
+
+    hashElement.textContent =
+        "Calculating SHA-256 fingerprint...";
+
+
+    try {
+
+        const hash =
+            await calculateSHA256(
+                verifyFile
+            );
+
+
+        hashElement.textContent =
+            hash;
+
+    } catch (error) {
+
+        hashElement.textContent =
+            "Unable to calculate SHA-256 fingerprint.";
+
+
+        console.error(
+            "Hash calculation error:",
+            error
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   FORM SUBMISSION
+===================================================== */
+
+document
+    .getElementById(
+        "verifyForm"
+    )
+    .addEventListener(
+        "submit",
+        async function(event) {
+
+            event.preventDefault();
+
+
+            const message =
+                document.getElementById(
+                    "verifyMessage"
+                );
+
+
+            const select =
+                document.getElementById(
+                    "contentSelect"
+                );
+
+
+            const index =
+                select.value;
+
+
+            if (
+                index === "" ||
+                !verifyFile
+            ) {
+
+                message.innerHTML = `
+                    <div class="alert alert-danger">
+                        Please select registered content
+                        and upload a file to verify.
+                    </div>
+                `;
+
+                return;
+
+            }
+
+
+            const item =
+                contentList[
+                    Number(index)
+                ];
+
+
+            if (!item) {
+
+                message.innerHTML = `
+                    <div class="alert alert-danger">
+                        The selected content could not be found.
+                    </div>
+                `;
+
+                return;
+
+            }
+
+
+            const button =
+                document.getElementById(
+                    "verifyButton"
+                );
+
+
+            button.disabled =
+                true;
+
+
+            button.innerHTML = `
+                <span class="button-spinner">
+                    ⟳
+                </span>
+                Checking blockchain...
+            `;
+
+
+            message.innerHTML = `
+                <div class="alert alert-info">
+                    Comparing your file fingerprint
+                    with the registered blockchain record...
+                </div>
+            `;
+
+
+            try {
+
+                const hash =
+                    await calculateSHA256(
+                        verifyFile
+                    );
+
+
+                const result =
+                    await api(
+                        "/api/content/verify",
+                        {
+
+                            method:
+                                "POST",
+
+                            headers: {
+
+                                "Content-Type":
+                                    "application/json"
+
+                            },
+
+                            body:
+                                JSON.stringify({
+
+                                    contentId:
+                                        item.content_id,
+
+                                    sha256Hash:
+                                        hash
+
+                                })
+
+                        }
+                    );
+
+
+                if (
+                    result.verified
+                ) {
+
+                    message.innerHTML = `
+                        <div class="verification-result verified-result">
+
+                            <div class="result-icon">
+                                ✓
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    CONTENT VERIFIED
+                                </strong>
+
+                                <p>
+                                    The uploaded file matches
+                                    the SHA-256 fingerprint
+                                    registered on Ethereum Sepolia.
+                                </p>
+
+                            </div>
+
+                        </div>
+                    `;
+
+                } else {
+
+                    message.innerHTML = `
+                        <div class="verification-result failed-result">
+
+                            <div class="result-icon">
+                                ×
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    CONTENT NOT VERIFIED
+                                </strong>
+
+                                <p>
+                                    The uploaded file does not
+                                    match the registered blockchain
+                                    fingerprint.
+                                </p>
+
+                            </div>
+
+                        </div>
+                    `;
+
+                }
+
+
+            } catch (error) {
+
+                console.error(
+                    "Verification error:",
+                    error
+                );
+
+
+                message.innerHTML = `
+                    <div class="alert alert-danger">
+
+                        <strong>
+                            Verification Failed
+                        </strong>
+
+                        <br><br>
+
+                        ${escapeHtml(
+                            error.message ||
+                            "Unable to verify content."
+                        )}
+
+                    </div>
+                `;
+
+            }
+
+
+            button.disabled =
+                false;
+
+
+            button.innerHTML = `
+                <span>
+                    ✓
+                </span>
+                Verify on Blockchain
+            `;
+
+        }
+    );
+
+</script>
 
 
 </body>

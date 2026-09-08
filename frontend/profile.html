@@ -1,0 +1,1402 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Profile | CreatorProof</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <style>
+
+        /* =====================================================
+           PROFILE PAGE
+        ===================================================== */
+
+        .profile-page-card {
+            width: 100%;
+            max-width: 1050px;
+            margin: 0 auto;
+        }
+
+
+        /* =====================================================
+           HEADER
+        ===================================================== */
+
+        .profile-page-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 24px;
+
+            padding-bottom: 22px;
+            margin-bottom: 25px;
+
+            border-bottom: 1px solid #edf0f4;
+        }
+
+
+        .profile-page-header h1 {
+            margin: 0 0 7px;
+
+            font-size: 22px;
+            font-weight: 800;
+
+            letter-spacing: -0.6px;
+
+            color: #0f172a;
+        }
+
+
+        .profile-page-header p {
+            margin: 0;
+
+            color: #64748b;
+
+            font-size: 11px;
+            line-height: 1.7;
+        }
+
+
+        /* =====================================================
+           SECURITY BADGE
+        ===================================================== */
+
+        .profile-security-badge {
+
+            display: inline-flex;
+
+            align-items: center;
+            gap: 7px;
+
+            padding: 8px 13px;
+
+            border-radius: 999px;
+
+            background: #f5f3ff;
+
+            border: 1px solid #ddd6fe;
+
+            color: #5b21b6;
+
+            font-size: 9px;
+
+            font-weight: 800;
+
+            white-space: nowrap;
+        }
+
+
+        /* =====================================================
+           PROFILE IDENTITY
+        ===================================================== */
+
+        .profile-avatar-section {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 16px;
+
+            padding: 18px;
+
+            margin-bottom: 28px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #faf9ff,
+                    #f8fafc
+                );
+
+            border: 1px solid #e8eaf3;
+
+            border-radius: 14px;
+        }
+
+
+        .profile-large-avatar {
+
+            width: 64px;
+            height: 64px;
+
+            flex-shrink: 0;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 17px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #7c3aed,
+                    #4f46e5
+                );
+
+            color: white;
+
+            font-size: 18px;
+
+            font-weight: 800;
+
+            box-shadow:
+                0 8px 20px
+                rgba(79, 70, 229, 0.20);
+        }
+
+
+        .profile-avatar-section strong {
+
+            display: block;
+
+            margin-bottom: 5px;
+
+            color: #1e293b;
+
+            font-size: 14px;
+
+            font-weight: 800;
+        }
+
+
+        .profile-avatar-section span {
+
+            color: #64748b;
+
+            font-size: 10px;
+        }
+
+
+        /* =====================================================
+           ACCOUNT SECTION
+        ===================================================== */
+
+        .profile-section-title {
+
+            margin-bottom: 17px;
+
+            color: #1e293b;
+
+            font-size: 12px;
+
+            font-weight: 800;
+        }
+
+
+        .profile-section-title::after {
+
+            content: "";
+
+            display: block;
+
+            width: 35px;
+
+            height: 3px;
+
+            margin-top: 7px;
+
+            border-radius: 5px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #6d5dfc,
+                    #8b5cf6
+                );
+        }
+
+
+        /* =====================================================
+           FORM GRID
+        ===================================================== */
+
+        .profile-form-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
+            gap: 0 20px;
+        }
+
+
+        .profile-form-grid .form-group {
+
+            margin-bottom: 20px;
+        }
+
+
+        .profile-form-grid label {
+
+            display: block;
+
+            margin-bottom: 7px;
+
+            color: #334155;
+
+            font-size: 10px;
+
+            font-weight: 700;
+        }
+
+
+        .profile-form-grid input {
+
+            width: 100%;
+
+            min-height: 42px;
+
+            box-sizing: border-box;
+        }
+
+
+        /* =====================================================
+           READ ONLY
+        ===================================================== */
+
+        .profile-readonly {
+
+            background: #f8fafc !important;
+
+            color: #64748b !important;
+
+            border-color: #e2e8f0 !important;
+
+            cursor: not-allowed;
+
+            opacity: 0.9;
+        }
+
+
+        /* =====================================================
+           WALLET FIELD
+        ===================================================== */
+
+        #profileWallet {
+
+            font-family:
+                "Courier New",
+                monospace;
+
+            font-size: 11px;
+        }
+
+
+        /* =====================================================
+           FORM ACTIONS
+        ===================================================== */
+
+        .profile-form-actions {
+
+            display: flex;
+
+            justify-content: flex-end;
+
+            align-items: center;
+
+            gap: 10px;
+
+            padding-top: 20px;
+
+            margin-top: 3px;
+
+            border-top: 1px solid #edf0f4;
+
+            grid-column: 1 / -1;
+        }
+
+
+        /* =====================================================
+           DANGER BUTTON
+        ===================================================== */
+
+        .btn-danger {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 7px;
+
+            min-height: 40px;
+
+            padding: 0 16px;
+
+            border-radius: 9px;
+
+            background: #fff;
+
+            border: 1px solid #fecaca;
+
+            color: #dc2626;
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+            cursor: pointer;
+
+            transition: all .2s ease;
+        }
+
+
+        .btn-danger:hover {
+
+            background: #fef2f2;
+
+            border-color: #fca5a5;
+
+            transform: translateY(-1px);
+        }
+
+
+        /* =====================================================
+           INFO BOX
+        ===================================================== */
+
+        .profile-info-box {
+
+            display: flex;
+
+            align-items: flex-start;
+
+            gap: 12px;
+
+            margin-top: 5px;
+
+            padding: 14px 16px;
+
+            border-radius: 11px;
+
+            background: #f8f7ff;
+
+            border: 1px solid #e9e5ff;
+        }
+
+
+        .profile-info-icon {
+
+            width: 30px;
+            height: 30px;
+
+            flex-shrink: 0;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 9px;
+
+            background: #ede9fe;
+
+            color: #6d28d9;
+
+            font-size: 14px;
+        }
+
+
+        .profile-info-box strong {
+
+            display: block;
+
+            margin-bottom: 3px;
+
+            color: #312e81;
+
+            font-size: 10px;
+        }
+
+
+        .profile-info-box span {
+
+            display: block;
+
+            color: #64748b;
+
+            font-size: 9px;
+
+            line-height: 1.6;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 750px) {
+
+            .profile-page-header {
+
+                flex-direction: column;
+
+                align-items: flex-start;
+            }
+
+
+            .profile-form-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .profile-form-actions {
+
+                grid-column: auto;
+
+                flex-direction: column;
+
+                align-items: stretch;
+            }
+
+
+            .profile-form-actions .btn,
+            .profile-form-actions .btn-danger {
+
+                width: 100%;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .profile-page-card {
+
+                max-width: 100%;
+            }
+
+
+            .profile-avatar-section {
+
+                padding: 15px;
+            }
+
+
+            .profile-large-avatar {
+
+                width: 55px;
+                height: 55px;
+
+                border-radius: 14px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
+
+<aside class="sidebar">
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            ⛓
+        </div>
+
+        <div class="logo-text">
+            Creator<span>Proof</span>
+        </div>
+
+    </div>
+
+
+    <div class="nav-title">
+        MAIN MENU
+    </div>
+
+
+    <a
+        class="nav-link"
+        href="dashboard.html">
+
+        <span class="nav-icon">⌂</span>
+
+        <span>
+            Dashboard
+        </span>
+
+    </a>
+
+
+    <a
+        class="nav-link"
+        href="register.html">
+
+        <span class="nav-icon">＋</span>
+
+        <span>
+            Register Content
+        </span>
+
+    </a>
+
+
+    <a
+        class="nav-link"
+        href="content.html">
+
+        <span class="nav-icon">▣</span>
+
+        <span>
+            My Content
+        </span>
+
+    </a>
+
+
+    <a
+        class="nav-link"
+        href="verify.html">
+
+        <span class="nav-icon">✓</span>
+
+        <span>
+            Verify Content
+        </span>
+
+    </a>
+
+
+    <div class="nav-title">
+        MANAGEMENT
+    </div>
+
+
+    <a
+        class="nav-link"
+        href="licenses.html">
+
+        <span class="nav-icon">▤</span>
+
+        <span>
+            Licenses
+        </span>
+
+    </a>
+
+
+    <a
+        class="nav-link"
+        href="disputes.html">
+
+        <span class="nav-icon">⚖</span>
+
+        <span>
+            Disputes
+        </span>
+
+    </a>
+
+
+    <div class="sidebar-bottom">
+
+        <div class="sidebar-security">
+
+            <div class="security-icon">
+                🔐
+            </div>
+
+            <div>
+
+                <strong>
+                    Protected
+                </strong>
+
+                <span>
+                    Blockchain secured
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</aside>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="main">
+
+
+<!-- =====================================================
+     TOPBAR
+===================================================== -->
+
+<header class="topbar">
+
+    <div>
+
+        <div class="page-title">
+            Profile
+        </div>
+
+        <div class="breadcrumb">
+            CreatorProof / Account
+        </div>
+
+    </div>
+
+
+    <div class="top-actions">
+
+
+        <!-- NOTIFICATION -->
+
+        <div class="notification-wrapper">
+
+            <button
+                type="button"
+                class="notification-button"
+                id="notificationButton"
+                aria-label="Notifications">
+
+                🔔
+
+            </button>
+
+
+            <div
+                class="notification-panel"
+                id="notificationPanel">
+
+                <div class="notification-title">
+                    Notifications
+                </div>
+
+                <div class="notification-item">
+
+                    Your CreatorProof account
+                    is active.
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PROFILE -->
+
+        <div class="profile-wrapper">
+
+            <div
+                class="profile"
+                id="profileButton">
+
+                <div
+                    class="avatar"
+                    data-user-avatar>
+
+                    CP
+
+                </div>
+
+
+                <div class="profile-info">
+
+                    <strong data-user-name>
+                        Creator
+                    </strong>
+
+                    <span data-user-role>
+                        Creator
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="profile-menu"
+                id="profileMenu">
+
+                <a href="profile.html">
+                    👤 Profile
+                </a>
+
+                <button
+                    id="logoutButton"
+                    class="logout"
+                    type="button">
+
+                    ↪ Sign Out
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- =====================================================
+     PAGE CONTENT
+===================================================== -->
+
+<section class="content-area">
+
+
+    <div class="card profile-page-card">
+
+
+        <!-- HEADER -->
+
+        <div class="profile-page-header">
+
+            <div>
+
+                <h1>
+                    Your Profile
+                </h1>
+
+                <p>
+                    Manage your CreatorProof account
+                    information and blockchain wallet.
+                </p>
+
+            </div>
+
+
+            <div class="profile-security-badge">
+
+                🔐 Secure Account
+
+            </div>
+
+        </div>
+
+
+        <!-- MESSAGE -->
+
+        <div id="profileMessage"></div>
+
+
+        <!-- IDENTITY -->
+
+        <div class="profile-avatar-section">
+
+            <div
+                class="profile-large-avatar"
+                data-profile-avatar>
+
+                CP
+
+            </div>
+
+
+            <div>
+
+                <strong
+                    data-profile-display-name>
+
+                    Creator
+
+                </strong>
+
+                <span>
+                    CreatorProof Creator Account
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- FORM -->
+
+        <form id="profileForm">
+
+
+            <div class="profile-section-title">
+                Account Information
+            </div>
+
+
+            <div class="profile-form-grid">
+
+
+                <!-- NAME -->
+
+                <div class="form-group">
+
+                    <label for="profileName">
+                        Full Name
+                    </label>
+
+                    <input
+                        id="profileName"
+                        type="text"
+                        placeholder="Your full name"
+                        maxlength="100"
+                        required>
+
+                </div>
+
+
+                <!-- EMAIL -->
+
+                <div class="form-group">
+
+                    <label for="profileEmail">
+                        Email Address
+                    </label>
+
+                    <input
+                        id="profileEmail"
+                        class="profile-readonly"
+                        type="email"
+                        disabled>
+
+                </div>
+
+
+                <!-- ROLE -->
+
+                <div class="form-group">
+
+                    <label for="profileRole">
+                        Account Role
+                    </label>
+
+                    <input
+                        id="profileRole"
+                        class="profile-readonly"
+                        type="text"
+                        disabled>
+
+                </div>
+
+
+                <!-- WALLET -->
+
+                <div class="form-group">
+
+                    <label for="profileWallet">
+                        Ethereum Wallet Address
+                    </label>
+
+                    <input
+                        id="profileWallet"
+                        type="text"
+                        placeholder="0x... (Optional)"
+                        autocomplete="off">
+
+                </div>
+
+
+                <!-- INFO -->
+
+                <div class="profile-info-box">
+
+                    <div class="profile-info-icon">
+                        ⛓
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Blockchain Wallet
+                        </strong>
+
+                        <span>
+                            Your Ethereum wallet address can
+                            be connected to content ownership
+                            records and blockchain transactions.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ACTIONS -->
+
+                <div class="profile-form-actions">
+
+                    <button
+                        type="button"
+                        class="btn-danger"
+                        id="profileLogoutButton">
+
+                        ↪ Sign Out
+
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary"
+                        id="saveProfileButton">
+
+                        ✓ Save Profile
+
+                    </button>
+
+                </div>
+
+
+            </div>
+
+        </form>
+
+
+    </div>
+
+
+</section>
+
+</main>
+
+
+<!-- =====================================================
+     APP JAVASCRIPT
+===================================================== -->
+
+<script src="/js/app.js"></script>
+
+
+<script>
+
+"use strict";
+
+
+/* =====================================================
+   LOAD PROFILE
+===================================================== */
+
+async function loadProfile() {
+
+    const message =
+        document.getElementById(
+            "profileMessage"
+        );
+
+
+    try {
+
+        const user =
+            await requireUser();
+
+
+        if (!user) {
+            return;
+        }
+
+
+        /* NAME */
+
+        document.getElementById(
+            "profileName"
+        ).value =
+            user.name || "";
+
+
+        /* EMAIL */
+
+        document.getElementById(
+            "profileEmail"
+        ).value =
+            user.email || "";
+
+
+        /* ROLE */
+
+        document.getElementById(
+            "profileRole"
+        ).value =
+            user.role || "Creator";
+
+
+        /* WALLET */
+
+        document.getElementById(
+            "profileWallet"
+        ).value =
+            user.wallet_address || "";
+
+
+        /* TOPBAR */
+
+        const nameElement =
+            document.querySelector(
+                "[data-user-name]"
+            );
+
+
+        if (nameElement) {
+
+            nameElement.textContent =
+                user.name || "Creator";
+
+        }
+
+
+        const roleElement =
+            document.querySelector(
+                "[data-user-role]"
+            );
+
+
+        if (roleElement) {
+
+            roleElement.textContent =
+                user.role || "Creator";
+
+        }
+
+
+        /* DISPLAY NAME */
+
+        const displayName =
+            document.querySelector(
+                "[data-profile-display-name]"
+            );
+
+
+        if (displayName) {
+
+            displayName.textContent =
+                user.name || "Creator";
+
+        }
+
+
+        /* AVATAR */
+
+        updateAvatar(
+            user.name
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "Profile loading error:",
+            error
+        );
+
+
+        message.innerHTML = `
+
+            <div class="alert alert-danger">
+
+                <strong>
+                    Unable to load profile
+                </strong>
+
+                <br><br>
+
+                ${escapeHtml(
+                    error.message ||
+                    "Please sign in again."
+                )}
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =====================================================
+   UPDATE AVATAR
+===================================================== */
+
+function updateAvatar(name) {
+
+    const safeName =
+        name || "Creator";
+
+
+    const initials =
+        safeName
+            .split(" ")
+            .filter(Boolean)
+            .slice(0, 2)
+            .map(
+                word =>
+                    word
+                        .charAt(0)
+                        .toUpperCase()
+            )
+            .join("");
+
+
+    document
+        .querySelectorAll(
+            "[data-user-avatar], [data-profile-avatar]"
+        )
+        .forEach(
+            avatar => {
+
+                avatar.textContent =
+                    initials || "CP";
+
+            }
+        );
+
+}
+
+
+/* =====================================================
+   SAVE PROFILE
+===================================================== */
+
+document
+    .getElementById(
+        "profileForm"
+    )
+    .addEventListener(
+        "submit",
+        async function(event) {
+
+            event.preventDefault();
+
+
+            const message =
+                document.getElementById(
+                    "profileMessage"
+                );
+
+
+            const button =
+                document.getElementById(
+                    "saveProfileButton"
+                );
+
+
+            const name =
+                document.getElementById(
+                    "profileName"
+                )
+                .value
+                .trim();
+
+
+            const walletAddress =
+                document.getElementById(
+                    "profileWallet"
+                )
+                .value
+                .trim();
+
+
+            if (!name) {
+
+                message.innerHTML = `
+
+                    <div class="alert alert-danger">
+
+                        Please enter your full name.
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+
+            button.disabled = true;
+
+            button.textContent =
+                "Saving...";
+
+
+            message.innerHTML = `
+
+                <div class="alert alert-info">
+
+                    Updating your profile...
+
+                </div>
+
+            `;
+
+
+            try {
+
+                await api(
+                    "/api/auth/profile",
+                    {
+
+                        method: "PUT",
+
+                        headers: {
+
+                            "Content-Type":
+                                "application/json"
+
+                        },
+
+                        body:
+                            JSON.stringify({
+
+                                name:
+                                    name,
+
+                                walletAddress:
+                                    walletAddress
+
+                            })
+
+                    }
+                );
+
+
+                message.innerHTML = `
+
+                    <div class="alert alert-success">
+
+                        ✓ Profile updated successfully.
+
+                    </div>
+
+                `;
+
+
+                /* UPDATE TOPBAR */
+
+                const nameElement =
+                    document.querySelector(
+                        "[data-user-name]"
+                    );
+
+
+                if (nameElement) {
+
+                    nameElement.textContent =
+                        name;
+
+                }
+
+
+                /* UPDATE DISPLAY NAME */
+
+                const displayName =
+                    document.querySelector(
+                        "[data-profile-display-name]"
+                    );
+
+
+                if (displayName) {
+
+                    displayName.textContent =
+                        name;
+
+                }
+
+
+                /* UPDATE AVATAR */
+
+                updateAvatar(name);
+
+
+            } catch (error) {
+
+                console.error(
+                    "Profile update error:",
+                    error
+                );
+
+
+                message.innerHTML = `
+
+                    <div class="alert alert-danger">
+
+                        <strong>
+                            Profile update failed
+                        </strong>
+
+                        <br><br>
+
+                        ${escapeHtml(
+                            error.message ||
+                            "Unable to update profile."
+                        )}
+
+                    </div>
+
+                `;
+
+            } finally {
+
+                button.disabled = false;
+
+                button.textContent =
+                    "✓ Save Profile";
+
+            }
+
+        }
+    );
+
+
+/* =====================================================
+   SIGN OUT
+===================================================== */
+
+document
+    .getElementById(
+        "profileLogoutButton"
+    )
+    .addEventListener(
+        "click",
+        function() {
+
+            signOut();
+
+        }
+    );
+
+
+/* =====================================================
+   LOAD PAGE
+===================================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    loadProfile
+);
+
+</script>
+
+
+</body>
+
+</html>
